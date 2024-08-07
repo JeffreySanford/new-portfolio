@@ -14,11 +14,9 @@ export class AuthService {
         private readonly jwtService: JwtService
     ) { }
 
-    validateUser(username: string, pass: string): Observable<any> {
-
-
+    validateUser(username: string, pass: string): Observable<User | null> {
         return this.usersService.findOne(username).pipe(
-            switchMap(user =>
+            switchMap((user: User) =>
                 user ? from(bcrypt.compare(pass, user.password)).pipe(
                     map(isMatch => isMatch ? { ...user, password: undefined } : null)
                 ) : of(null)
@@ -26,7 +24,7 @@ export class AuthService {
         );
     }
 
-    login(user: any): Observable<{ access_token: string }> {
+    login(user: User): Observable<{ access_token: string }> {
         const payload: JwtPayload = { username: user.username, sub: user.id };
         return from(this.jwtService.signAsync(payload)).pipe(
             map(access_token => ({ access_token }))

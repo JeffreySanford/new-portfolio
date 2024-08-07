@@ -1,20 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../users/users.service';
+import { from, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import * as bcrypt from 'bcrypt';
 import { JwtPayload } from './jwt-payload.interface';
+import { User } from '../users/user.interface';
 
 @Injectable()
-export class JwtAuthService {
-  constructor(private readonly jwtService: JwtService) {}
+export class JWTAuthService {
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly jwtService: JwtService
+    ) { }
 
-  async generateToken(payload: JwtPayload): Promise<string> {
-    return this.jwtService.sign(payload);
-  }
+    validateUser(username: string, pass: string): Observable<User | null> {
+        return this.usersService.findOne(username).pipe(
+            switchMap(user =>
+                user ? from(bcrypt.compare(pass, user.password)).pipe(
+                    map(isMatch => isMatch ? { ...user, password: undefined, id: (user as User).id } : null)
+                ) : of(null)
+            )
+        );
+    }
 
-  async verifyToken(token: string): Promise<any> {
-    return this.jwtService.verify(token);
-  }
-
-  async decodeToken(token: string): Promise<any> {
-    return this.jwtService.decode(token);
-  }
+    login(user: User): Observable<{ access_token: string }> {
+        const payload: JwtPayload = { username: user.username, sub: user.id };
+        return from(this.jwtService.signAsync(payload)).pipe(
+            map(access_token => ({ access_token }))
+        );
+    }
 }

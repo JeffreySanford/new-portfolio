@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../users/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -11,14 +12,14 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  validateUser(username: string, pass: string): Observable<any> {
+  validateUser(username: string, pass: string): Observable<User> {
     return from(this.usersService.findOne(username)).pipe(
       map(user => {
         if (user && user.password === pass) {
-          const { password, ...result } = user;
+          const { ...result } = user;
           return result;
         }
-        return null;
+        throw new Error('Invalid username or password');
       })
     );
   }
