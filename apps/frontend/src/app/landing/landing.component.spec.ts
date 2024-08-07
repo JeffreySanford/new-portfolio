@@ -7,9 +7,9 @@ describe('LandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingComponent],
+      declarations: [LandingComponent],
     }).compileComponents();
-
+  
     fixture = TestBed.createComponent(LandingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

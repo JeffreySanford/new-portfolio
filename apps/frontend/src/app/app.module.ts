@@ -7,16 +7,21 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AuthModule } from './auth/auth.module';
 import { LandingModule } from './landing/landing.module';
 import { MaterialModule } from './material.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent],
+    AppComponent,
+    RegisterComponent
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
-    MaterialModule],
+    MaterialModule,
+
+  ],
   providers: [
     provideAnimationsAsync()
   ],
