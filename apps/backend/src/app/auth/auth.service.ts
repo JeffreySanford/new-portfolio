@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../../user/users.service';
 import { JwtPayload } from './jwt-payload.interface';
 import * as bcrypt from 'bcrypt';
-import { User } from '../users/user.interface';
+import { User } from '../../user/user.interface';
 import { from, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
