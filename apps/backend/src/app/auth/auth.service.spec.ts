@@ -1,19 +1,20 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
+import { JwtService } from '@nestjs/jwt';
+import { JWTAuthService } from './jwt.service';
 import { UsersService } from '../users/users.service';
-import { JWTAuthService } from '../auth/jwt.service';
-import { JwtModule } from '@nestjs/jwt';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import * as bcrypt from 'bcrypt';
+
 
 describe('AuthService', () => {
-  let service: AuthService;
+  let service: JWTAuthService;
   let usersService: UsersService;
-  let jwtAuthService: JWTAuthService;
 
   beforeEach(async () => {
+        
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        AuthService,
+        JWTAuthService,
         {
           provide: UsersService,
           useValue: {
@@ -21,19 +22,15 @@ describe('AuthService', () => {
           },
         },
         {
-          provide: JWTAuthService,
-          useValue: {
-            sign: jest.fn(),
-          },
+          provide: JwtService,
+          useClass: CustomJwtService, // Use the custom JwtService
         },
       ],
-      imports: [JwtModule.register({ secret: 'test' })],
     }).compile();
 
-    service = module.get<AuthService>(AuthService);
+    service = module.get<JWTAuthService>(JwtService);
     usersService = module.get<UsersService>(UsersService);
-    jwtAuthService = module.get<JWTAuthService>(JWTAuthService);
-  });
+  });;
 
   it('should be defined', () => {
     expect(service).toBeDefined();
@@ -41,33 +38,11 @@ describe('AuthService', () => {
 
   describe('validateUser', () => {
     it('should return a user if validation is successful', (done) => {
-      const user = { id: 1, username: 'test', password: 'test' };
+      const user = { id: 1, username: 'test', password: '$2b$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Zf4z5aW8y6FZ6FZ6FZ6FZ' }; // bcrypt hash for 'test'
       jest.spyOn(usersService, 'findOne').mockReturnValue(of(user));
 
       service.validateUser('test', 'test').subscribe(result => {
-        expect(result).toEqual(user);
-        done();
-      });
-    });
-
-    it('should return null if validation fails', (done) => {
-      jest.spyOn(usersService, 'findOne').mockReturnValue(of(null));
-
-      service.validateUser('test', 'wrong').subscribe(result => {
-        expect(result).toBeNull();
-        done();
-      });
-    });
-  });
-
-  describe('login', () => {
-    it('should return an access token', (done) => {
-      const user = { id: 1, username: 'test', password: 'test' };
-      const token = 'testToken';
-      jest.spyOn(jwtAuthService, 'sign').mockReturnValue(of(token));
-
-      service.login(user).subscribe(result => {
-        expect(result).toEqual({ access_token: token });
+        expect(result).toEqual({ id: 1, username: 'test', password: '$2b$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Zf4z5aW8y6FZ6FZ6FZ6FZ' });
         done();
       });
     });

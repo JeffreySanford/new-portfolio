@@ -1,19 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { User } from './user.interface';
 
 @Injectable()
 export class UsersService {
 
-    findOne(username: string): Observable<{ username: string, password: string }> {
+    findOne(username: string): Observable<User> {
+        
         return new Observable(observer => {
-            observer.next({ username: username, password: 'changeme' });
+            observer.next({ id: 0, username: username, password: 'changeme' });
             observer.complete();
         });
     }
 
-    create(user: string): Observable<{ username: string }> {
+    create(user: User): Observable<User> {
+        
         return new Observable(observer => {
-            observer.next({ username: user });
+            observer.next(user);
             observer.complete();
         });
     }

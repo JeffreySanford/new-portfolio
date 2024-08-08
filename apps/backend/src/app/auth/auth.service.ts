@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../../user/users.service';
 import { JwtPayload } from './jwt-payload.interface';
-import * as bcrypt from 'bcrypt';
-import { User } from '../../user/user.interface';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/user.interface';
 import { from, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
