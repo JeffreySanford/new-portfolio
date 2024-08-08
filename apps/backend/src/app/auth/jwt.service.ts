@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../../user/users.service';
 import { from, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { JwtPayload } from './jwt-payload.interface';
-import { User } from '../../user/user.interface';
 import * as bcrypt from 'bcrypt';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/user.interface';
 
 @Injectable()
 export class JWTAuthService {
@@ -29,5 +29,9 @@ export class JWTAuthService {
         return from(this.jwtService.signAsync(payload)).pipe(
             map(access_token => ({ access_token }))
         );
+    }
+
+    sign(payload: JwtPayload): Observable<string> {
+        return from(this.jwtService.signAsync(payload));
     }
 }
