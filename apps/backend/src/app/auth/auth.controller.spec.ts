@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
-import { JWTAuthService } from './jwt.service';
 import { User } from '../users/user.interface';
 import { of } from 'rxjs';
 import * as bcrypt from 'bcrypt';
-
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -74,15 +73,26 @@ describe('AuthService', () => {
   });
 
   describe('login', () => {
-    it('should return an access token', (done) => {
+      it('should return an access token', (done) => {
+          const user: User = { id: 1, username: 'test', password: 'test' };
+          const token = 'testToken';
+          jest.spyOn(JwtService.prototype, 'sign').mockReturnValue(token);
+  
+          service.login(user).subscribe(result => {
+              expect(result).toEqual({ access_token: token });
+              done();
+          });
+      });
+  });
+  
+  it('should return an access token', (done) => {
       const user: User = { id: 1, username: 'test', password: 'test' };
       const token = 'testToken';
-      jest.spyOn(JWTAuthService, 'sign').mockReturnValue(token);
-
+      jest.spyOn(JwtService.prototype, 'sign').mockReturnValue(token);
+  
       service.login(user).subscribe(result => {
-        expect(result).toEqual({ access_token: token });
-        done();
+          expect(result).toEqual({ access_token: token });
+          done();
       });
-    });
   });
 });
