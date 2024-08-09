@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   entry: './apps/backend/src/main.ts',
   output: {
-    filename: 'bundle.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist/apps/backend')
   },
   resolve: {
@@ -21,6 +21,7 @@ module.exports = {
     ]
   },
   plugins: [
+
     new NxAppWebpackPlugin({
       target: 'node',
       compiler: 'tsc',
