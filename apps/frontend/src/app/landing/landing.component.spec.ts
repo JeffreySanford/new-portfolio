@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LandingComponent } from './landing.component';
-import { MatCardModule } from '@angular/material/card'; // Import the MatCardModule
+import { MaterialModule } from '../material.module';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -9,7 +11,8 @@ describe('LandingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LandingComponent],
-      imports: [MatCardModule], // Add the MatCardModule to the imports
+      imports: [MaterialModule, HttpClientModule],
+      providers: [HttpClient]
     }).compileComponents();
   
     fixture = TestBed.createComponent(LandingComponent);

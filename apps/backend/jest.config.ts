@@ -9,7 +9,7 @@ module.exports = {
   transformIgnorePatterns: ['node_modules/(?!(your-esm-package)/)'],
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.spec.json'
+      tsconfig: './tsconfig.spec.json'
     }
   },
   displayName: 'backend',

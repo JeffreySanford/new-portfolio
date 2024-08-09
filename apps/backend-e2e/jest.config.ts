@@ -11,7 +11,7 @@ export default {
       '^.+\\.[tj]s$': [
         'ts-jest',
         {
-          tsconfig: '<rootDir>/apps/backend-e2e/tsconfig.spec.json',
+          tsconfig: './tsconfig.spec.json',
         },
       ],
     },

@@ -3,15 +3,18 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es2020",
+    "module": "CommonJS",
+    "target": "ES2020",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
-    "enableIvy": true,
+    "enableIvy": false,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "strictTemplates": true

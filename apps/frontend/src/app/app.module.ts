@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { appRoutes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthModule } from './auth/auth.module';
 import { LandingModule } from './landing/landing.module';
 import { MaterialModule } from './material.module';
 import { RegisterComponent } from './register/register.component';
+import { AppComponent } from './app.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,12 @@ import { RegisterComponent } from './register/register.component';
     RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
-    MaterialModule
-  ],
-  exports: [
-    MaterialModule
+    MaterialModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

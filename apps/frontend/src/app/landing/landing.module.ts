@@ -5,6 +5,7 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing.component'; // Ensure LandingComponent is imported
 import { MaterialModule } from '../material.module';
+import { AiService } from '../openai/openai.service';
 
 @NgModule({
   declarations: [
@@ -20,5 +21,6 @@ import { MaterialModule } from '../material.module';
     HeaderComponent,
     MaterialModule
   ],
+  providers: [AiService]
 })
 export class LandingModule {}
