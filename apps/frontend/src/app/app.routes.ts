@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 
-export const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),

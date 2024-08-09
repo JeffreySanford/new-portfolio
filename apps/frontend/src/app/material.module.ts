@@ -8,6 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 @NgModule({
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
+  ],
   exports: [
     MatButtonModule,
     MatInputModule,

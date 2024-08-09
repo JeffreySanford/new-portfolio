@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { routes } from './app.routes';
+import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthModule } from './auth/auth.module';
 import { LandingModule } from './landing/landing.module';
@@ -16,9 +16,12 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
+    MaterialModule
+  ],
+  exports: [
     MaterialModule
   ],
   providers: [
