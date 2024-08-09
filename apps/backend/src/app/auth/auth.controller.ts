@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { User } from '../../user/user.interface';
+import { User } from '../users/user.interface';
 
 /**
  * Controller responsible for handling authentication related requests.
