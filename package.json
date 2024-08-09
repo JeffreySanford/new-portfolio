@@ -28,6 +28,8 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "install": "^0.13.0",
+    "mute-stream": "^1.0.0",
+    "node": "^22.6.0",
     "npm": "^10.8.2",
     "openai": "^4.55.3",
     "passport": "^0.7.0",
