@@ -18,7 +18,7 @@ export class JWTAuthService {
         return this.usersService.findOne(username).pipe(
             switchMap(user =>
                 user ? from(bcrypt.compare(pass, user.password)).pipe(
-                    map(isMatch => isMatch ? { ...user, password: undefined, id: (user as User).id } : null)
+                    map(isMatch => isMatch ? { ...user, password: '' as string, id: (user as User).id } : null)
                 ) : of(null)
             )
         );
