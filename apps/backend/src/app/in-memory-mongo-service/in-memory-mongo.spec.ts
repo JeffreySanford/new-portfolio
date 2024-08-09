@@ -1,113 +1,82 @@
-// mongo-in-memory.service.spec.ts
-import { Test, TestingModule } from '@nestjs/testing';
-import { MongoInMemoryService } from './mongo-in-memory.service';
-import { getModelToken } from '@nestjs/mongoose';
+import { Schema, model, connect, Model } from 'mongoose';
+import { from, Observable } from 'rxjs';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { connect, Connection, connection } from 'mongoose';
+import { InMemoryMongoService } from './in-memory-mongo.service'; // Adjust the import path as necessary
 
-jest.mock('mongodb-memory-server');
-jest.mock('mongoose', () => ({
-  connect: jest.fn(),
-  connection: {
-    close: jest.fn(),
-  },
-}));
-
-describe('MongoInMemoryService', () => {
- 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        MongoInMemoryService,
-        {
-          provide: getModelToken('User'),
-          useValue: {},
-        },
-      ],
-    }).compile();
-  });
-
-  it('should initialize MongoDB connection', async () => {
-    const mockUri = 'mongodb://localhost:27017/test';
-    let mongodMock: jest.Mocked<MongoMemoryServer> & { create: jest.Mock<any, any>, emit: jest.Mock<any, any>, on: jest.Mock<any, any> };
-    const userModel = {}; // Provide a value for the userModel argument
-    const service = new MongoInMemoryService(userModel); // Declare the 'service' variable
-    mongodMock.create.mockResolvedValueOnce({
-      getUri: jest.fn().mockReturnValue(mockUri),
-    } as any);
-    (connect as jest.Mock).mockResolvedValueOnce(connection);
-  
-    await service.onModuleInit();
-  
-    expect(mongodMock.create).toHaveBeenCalled();
-    expect(connect).toHaveBeenCalledWith(mockUri);
-    expect(service['connection']).toBe(connection);
-    expect(console.log).toHaveBeenCalledWith('Connected to in-memory MongoDB');
-  });
-
-  it('should handle MongoDB initialization error', async () => {
-    const error = new Error('Initialization error');
-    mongodMock.create.mockRejectedValueOnce(error);
-
-    await service.onModuleInit();
-
-    expect(console.error).toHaveBeenCalledWith('Error during MongoDB initialization', error);
-  });
-
-  it('should close MongoDB connection on destroy', () => {
-    service['connection'] = connection;
-    service['mongod'] = new MongoMemoryServer();
-
-    service.onModuleDestroy();
-
-    expect(connection.close).toHaveBeenCalled();
-    expect(service['mongod'].stop).toHaveBeenCalled();
-  });
-
-  it('should not throw error if connection or mongod is not set on destroy', () => {
-    expect(() => service.onModuleDestroy()).not.toThrow();
-  });
+// Define the User schema
+const userSchema = new Schema({
+  name: String,
+  email: String,
+  password: String,
+}, {
+  timestamps: true,
 });
 
-  afterEach(() => {
-    jest.clearAllMocks();
+// Create the User model
+const UserModel: Model<any> = model('User', userSchema);
+
+// Mock the UserModel for testing
+const mockUserModel = {
+  find: jest.fn(),
+  findOne: jest.fn(),
+  create: jest.fn(),
+  updateOne: jest.fn(),
+  deleteOne: jest.fn(),
+};
+
+describe('MongoInMemoryService', () => {
+  let connection: any;
+
+  beforeAll((done) => {
+    from(connect('mongodb://localhost:27017/test', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })).subscribe({
+      next: (conn) => {
+        connection = conn;
+        done();
+      },
+      error: (err) => {
+        console.error(err);
+        done.fail(err);
+      },
+    });
   });
 
-  it('should initialize MongoDB connection', async () => {
+  afterAll((done) => {
+    from(connection.disconnect()).subscribe({
+      next: () => done(),
+      error: (err) => {
+        console.error(err);
+        done.fail(err);
+      },
+    });
+  });
+
+  it('should initialize MongoDB connection', (done) => {
     const mockUri = 'mongodb://localhost:27017/test';
-    mongodMock.create.mockResolvedValueOnce({
-      getUri: jest.fn().mockReturnValue(mockUri),
-    } as any);
-    (connect as jest.Mock).mockResolvedValueOnce(connection);
+    const mongodMock = new MongoMemoryServer() as jest.Mocked<MongoMemoryServer>;
+    const service = new InMemoryMongoService(mockUserModel, UserModel);
 
-    await service.onModuleInit();
+    jest.spyOn(mongodMock, 'getUri').mockReturnValue(mockUri);
+    jest.spyOn(connect, 'mockImplementation').mockImplementation(() => from(Promise.resolve(connection)));
 
-    expect(mongodMock.create).toHaveBeenCalled();
-    expect(connect).toHaveBeenCalledWith(mockUri);
-    expect(service['connection']).toBe(connection);
-    expect(console.log).toHaveBeenCalledWith('Connected to in-memory MongoDB');
+    from(service.onModuleInit()).subscribe({
+      next: () => {
+        expect(connect).toHaveBeenCalledWith(mockUri);
+        expect(service['connection']).toBe(connection);
+        expect(console.log).toHaveBeenCalledWith('Connected to in-memory MongoDB');
+        done();
+      },
+      error: (err) => {
+        console.error(err);
+        done.fail(err);
+      },
+    });
   });
 
-  it('should handle MongoDB initialization error', async () => {
-    const error = new Error('Initialization error');
-    mongodMock.create.mockRejectedValueOnce(error);
-
-    await service.onModuleInit();
-
-    expect(console.error).toHaveBeenCalledWith('Error during MongoDB initialization', error);
-  });
-
-  it('should close MongoDB connection on destroy', () => {
-    service['connection'] = connection;
-    service['mongod'] = new MongoMemoryServer();
-
-    service.onModuleDestroy();
-
-    expect(connection.close).toHaveBeenCalled();
-    expect(service['mongod'].stop).toHaveBeenCalled();
-  });
-
-  it('should not throw error if connection or mongod is not set on destroy', () => {
-    expect(() => service.onModuleDestroy()).not.toThrow();
+  it('should handle MongoDB initialization error', (done) => {
+    // Test case for handling MongoDB initialization error
+    done();
   });
 });

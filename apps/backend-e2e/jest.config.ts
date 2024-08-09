@@ -7,12 +7,14 @@ export default {
   setupFiles: ['<rootDir>/src/support/test-setup.ts'],
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': [
-      'ts-jest',
-      {
-        tsconfig: '<rootDir>/tsconfig.spec.json',
-      },
-    ],
+    ...{
+      '^.+\\.[tj]s$': [
+        'ts-jest',
+        {
+          tsconfig: '<rootDir>/apps/backend-e2e/tsconfig.spec.json',
+        },
+      ],
+    },
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/backend-e2e',

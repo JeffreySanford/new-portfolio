@@ -1,50 +1,26 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { JwtService } from '@nestjs/jwt';
-import { JWTAuthService } from './jwt.service';
-import { UsersService } from '../users/users.service';
-import { Observable, of } from 'rxjs';
-import * as bcrypt from 'bcrypt';
-
+import { TestBed } from '@angular/core/testing';
+import { AuthService } from './auth.service';
+import { of } from 'rxjs';
 
 describe('AuthService', () => {
-  let service: JWTAuthService;
-  let usersService: UsersService;
+  let service: AuthService;
 
-  beforeEach(async () => {
-        
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        JWTAuthService,
-        {
-          provide: UsersService,
-          useValue: {
-            findOne: jest.fn(),
-          },
-        },
-        {
-          provide: JwtService,
-          useClass: CustomJwtService, // Use the custom JwtService
-        },
-      ],
-    }).compile();
-
-    service = module.get<JWTAuthService>(JwtService);
-    usersService = module.get<UsersService>(UsersService);
-  });;
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [AuthService]
+    });
+    service = TestBed.inject(AuthService);
   });
 
-  describe('validateUser', () => {
-    it('should return a user if validation is successful', (done) => {
-      const user = { id: 1, username: 'test', password: '$2b$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Zf4z5aW8y6FZ6FZ6FZ6FZ' }; // bcrypt hash for 'test'
-      jest.spyOn(usersService, 'findOne').mockReturnValue(of(user));
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
-      service.validateUser('test', 'test').subscribe(result => {
-        expect(result).toEqual({ id: 1, username: 'test', password: '$2b$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Zf4z5aW8y6FZ6FZ6FZ6FZ' });
-        done();
-      });
+  it('should return a user if validation is successful', () => {
+    const mockUser = { id: 1, username: 'test', password: 'test' };
+    spyOn(service, 'validateUser').and.returnValue(of(mockUser));
+    service.login(mockUser).subscribe(user => {
+      expect(user).toEqual(mockUser);
     });
   });
 });

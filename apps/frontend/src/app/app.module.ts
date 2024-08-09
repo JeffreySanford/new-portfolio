@@ -19,8 +19,7 @@ import { RegisterComponent } from './register/register.component';
     RouterModule.forRoot(routes),
     AuthModule,
     LandingModule,
-    MaterialModule,
-
+    MaterialModule
   ],
   providers: [
     provideAnimationsAsync()
