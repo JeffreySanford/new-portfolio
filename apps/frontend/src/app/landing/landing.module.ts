@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { LandingComponent } from './landing.component'; // Ensure LandingComponent is imported
+import { LandingComponent } from './landing.component';
 import { MaterialModule } from '../material.module';
-import { AiService } from '../openai/openai.service';
+import { OpenAIService } from '../openai/openai.service';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { AuthInterceptor } from '../common/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,10 @@ import { AiService } from '../openai/openai.service';
     HeaderComponent,
     MaterialModule
   ],
-  providers: [AiService]
+  providers: [
+    OpenAIService,
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 })
 export class LandingModule {}

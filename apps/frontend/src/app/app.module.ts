@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { appRoutes } from './app.routes';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './common/auth/auth.module';
+import { AuthInterceptor } from './common/auth/auth.interceptor';
 import { LandingModule } from './landing/landing.module';
 import { MaterialModule } from './material.module';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [

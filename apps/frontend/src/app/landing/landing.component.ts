@@ -1,22 +1,23 @@
-import { Component } from '@angular/core';
-import { AiService } from '../openai/openai.service';
+import { Component, OnInit } from '@angular/core';
+import { OpenAIService } from '../openai/openai.service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css',
+  styleUrl: './landing.component.scss',
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
 
-  constructor(private aiService: AiService) { }
+  constructor(private openAIService: OpenAIService) { }
 
   ngOnInit(): void {
     this.startVoiceRecognition();
   }
 
   startVoiceRecognition(): void {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition: any = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
+    debugger
     if (!SpeechRecognition) {
       console.error('Speech recognition is not supported in this browser.');
       return;
@@ -37,11 +38,11 @@ export class LandingComponent {
   }
 
   getAiResponse(prompt: string): void {
-    this.aiService.getAiResponse(prompt).subscribe(
-      (response) => {
+    this.openAIService.getAiResponse(prompt).subscribe(
+      (response: any) => {
         this.speak(response);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error fetching AI response:', error);
       }
     );

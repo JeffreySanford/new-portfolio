@@ -4,7 +4,7 @@ import { LandingComponent } from './landing/landing.component';
 export const appRoutes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () => import('./common/auth/auth.module').then(m => m.AuthModule),
   },
   {
     path: 'users',
