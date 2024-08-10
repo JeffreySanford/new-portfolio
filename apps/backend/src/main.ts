@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import { from, of } from 'rxjs';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { INestApplication } from '@nestjs/common';
 
