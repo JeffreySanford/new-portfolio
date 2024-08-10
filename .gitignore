@@ -46,3 +46,4 @@ Thumbs.db
 # SSL
 /ssl/server.key
 /ssl/server.crt
+.env
