@@ -1,53 +1,47 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import * as dotenv from 'dotenv';
-import * as fs from 'fs';
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { INestApplication } from '@nestjs/common';
-
-function getHttpsOptions() {
-  const envFilePath = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
-  console.log(`Loading environment variables from: ${envFilePath}`);
-  dotenv.config({ path: envFilePath });
-
-  const keyPath = "C:\\repos\\new-portfolio\\apps\\backend\\.env\\ssl\\server.key";
-  const certPath ="C:\\repos\\new-portfolio\\apps\\backend\\.env\\ssl\\server.crt";
-
-  if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
-    console.error(`SSL key or certificate file not found. Key path: ${keyPath}, Cert path: ${certPath}`);
-    process.exit(1);
-  }
-
-  return {
-    key: fs.readFileSync(keyPath),
-    cert: fs.readFileSync(certPath),
-  };
-}
-
-function setupSwagger(app: INestApplication) {
-  const config = new DocumentBuilder()
-    .setTitle('API')
-    .setDescription('API description')
-    .setVersion('1.0')
-    .addTag('auth')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-}
+import { getHttpsOptions } from './app/common/http-options';
+import { from, throwError } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 function bootstrap() {
-  const httpsOptions = getHttpsOptions();
-
-  from(NestFactory.create(AppModule, { httpsOptions })).pipe(
+  from(NestFactory.create(AppModule, {
+    httpsOptions: getHttpsOptions(),
+  })).pipe(
     switchMap(app => {
-      setupSwagger(app);
-      return from(app.listen(3000));
+      const configService = app.get(ConfigService);
+      let port = configService.get<number>('PORT') || 3000;
+
+      const config = new DocumentBuilder()
+        .setTitle('API Documentation')
+        .setDescription('API description')
+        .setVersion('1.0')
+        .build();
+      const document = SwaggerModule.createDocument(app, config);
+      SwaggerModule.setup('api', app, document);
+
+      const listenWithRetry = (retryCount = 0) => {
+        return from(app.listen(port)).pipe(
+          catchError((err: Error): any => {
+            if ((err as NodeJS.ErrnoException).code === 'EADDRINUSE' && retryCount < 5) {
+              console.warn(`Port ${port} in use, retrying with port ${port + 1}`);
+              port += 1;
+              return listenWithRetry(retryCount + 1);
+            }
+            return throwError(err);
+          })
+        );
+      };
+
+      return listenWithRetry().pipe(
+        map(() => port) // Pass the port to the next operator
+      );
     })
   ).subscribe({
-    next: () => console.log('Application is running on: https://localhost:3000'),
-    error: (err) => console.error('Error starting application', err)
+    next: (port) => console.log(`Application is running on: http://localhost:${port}`),
+    error: (err) => console.error('Error starting application', err),
   });
 }
 

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
-export class OpenAiService {
+export class OpenAIService {
   private readonly apiKey = process.env.OPENAI_API_KEY;
 
   constructor(private readonly httpService: HttpService) {}
