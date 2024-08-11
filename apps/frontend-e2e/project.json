@@ -3,7 +3,166 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/frontend-e2e/src",
-  "implicitDependencies": ["frontend"],
+  "implicitDependencies": [
+    "frontend"
+  ],
   "// targets": "to see all targets run: nx show project frontend-e2e --web",
-  "targets": {}
+  "targets": {
+    "e2e": {
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "playwright test"
+      },
+      "parallelism": false,
+      "metadata": {
+        "technologies": [
+          "playwright"
+        ],
+        "description": "Runs Playwright Tests",
+        "help": {
+          "command": "npx playwright test --help",
+          "example": {
+            "options": {
+              "workers": 1
+            }
+          }
+        }
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "@playwright/test"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\playwright-report",
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\test-output"
+      ],
+      "executor": "nx:run-commands",
+      "configurations": {}
+    },
+    "e2e-ci--src/example.spec.ts": {
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "playwright test src/example.spec.ts"
+      },
+      "parallelism": false,
+      "metadata": {
+        "technologies": [
+          "playwright"
+        ],
+        "description": "Runs Playwright Tests in src/example.spec.ts in CI",
+        "help": {
+          "command": "npx playwright test --help",
+          "example": {
+            "options": {
+              "workers": 1
+            }
+          }
+        }
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "@playwright/test"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\playwright-report",
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\test-output"
+      ],
+      "executor": "nx:run-commands",
+      "configurations": {}
+    },
+    "e2e-ci": {
+      "executor": "nx:noop",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "@playwright/test"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\playwright-report",
+        "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\test-output"
+      ],
+      "dependsOn": [
+        {
+          "target": "e2e-ci--src/example.spec.ts",
+          "projects": "self",
+          "params": "forward"
+        }
+      ],
+      "parallelism": false,
+      "metadata": {
+        "technologies": [
+          "playwright"
+        ],
+        "description": "Runs Playwright Tests in CI",
+        "nonAtomizedTarget": "e2e",
+        "help": {
+          "command": "npx playwright test --help",
+          "example": {
+            "options": {
+              "workers": 1
+            }
+          }
+        }
+      },
+      "configurations": {},
+      "options": {}
+    },
+    "lint": {
+      "cache": true,
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "eslint ."
+      },
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintrc.json",
+        "{workspaceRoot}/tools/eslint-rules/**/*",
+        {
+          "externalDependencies": [
+            "eslint"
+          ]
+        }
+      ],
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "metadata": {
+        "technologies": [
+          "eslint"
+        ],
+        "description": "Runs ESLint on project",
+        "help": {
+          "command": "npx eslint --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
+    }
+  },
+  "tags": []
 }

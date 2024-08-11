@@ -9,6 +9,7 @@ import { LandingModule } from './landing/landing.module';
 import { MaterialModule } from './material.module';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

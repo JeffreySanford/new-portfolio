@@ -5,10 +5,96 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "lint": {
+      "cache": true,
+      "options": {
+        "cwd": "apps/backend",
+        "command": "eslint ."
+      },
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintrc.json",
+        "{workspaceRoot}/tools/eslint-rules/**/*",
+        {
+          "externalDependencies": [
+            "eslint"
+          ]
+        }
+      ],
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "metadata": {
+        "technologies": [
+          "eslint"
+        ],
+        "description": "Runs ESLint on project",
+        "help": {
+          "command": "npx eslint --help",
+          "example": {
+            "options": {
+              "max-warnings": 0
+            }
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
+    },
+    "build": {
+      "options": {
+        "cwd": "apps/backend",
+        "args": [
+          "--node-env=production"
+        ],
+        "command": "webpack-cli build"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "webpack-cli"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/apps\\backend\\dist\\apps\\backend"
+      ],
+      "metadata": {
+        "technologies": [
+          "webpack"
+        ],
+        "description": "Runs Webpack build",
+        "help": {
+          "command": "npx webpack-cli build --help",
+          "example": {
+            "options": {
+              "json": "stats.json"
+            },
+            "args": [
+              "--profile"
+            ]
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "buildTarget": "backend:build",
         "runBuildTargetDependencies": false
@@ -20,14 +106,70 @@
         "production": {
           "buildTarget": "backend:build:production"
         }
-      }
+      },
+      "parallelism": true
+    },
+    "preview": {
+      "options": {
+        "cwd": "apps/backend",
+        "args": [
+          "--node-env=production"
+        ],
+        "command": "webpack-cli serve"
+      },
+      "metadata": {
+        "technologies": [
+          "webpack"
+        ],
+        "description": "Starts Webpack dev server in production mode",
+        "help": {
+          "command": "npx webpack-cli serve --help",
+          "example": {
+            "options": {
+              "args": [
+                "--client-progress",
+                "--history-api-fallback "
+              ]
+            }
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build",
+        "spa": true
+      },
+      "configurations": {},
+      "parallelism": true
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/backend/jest.config.ts"
-      }
+        "jestConfig": "apps/backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      },
+      "parallelism": true,
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     }
-  }
+  },
+  "implicitDependencies": []
 }

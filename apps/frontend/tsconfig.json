@@ -3,8 +3,8 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "es2017",
+    "module": "ES2020",
+    "target": "ESNext",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
