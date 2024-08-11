@@ -1,4 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$primary: mat.define-palette(mat.$indigo-palette);
+$accent: mat.define-palette(mat.$pink-palette);
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme($primary, $accent, $warn);
+
+@include mat.all-component-themes($theme);
+
+body { 
+  margin: 0; 
+  font-family: 'Montserrat', sans-serif; 
+}
+
+// @use '@angular/material' as mat;
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+// // Define the palettes
+// $red-palette: mat.define-palette(mat.$red-palette);
+// $blue-palette: mat.define-palette(mat.$blue-palette);
+// $white-palette: mat.define-palette(mat.$grey-palette, 50);
+
+// // Define the theme colors
+// $patriotic-theme: mat.define-light-theme((
+//   color: (
+//     primary: $red-palette,
+//     accent: $blue-palette,
+//     warn: mat.define-palette(mat.$amber-palette),
+//     background: $white-palette,
+//   ),
+// ));
+
+// // Include Angular Material styles
+// @include mat.all-component-themes($patriotic-theme);
+
+// // Global styles
+// body { 
+//   margin: 0; 
+//   font-family: 'Montserrat', sans-serif; 
+// }

@@ -1,5 +1,85 @@
-.landing-card {
-    margin: 2rem;
-    padding: 2rem;
-    text-align: center;
+.landing-page-card {
+  background-color: #fff; // White background
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.highlight-section {
+  position: relative;
+  margin-bottom: 3rem;
+
+  .highlight-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #0033a0; // Dark blue for highlight
+    position: relative;
+    display: inline-block;
+
+    .sparkle {
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 60%);
+        background-size: 400% 400%;
+        animation: sparkle 1.5s infinite;
+        z-index: 1;
+        opacity: 0.5;
+      }
+    }
   }
+}
+
+@keyframes sparkle {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.animated-section {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+
+  .animated-item {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #c8102e; // Red color
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    &:nth-child(3) {
+      animation-delay: 1s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

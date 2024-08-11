@@ -7,17 +7,19 @@ import { OpenAIService } from '../openai/openai.service';
   styleUrl: './landing.component.scss',
 })
 export class LandingComponent implements OnInit {
-
-  constructor(private openAIService: OpenAIService) { }
+  items = ['Architect', 'Developer', 'Designer'];
+  constructor(private openAIService: OpenAIService) {}
 
   ngOnInit(): void {
     this.startVoiceRecognition();
   }
 
   startVoiceRecognition(): void {
-    const SpeechRecognition: any = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition: any =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
 
-    debugger
+    debugger;
     if (!SpeechRecognition) {
       console.error('Speech recognition is not supported in this browser.');
       return;
