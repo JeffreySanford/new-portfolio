@@ -3,8 +3,8 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "module": "ES6",
-    "target": "ES6",
+    "module": "CommonJS",
+    "target": "ES2017",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
@@ -13,6 +13,17 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types"],
-    "types": ["bcrypt", "bcryptjs", "mute-stream", "node"]
+    "types": [
+      "bcrypt",
+      "bcryptjs",
+      "mute-stream",
+      "node",
+      "jest",
+      "express",
+      "express-serve-static-core",
+      "express-session",
+      "express-validator",
+      "express-jwt"
+    ]
   }
 }

@@ -8,15 +8,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
+    "target": "ES2017",
+    "module": "commonjs",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {},
     "typeRoots": ["./node_modules/@types"],
-    "types": ["node"]
+    "types": ["node", "jest", "jest-environment-jsdom", "jest-extended"],
   },
   "exclude": ["node_modules", "tmp"]
 }

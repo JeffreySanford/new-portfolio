@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from './jwt-payload.interface';
+import { JwtPayload } from './jwt/jwt-payload.interface';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/user.interface';
 import { Observable, from, of } from 'rxjs';

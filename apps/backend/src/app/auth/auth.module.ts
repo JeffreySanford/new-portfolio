@@ -1,15 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
 import { UsersModule } from '../users/users.module';
+import { PassportModule } from '@nestjs/passport';
+import { OAuth2Strategy } from './oauth2/oauth2.strategy';
+import { JwtModule } from './jwt/jwt.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [
+    UsersModule,
+    PassportModule.register({ defaultStrategy: 'oauth2' }),
+    JwtModule
+  ],
   providers: [
     AuthService,
-    JwtService,
-    UsersService],
-  exports: [AuthService],
+    OAuth2Strategy
+  ],
+  exports: [AuthService]
 })
 export class AuthModule { }
