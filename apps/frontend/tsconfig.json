@@ -13,6 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types"],
-    "types": ["bcrypt", "bcryptjs", "mute-stream", "node"]
+    "types": ["bcrypt", "bcryptjs", "mute-stream", "node", "jest","jest-extended", "jest-environment-node", "express", "express-serve-static-core", "express-session", "express-validator", "express-jwt"]
   }
 }

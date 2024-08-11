@@ -19,6 +19,8 @@
       "mute-stream",
       "node",
       "jest",
+      "jest-environment-node",
+      "jest-extended",
       "express",
       "express-serve-static-core",
       "express-session",
