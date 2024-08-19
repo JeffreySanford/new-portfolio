@@ -36,12 +36,12 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/frontend/public"
+            "input": "apps/frontend/public",
+            "output": "/assets"
           }
         ],
         "styles": [
-          "@angular/material/prebuilt-themes/rose-red.css",
-          "apps/frontend/src/styles.scss"
+          "@angular/material/prebuilt-themes/rose-red.css"
         ],
         "scripts": []
       },
