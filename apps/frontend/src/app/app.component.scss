@@ -1,3 +1,20 @@
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  filter: grayscale(100%); /* Convert to black and white */
+  object-fit: cover;
+  transform: scale(1); /* Adjust the scale value to zoom out */
+  transform-origin: center center; /* Ensure the scaling is centered */
+  opacity: 0.7; /* Adjust the opacity value to fade the video */
+}
+
 .container {
     display: flex;
     height: 100vh; // Make sure the container takes up the full viewport height
@@ -5,26 +22,11 @@
   
   .sidebar {
     margin-left: 0.5em;
-    background-color: white; // Optional: Add a background color to the sidebar
-
   }
   
   .content {
     flex-grow: 1; // The content area will take up the remaining space
     padding: 20px; // Optional: Add padding to the content area
     overflow-y: auto; // Optional: Add scroll if content overflows
-  }
-
-  #background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    filter: grayscale(100%); /* Convert to black and white */
-    object-fit: cover;
   }
   
