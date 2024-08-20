@@ -4,15 +4,15 @@ export default {
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '<rootDir>/src/setup-jest.ts'],
   coverageDirectory: '../../coverage/apps/frontend',
   transform: {
-    '^.+\\.(ts|mjs|js|html)$': [
-      'jest-preset-angular',
-      {
-        tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '\\.(html|svg)$',
-      },
-    ],
-    '^.+\\.(scss|css)$': 'jest-transform-css',
-  },
+      '^.+\\.(ts|mjs|js|html)$': [
+        'jest-preset-angular',
+        {
+          tsconfig: '<rootDir>/tsconfig.spec.json',
+          stringifyContentPathRegex: '\\.(html|svg)$',
+        },
+      ],
+      '^.+\\.css$': 'jest-transform-css',
+    },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'scss'],
   snapshotSerializers: [

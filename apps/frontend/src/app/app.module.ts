@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SidebarModule } from './common/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AuthModule,
     LandingModule,
     MaterialModule,
+    SidebarModule
   ],
+  exports: [SidebarModule],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
