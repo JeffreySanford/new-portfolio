@@ -10,9 +10,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { OpenAIController } from './openai/openai.controller';
 import { HttpModule } from '@nestjs/axios';
-import { OpenAIService } from './openai/openai.service';
 
 @Module({
   imports: [
@@ -27,8 +25,8 @@ import { OpenAIService } from './openai/openai.service';
     UsersModule,
     HttpModule
   ],
-  controllers: [AppController, OpenAIController],
-  providers: [AppService, OpenAIService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
 

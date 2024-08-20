@@ -4,8 +4,8 @@ import { from, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { JwtPayload } from './jwt-payload.interface';
 import * as bcrypt from 'bcrypt';
-import { UsersService } from '../users/users.service';
-import { User } from '../users/user.interface';
+import { UsersService } from '../../users/users.service';
+import { User } from '../../users/user.interface';
 
 @Injectable()
 export class JWTAuthService {
@@ -16,7 +16,7 @@ export class JWTAuthService {
 
     validateUser(username: string, pass: string): Observable<User | null> {
         return this.usersService.findOne(username).pipe(
-            switchMap(user =>
+            switchMap((user: User) =>
                 user ? from(bcrypt.compare(pass, user.password)).pipe(
                     map(isMatch => isMatch ? { ...user, password: '' as string, id: (user as User).id } : null)
                 ) : of(null)
