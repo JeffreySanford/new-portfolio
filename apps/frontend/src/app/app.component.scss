@@ -10,14 +10,14 @@
   z-index: -1;
   filter: grayscale(100%); /* Convert to black and white */
   object-fit: cover;
-  transform: scale(1); /* Adjust the scale value to zoom out */
-  transform-origin: center center; /* Ensure the scaling is centered */
+  transform: scale(0.9); /* Adjust the scale value to zoom out */
+  transform-origin: left top; /* Ensure the scaling is centered */
   opacity: 0.7; /* Adjust the opacity value to fade the video */
 }
 
 .container {
     display: flex;
-    height: 100vh; // Make sure the container takes up the full viewport height
+    height: 97vh; // Make sure the container takes up the full viewport height
   }
   
   .sidebar {
