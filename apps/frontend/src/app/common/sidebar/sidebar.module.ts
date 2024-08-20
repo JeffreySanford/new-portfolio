@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
 import { MaterialModule } from '../../material.module';
+import { LandingRoutingModule } from '../../landing/landing-routing.module';
 
 
 
@@ -11,7 +12,8 @@ import { MaterialModule } from '../../material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    LandingRoutingModule
   ],
   exports: [
     SidebarComponent

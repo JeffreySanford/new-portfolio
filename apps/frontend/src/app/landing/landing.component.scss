@@ -8,6 +8,7 @@
   text-align: center;
 }
 
+
 .highlight-section {
   position: relative;
   margin-bottom: 3rem;
@@ -82,4 +83,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.landing-page-icon {
+  font-size: 1.5em;
+  color: yellow;
+  background-color: black;
+  border: 1px solid green;
+  border-radius: 0.5em;
 }

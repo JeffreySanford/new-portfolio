@@ -1,21 +1,25 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="sidebar-container">
   <mat-sidenav mode="side" opened>
     <mat-nav-list>
-      <mat-list-item>
-        <mat-icon>table_chart</mat-icon>
-        <span>Table</span>
+      <a mat-list-item class="mat-lists active" href="#">
+        <mat-icon class='material-icons'>home</mat-icon>
+        <p class="mat-list-label">home</p>
+      </a>
+      <a mat-list-item class="mat-lists" href="#">
+        <mat-icon class='material-icons'>table_chart</mat-icon>
+        <p class="mat-list-label">Table</p>
+      </a>
+      <mat-list-item class="mat-lists">
+        <mat-icon class='material-icons'>bar_chart</mat-icon>
+        <p class="mat-list-label">Data Visualization</p>
       </mat-list-item>
-      <mat-list-item>
-        <mat-icon>bar_chart</mat-icon>
-        <span>Data Visualization</span>
+      <mat-list-item class="mat-lists">
+        <mat-icon class='material-icons'>restaurant</mat-icon>
+        <p class="mat-list-label">Peasant Kitchen</p>
       </mat-list-item>
-      <mat-list-item>
-        <mat-icon>restaurant</mat-icon>
-        <span>Peasant Kitchen</span>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon>movie</mat-icon>
-        <span>Movies</span>
+      <mat-list-item class="mat-lists">
+        <mat-icon class='material-icons'>movie</mat-icon>
+        <p class="mat-list-label">Movies</p>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

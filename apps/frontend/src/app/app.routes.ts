@@ -4,6 +4,7 @@ import { PeasantKitchenComponent } from './projects/peasant-kitchen/peasant-kitc
 import { SpaceVideoComponent } from './projects/space-video/space-video.component';
 import { TableComponent } from './projects/table/table.component';
 import { DataVisualizationsComponent } from './projects/data-visualizations/data-visualizations.component';
+import { MaterialIconsComponent } from './landing/material-icons/material-icons.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: LandingComponent },
@@ -11,6 +12,7 @@ export const appRoutes: Routes = [
   { path: 'contact', component: LandingComponent },
   { path: 'about', component: LandingComponent },
   { path: 'table', component: TableComponent },
+  { path: 'mat-icon', component: MaterialIconsComponent },
   { path: 'data-visualization', component: DataVisualizationsComponent},
   { path: 'peasant-kitchen', component: PeasantKitchenComponent },
   { path: 'space-video', component: SpaceVideoComponent },

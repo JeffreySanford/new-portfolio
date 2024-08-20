@@ -1,4 +1,103 @@
-mat-sidenav {
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: blue;
+  height: 90vh;
+  width: 13em;
   border: 2px solid lightblue;
   box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+
+  mat-sidenav {
+    align-content: center;
+    width: 13em;
+    height: 90vh;
+    border: 2px solid lightblue;
+    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+
+    .mat-list-item {
+      font-size: 2em;
+      background-color: black;
+      border: 1px solid green;
+
+      .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        padding: 0.5em;
+        text-decoration: none;
+      }
+
+      .mat-list-label {
+        position: relative;
+      }
+
+      display: flex;
+      align-items: center;
+    }
+
+    .material-icons {
+      font-size: 1.5em;
+      color: blue;
+      border: 1px solid blue;
+      border-radius: 0.5em;
+    }
+
+    .mat-list-label {
+      margin-left: 1.5em;
+      position: relative;
+    }
+
+    @keyframes sparkle {
+      0% {
+        opacity: 1;
+        transform: scale(0);
+      }
+      25% {
+        opacity: 0.5;
+        transform: scale(0.25);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(0.5);
+      }
+      75% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+    .mat-list-label::after {
+      content: '✨';
+      font-size: 1em;
+      left: -1.5em;
+      animation: sparkle 1s infinite;
+    }
+  }
+
+  .mat-lists {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    text-decoration: none;
+    color: white;
+
+    &.active {
+      background-color: lightblue;
+    }
+
+    .material-icons {
+      margin-right: 1em;
+    }
+
+    .mat-list-label {
+      flex-grow: 1;
+      text-align: right;
+      position: relative;
+    }
+  }
 }

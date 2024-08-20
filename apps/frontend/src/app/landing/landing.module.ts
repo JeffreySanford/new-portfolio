@@ -5,10 +5,12 @@ import { LandingComponent } from './landing.component';
 import { MaterialModule } from '../material.module';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from '../common/auth/auth.interceptor';
+import { MaterialIconsComponent } from './material-icons/material-icons.component';
 
 @NgModule({
   declarations: [
-    LandingComponent
+    LandingComponent,
+    MaterialIconsComponent
   ],
   imports: [
     CommonModule,
