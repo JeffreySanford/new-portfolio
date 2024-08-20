@@ -21,8 +21,10 @@ $patriotic-theme: mat.define-light-theme((
 @include mat.all-component-themes($patriotic-theme);
 
 // Global styles
-body { 
-  margin: 1em;
-  border: 1px solid purple; 
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
 }

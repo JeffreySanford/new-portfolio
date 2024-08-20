@@ -4,13 +4,11 @@
   justify-content: space-between;
   color: blue;
   height: 90vh;
-  width: 13em;
   border: 2px solid lightblue;
   box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
 
   mat-sidenav {
     align-content: center;
-    width: 13em;
     height: 90vh;
     border: 2px solid lightblue;
     box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
@@ -27,13 +25,6 @@
         padding: 0.5em;
         text-decoration: none;
       }
-
-      .mat-list-label {
-        position: relative;
-      }
-
-      display: flex;
-      align-items: center;
     }
 
     .material-icons {
@@ -96,9 +87,12 @@
     }
 
     .mat-list-label {
-      flex-grow: 1;
       text-align: right;
       position: relative;
+      margin-right: 0.5em; // Adjusted margin
+      top: 0; // Reset any top positioning
+      transform: translateY(0); // Reset any vertical translation
+      border: 1px solid red; // For debugging
     }
   }
 }

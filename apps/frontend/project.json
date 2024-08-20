@@ -38,6 +38,11 @@
             "glob": "**/*",
             "input": "apps/frontend/public",
             "output": "/assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/frontend/src/assets",
+            "output": "/assets"
           }
         ],
         "styles": [
@@ -124,5 +129,31 @@
       ]
     }
   },
-  "implicitDependencies": []
+  "implicitDependencies": [],
+  "options": {
+    "outputPath": "dist/apps/frontend",
+    "index": "apps/frontend/src/index.html",
+    "browser": "apps/frontend/src/main.ts",
+    "polyfills": [
+      "zone.js"
+    ],
+    "tsConfig": "apps/frontend/tsconfig.app.json",
+    "inlineStyleLanguage": "scss",
+    "assets": [
+      {
+        "glob": "**/*",
+        "input": "apps/frontend/public",
+        "output": "/assets"
+      },
+      {
+        "glob": "**/*",
+        "input": "apps/frontend/src/assets",
+        "output": "/assets"
+      }
+    ],
+    "styles": [
+      "@angular/material/prebuilt-themes/rose-red.css"
+    ],
+    "scripts": []
+  }
 }
