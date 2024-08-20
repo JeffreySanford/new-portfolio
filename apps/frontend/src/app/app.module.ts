@@ -10,7 +10,9 @@ import { MaterialModule } from './material.module';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarModule } from './common/sidebar/sidebar.module';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +21,11 @@ import { SidebarModule } from './common/sidebar/sidebar.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
-    MaterialModule,
     SidebarModule
   ],
   exports: [SidebarModule],

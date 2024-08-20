@@ -1,10 +1,19 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
+import { PeasantKitchenComponent } from './projects/peasant-kitchen/peasant-kitchen.component';
+import { SpaceVideoComponent } from './projects/space-video/space-video.component';
+import { TableComponent } from './projects/table/table.component';
+import { DataVisualizationsComponent } from './projects/data-visualizations/data-visualizations.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: LandingComponent },
   { path: 'product', component: LandingComponent },
   { path: 'contact', component: LandingComponent },
   { path: 'about', component: LandingComponent },
+  { path: 'table', component: TableComponent },
+  { path: 'data-visualization', component: DataVisualizationsComponent},
+  { path: 'peasant-kitchen', component: PeasantKitchenComponent },
+  { path: 'space-video', component: SpaceVideoComponent },
+  { path: 'projects', redirectTo: '/home', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

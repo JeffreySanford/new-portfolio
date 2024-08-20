@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    height: 100vh; // Make sure the container takes up the full viewport height
+  }
+  
+  .sidebar {
+    margin-left: 0.5em;
+    width: 20%; // Fixed width for the sidebar
+    background-color: white; // Optional: Add a background color to the sidebar
+    box-shadow: 2px 0 5px rgba(0, 0, 255, 0.3); // Optional: Add a shadow for better separation
+    border: 1px solid blue;
+
+  }
+  
+  .content {
+    flex-grow: 1; // The content area will take up the remaining space
+    padding: 20px; // Optional: Add padding to the content area
+    overflow-y: auto; // Optional: Add scroll if content overflows
+  }
