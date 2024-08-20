@@ -1,18 +1,18 @@
 export default {
   displayName: 'frontend',
   preset: 'jest-preset-angular',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts', '<rootDir>/src/setup-jest.ts'],
+  setupFilesAfterEnv: ['./src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/frontend',
   transform: {
-      '^.+\\.(ts|mjs|js|html)$': [
-        'jest-preset-angular',
-        {
-          tsconfig: '<rootDir>/tsconfig.spec.json',
-          stringifyContentPathRegex: '\\.(html|svg)$',
-        },
-      ],
-      '^.+\\.css$': 'jest-transform-css',
-    },
+    '^.+\\.(ts|mjs|js|html)$': [
+      'jest-preset-angular',
+      {
+        tsconfig: '<rootDir>/tsconfig.spec.json',
+        stringifyContentPathRegex: '\\.(html|svg)$',
+      },
+    ],
+    '^.+\\.scss$': 'jest-transform-stub',
+  },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'scss'],
   snapshotSerializers: [
@@ -20,5 +20,4 @@ export default {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
-  testEnvironment: 'jsdom',
 };

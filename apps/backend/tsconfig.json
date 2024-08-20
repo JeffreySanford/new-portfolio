@@ -3,16 +3,15 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022",
+    "target": "ES2020",
+    "module": "CommonJS",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./node_modules/@types"],
-    "types": [
-    ],
+    "typeRoots": ["../../node_modules/@types"],
+    "types": [],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true

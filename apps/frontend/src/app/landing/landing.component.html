@@ -1,21 +1,18 @@
 <mat-card class="landing-page-card">
   <mat-card-header>
-    <mat-card-title>
-      <span class="sparkle">Welcome to the</span>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <span class="sparkle">Jeffrey Sanford</span>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
     <div class="highlight-section">
       <div class="highlight-text">
         <span class="sparkle">Jeffrey Sanford</span>
       </div>
     </div>
-
+  </mat-card-header>
+  <mat-card-content>
     <div class="animated-section">
-      <div class="animated-item" *ngFor="let item of items; let i = index" [ngStyle]="{'animation-delay': (i * 0.5) + 's'}">
+      <div
+        class="animated-item"
+        *ngFor="let item of items; let i = index"
+        [ngStyle]="{ 'animation-delay': i * 0.5 + 's' }"
+      >
         {{ item }}
       </div>
     </div>

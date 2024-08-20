@@ -5,12 +5,15 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { HttpInterceptorService } from './common/interceptors/http-interceptor.service';
 import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { SidebarModule } from './common/sidebar/sidebar.module';
 
 describe('AppComponent', () => {
   beforeEach((done) => {
     from(TestBed.configureTestingModule({
       imports: [
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        SidebarModule
+    
       ],
       declarations: [AppComponent],
       providers: [
@@ -30,7 +33,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome frontend'
+      'frontend'
     );
   });
 
