@@ -12,12 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types"],
     "types": [
-      "mute-stream",
-      "node",
-      "jest",
-      "jest-environment-node",
-      "jest-extended",
-      "express-jwt"
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
