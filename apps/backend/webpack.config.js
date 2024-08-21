@@ -1,7 +1,7 @@
 const path = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-  // Other webpack configurations
   module: {
     rules: [
       {
@@ -24,14 +24,4 @@ module.exports = {
       async: false,
     }),
   ],
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  transform: {
-    '^.+\\.ts$': ['ts-jest', {
-      tsconfig: 'tsconfig.json', // Adjust this path if your tsconfig file is located elsewhere
-      // Add any other ts-jest specific configurations here
-    }]
-  },
-  moduleFileExtensions: ['ts', 'js'],
-  // Other Jest configurations
 };
