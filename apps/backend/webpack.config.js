@@ -1,29 +1,35 @@
+const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
+const { join } = require('path');
 const path = require('path');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
+  entry: './apps/backend/src/main.ts',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist/apps/backend')
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+        exclude: /node_modules/
+      }
+    ]
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        configFile: './tsconfig.app.json',
-      },
-      async: false,
+
+    new NxAppWebpackPlugin({
+      target: 'node',
+      compiler: 'tsc',
+      main: './src/main.ts',
+      tsConfig: './tsconfig.app.json',
+      assets: ['./src/assets'],
+      optimization: false,
+      outputHashing: 'none',
     }),
   ],
 };

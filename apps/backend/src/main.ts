@@ -23,6 +23,7 @@ function bootstrap() {
       SwaggerModule.setup('api', app, document);
 
       const listenWithRetry = (retryCount = 0) => {
+        console.log(`Attempting to listen on port ${port}`);
         return from(app.listen(port)).pipe(
           catchError((err: Error): any => {
             if ((err as NodeJS.ErrnoException).code === 'EADDRINUSE' && retryCount < 5) {
