@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npx nx build backend && npm run copy-ssl",
-    "copy-ssl": "node copy-ssl.js"
+    "copy-ssl": "node copy-ssl.mjs"
   },
   "private": true,
   "dependencies": {

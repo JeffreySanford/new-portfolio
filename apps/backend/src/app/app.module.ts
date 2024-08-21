@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { HttpModule } from '@nestjs/axios';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -23,7 +24,9 @@ import { HttpModule } from '@nestjs/axios';
     }),
     AuthModule,
     UsersModule,
-    HttpModule
+    HttpModule,
+    JwtModule
+
   ],
   controllers: [AppController],
   providers: [AppService],

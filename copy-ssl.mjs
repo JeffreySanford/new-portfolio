@@ -1,8 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const { exec } = require('child_process');
-const { from, of } = require('rxjs');
-const { map, mergeMap, catchError } = require('rxjs/operators');
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { exec } from 'child_process';
+import { from, of, Observable } from 'rxjs';
+import { map, mergeMap, catchError } from 'rxjs/operators';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const srcDir = path.join(__dirname, 'apps', 'backend', '.env', 'ssl');
 const destDir = path.join(__dirname, 'apps', 'backend', 'dist', 'ssl');
@@ -10,41 +14,45 @@ const destDir = path.join(__dirname, 'apps', 'backend', 'dist', 'ssl');
 const files = ['server.key', 'server.crt'];
 
 function compareFiles(src, dest) {
-  return new Promise((resolve, reject) => {
-    exec(`fc /b "${src}" "${dest}" > nul`, (error) => {
+  return new Observable(subscriber => {
+    exec(`fc /b "${src}" "${dest}" > nul`, error => {
       if (error) {
-        resolve(false); // Files are different or dest doesn't exist
+        subscriber.next(false); // Files are different or dest doesn't exist
       } else {
-        resolve(true); // Files are the same
+        subscriber.next(true); // Files are the same
       }
+      subscriber.complete();
     });
   });
 }
 
 function copyFile(src, dest) {
-  return new Promise((resolve, reject) => {
-    fs.copyFile(src, dest, (err) => {
+  return new Observable(subscriber => {
+    fs.copyFile(src, dest, err => {
       if (err) {
-        reject(err);
+        subscriber.error(err);
       } else {
-        resolve();
+        subscriber.next();
+        subscriber.complete();
       }
     });
   });
 }
 
 function ensureDirExists(dir) {
-  return new Promise((resolve, reject) => {
+  return new Observable(subscriber => {
     if (!fs.existsSync(dir)) {
-      fs.mkdir(dir, { recursive: true }, (err) => {
+      fs.mkdir(dir, { recursive: true }, err => {
         if (err) {
-          reject(err);
+          subscriber.error(err);
         } else {
-          resolve();
+          subscriber.next();
+          subscriber.complete();
         }
       });
     } else {
-      resolve();
+      subscriber.next();
+      subscriber.complete();
     }
   });
 }
@@ -56,17 +64,17 @@ from(files).pipe(
     console.log(`Checking file: ${file}`);
     console.log(`Source path: ${src}`);
     console.log(`Destination path: ${dest}`);
-    return from(ensureDirExists(destDir)).pipe(
+    return ensureDirExists(destDir).pipe(
       mergeMap(() => {
         if (!fs.existsSync(src)) {
           console.error(`Source file not found: ${src}`);
           return of(`Source file not found: ${src}`);
         }
-        return from(compareFiles(src, dest));
+        return compareFiles(src, dest);
       }),
       mergeMap(areSame => {
         if (!areSame) {
-          return from(copyFile(src, dest)).pipe(
+          return copyFile(src, dest).pipe(
             map(() => `Copied ${src} to ${dest}`),
             catchError(err => of(`Failed to copy ${src} to ${dest}: ${err}`))
           );
