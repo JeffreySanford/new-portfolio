@@ -1,5 +1,5 @@
 <div class="icons-container">
-    <div class="icon-item" *ngFor="let icon of materialIcons">
+    <div class="icon-item" *ngFor="let icon of materialIcons; let i = index" [ngClass]="getTileClass(i)">
       <mat-icon>{{ icon }}</mat-icon>
       <span>{{ icon }}</span>
     </div>

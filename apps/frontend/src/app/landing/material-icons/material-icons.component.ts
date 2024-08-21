@@ -30,4 +30,11 @@ export class MaterialIconsComponent {
     'local_forest', 'local_wildlife', 'local_park', 'local_travel',
     // add more icons if needed
   ];
+
+  getTileClass(index: number): string {
+    const classes = ['red-tile', 'blue-tile', 'white-tile'];
+    console.log('index', index);
+    console.log('color', classes[index % classes.length]);
+    return classes[index % classes.length];
+  }
 }

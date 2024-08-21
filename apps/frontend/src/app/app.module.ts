@@ -7,7 +7,7 @@ import { AuthModule } from './common/auth/auth.module';
 import { AuthInterceptor } from './common/auth/auth.interceptor';
 import { LandingModule } from './landing/landing.module';
 import { MaterialModule } from './material.module';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

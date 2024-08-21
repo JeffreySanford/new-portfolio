@@ -20,11 +20,3 @@ $patriotic-theme: mat.define-light-theme((
 // Include Angular Material styles
 @include mat.all-component-themes($patriotic-theme);
 
-// Global styles
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
-}

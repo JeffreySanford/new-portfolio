@@ -1,0 +1,45 @@
+.icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the gap between tiles as needed */
+  padding: 16px; /* Optional: Add padding around the container */
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px; /* Adjust the width of each tile as needed */
+  height: 100px; /* Adjust the height of each tile as needed */
+  border: 1px solid #ccc; /* Optional: Add a border around each tile */
+  border-radius: 8px; /* Optional: Add rounded corners to each tile */
+  padding: 8px; /* Optional: Add padding inside each tile */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to each tile */
+  background-color: #fff; /* Optional: Set a background color for each tile */
+}
+
+.icon-item mat-icon {
+  font-size: 48px; /* Adjust the size of the icons as needed */
+  margin-bottom: 8px; /* Adjust the space between the icon and the label */
+}
+
+.icon-item span {
+  font-size: 14px; /* Adjust the size of the labels as needed */
+  text-align: center; /* Center-align the text */
+}
+
+.red-tile {
+  background-color: red;
+  color: white;
+}
+
+.blue-tile {
+  background-color: blue;
+  color: white;
+}
+
+.white-tile {
+  background-color: white;
+  color: black;
+}

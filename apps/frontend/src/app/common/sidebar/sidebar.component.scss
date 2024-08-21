@@ -6,43 +6,32 @@
   color: black;
   height: 94vh;
   box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
-  background-color: rgba(
-    0,
-    0,
-    255,
-    0.5
-  ); // Optional: Add a background color with opacity
+  background-color: rgba(0, 0, 255, 0.5);
 
   mat-sidenav {
     align-content: center;
     height: 90vh;
-    width: 15em;
+    width: 11em;
     border: 2px solid lightblue;
     box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
     background-color: transparent;
-
-    .mat-list-item {
-      font-size: 2em;
-      background-color: red;
-      border: 1px solid green;
-
-      .section {
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        padding: 0.5em;
-        text-decoration: none;
-        background-color: red;
-      }
+  
+    .mat-list-content {
+      display: flex;
+      align-items: center;
+      background-color: lightblue;
+      padding: 0.5em;
+      border-radius: 4px;
     }
-
-    .material-icons {
-      font-size: 1.5em;
-      color: blue;
-      border: 1px solid blue;
-      border-radius: 0.5em;
+  
+    .mat-list-content mat-icon {
+      margin-right: 0.5em;
     }
-
+  
+    .mat-list-label {
+      margin: 0;
+    }
+  
     @keyframes sparkle {
       0% {
         opacity: 1;
@@ -65,43 +54,12 @@
         transform: scale(0);
       }
     }
-
+  
     .mat-list-label::after {
       content: '✨';
       font-size: 1em;
       left: -1.5em;
       animation: sparkle 1s infinite;
-    }
-  }
-
-  .mat-lists {
-    display: flex;
-    align-items: center;
-    padding: 0.5em;
-    text-decoration: none;
-    background-color: transparent;
-
-    .material-icons {
-      margin-right: 1em;
-      margin-top: 1.75em;
-    }
-
-    &.mat-list-label {
-      background-color: turquoise;
-    }
-
-    &.active {
-      background-color: lightblue;
-    }
-
-    .mat-list-label {
-      text-align: right;
-      position: relative;
-      margin-right: 0.5em; // Adjusted margin
-      top: 0; // Reset any top positioning
-      transform: translateY(-2em); // Reset any vertical translation
-      border: 1px solid red; // For debugging
-      background-color: lightblue;
     }
   }
 }
