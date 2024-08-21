@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarModule } from './common/sidebar/sidebar.module';
-import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { HeaderModule } from './common/header/header.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,10 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
     RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
-    SidebarModule
+    SidebarModule,
+    HeaderModule
   ],
-  exports: [SidebarModule],
+  exports: [SidebarModule, HeaderModule],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
