@@ -20,7 +20,9 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: './tsconfig.app.json',
+      typescript: {
+        configFile: './tsconfig.app.json',
+      },
       async: false,
     }),
   ],
