@@ -1,13 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "outDir": "./dist/out-tsc",
+    "module": "CommonJS",
+    "types": ["jest", "node"],
+    "emitDecoratorMetadata": true,
+    "target": "es2021"
   },
-  "include": [
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ]
+  "include": ["src/**/*.spec.ts", "src/**/*.test.ts", "src/**/*.ts"]
 }
