@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarModule } from './common/sidebar/sidebar.module';
 import { HeaderModule } from './common/header/header.module';
 import { LoginComponent } from './authentication/login/login.component';
+import { TableModule } from './projects/table/table.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { LoginComponent } from './authentication/login/login.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     AuthModule,
     LandingModule,
     SidebarModule,
-    HeaderModule
+    HeaderModule,
+    TableModule
   ],
   exports: [SidebarModule, HeaderModule],
   providers: [

@@ -7,7 +7,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatCheckboxModule } from '@angular/material/checkbox'; // Added line
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -18,10 +22,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox'; // Added line
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatIconModule,
-    MatSidenavModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -31,10 +37,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox'; // Added line
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatIconModule,
-    MatSidenavModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }
