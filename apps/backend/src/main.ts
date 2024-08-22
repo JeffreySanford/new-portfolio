@@ -5,9 +5,12 @@ import { from, of } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { INestApplication } from '@nestjs/common';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
+// Load environment variables from .env file
 dotenv.config({ path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development' });
 
+// Function to set up Swagger documentation
 function setupSwagger(app: INestApplication) {
   return of(app).pipe(
     map(app => {
@@ -19,20 +22,33 @@ function setupSwagger(app: INestApplication) {
         .build();
       const document = SwaggerModule.createDocument(app, config);
       SwaggerModule.setup('api', app, document);
+      console.log('Swagger documentation set up');
       return app;
     })
   );
 }
 
+// Main bootstrap function to start the application
 function bootstrap() {
   from(NestFactory.create(AppModule)).pipe(
     switchMap(app => {
+      // Enable CORS
+      const corsOptions: CorsOptions = {
+        origin: 'http://localhost:4200',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        credentials: true,
+      };
+      app.enableCors(corsOptions);
+      console.log('CORS enabled with options:', corsOptions);
+
+      // Initialize the application
       return from(app.init()).pipe(
         switchMap(() => setupSwagger(app)),
         map(() => app)
       );
     }),
     switchMap(app => {
+      // Start listening on the specified port
       const port = process.env.PORT || 3000;
       return from(app.listen(port)).pipe(
         map(() => {
@@ -42,6 +58,7 @@ function bootstrap() {
       );
     }),
     catchError(err => {
+      // Handle errors during application startup
       console.error('Error starting application', err);
       process.exit(1);
       return of(null);
@@ -49,4 +66,5 @@ function bootstrap() {
   ).subscribe();
 }
 
+// Start the application
 bootstrap();
