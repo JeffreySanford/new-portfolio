@@ -13,11 +13,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarModule } from './common/sidebar/sidebar.module';
 import { HeaderModule } from './common/header/header.module';
+import { LoginComponent } from './authentication/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

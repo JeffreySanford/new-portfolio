@@ -2,7 +2,7 @@
   <mat-sidenav mode="side" opened>
     <mat-nav-list>
       <div>
-        <a mat-list-item class="mat-lists active" href="#">
+        <a mat-list-item class="mat-lists active" routerLink="/">
           <div class="mat-list-content">
             <mat-icon class='material-icons'>home</mat-icon>
             <p class="mat-list-label">home</p>
@@ -10,30 +10,30 @@
         </a>
       </div>
       
-      <a mat-list-item class="mat-lists" href="#">
+      <a mat-list-item class="mat-lists" routerLink="/table">
         <div class="mat-list-content">
           <mat-icon class='material-icons'>table_chart</mat-icon>
           <p class="mat-list-label">Table</p>
         </div>
       </a>
-      <mat-list-item class="mat-lists">
+      <a mat-list-item class="mat-lists" routerLink="/data-visualization">
         <div class="mat-list-content">
           <mat-icon class='material-icons'>bar_chart</mat-icon>
           <p class="mat-list-label">Data Visualization</p>
         </div>
-      </mat-list-item>
-      <mat-list-item class="mat-lists">
+      </a>
+      <a mat-list-item class="mat-lists" routerLink="/peasant-kitchen">
         <div class="mat-list-content">
           <mat-icon class='material-icons'>restaurant</mat-icon>
           <p class="mat-list-label">Peasant Kitchen</p>
         </div>
-      </mat-list-item>
-      <mat-list-item class="mat-lists">
+      </a>
+      <a mat-list-item class="mat-lists" routerLink="/movies">
         <div class="mat-list-content">
           <mat-icon class='material-icons'>movie</mat-icon>
           <p class="mat-list-label">Movies</p>
         </div>
-      </mat-list-item>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

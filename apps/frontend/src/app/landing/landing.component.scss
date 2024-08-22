@@ -3,13 +3,12 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 2rem auto;
+  max-width: 99%;
+  height: calc(100vh - 6em);
+  margin: -1em 0 0 1em;
   text-align: center;
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
   background-color: rgba(255, 0, 0, 0.5);
-
-
 }
 
 .highlight-section {

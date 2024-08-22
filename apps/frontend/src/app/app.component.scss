@@ -17,16 +17,88 @@
 
 .container {
     display: flex;
-    height: 97vh; // Make sure the container takes up the full viewport height
+    height: calc(95vh); // Make sure the container takes up the full viewport height
   }
   
   .sidebar {
     margin-left: 0.5em;
+    height: calc(80vh);
   }
   
   .content {
     flex-grow: 1; // The content area will take up the remaining space
     padding: 20px; // Optional: Add padding to the content area
     overflow-y: auto; // Optional: Add scroll if content overflows
+    height: calc(95vh);
+  }
+  
+  .landing-page-card {
+    background-color: #fff; // White background
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 99%;
+    height: calc(100vh - 6em);
+    margin: -1em 0 0 1em;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  
+  .highlight-section {
+    position: relative;
+    margin-bottom: 3rem;
+  
+    .highlight-text {
+      font-size: 3rem;
+      font-weight: bold;
+      color: yellow;
+      position: relative;
+      display: inline-block;
+    }
+  }
+  
+  @keyframes sparkle {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  .animated-section {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  
+    .animated-item {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: yellow;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+  
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+    }
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   

@@ -1,20 +1,18 @@
-<mat-card class="landing-page-card">
-  <mat-card-header>
-    <div class="highlight-section">
-      <div class="highlight-text">
-        <span class="sparkle">Jeffrey Sanford</span>
-      </div>
+<mat-card-header>
+  <div class="highlight-section">
+    <div class="highlight-text">
+      <span class="sparkle">Jeffrey Sanford</span>
     </div>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="animated-section">
-      <div
-        class="animated-item"
-        *ngFor="let item of items; let i = index"
-        [ngStyle]="{ 'animation-delay': i * 0.5 + 's' }"
-      >
-        {{ item }}
-      </div>
+  </div>
+</mat-card-header>
+<mat-card-content>
+  <div class="animated-section">
+    <div
+      class="animated-item"
+      *ngFor="let item of items; let i = index"
+      [ngStyle]="{ 'animation-delay': i * 0.5 + 's' }"
+    >
+      {{ item }}
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</mat-card-content>

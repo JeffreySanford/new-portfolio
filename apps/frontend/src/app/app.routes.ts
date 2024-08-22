@@ -5,6 +5,7 @@ import { SpaceVideoComponent } from './projects/space-video/space-video.componen
 import { TableComponent } from './projects/table/table.component';
 import { DataVisualizationsComponent } from './projects/data-visualizations/data-visualizations.component';
 import { MaterialIconsComponent } from './landing/material-icons/material-icons.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: LandingComponent },
@@ -16,6 +17,6 @@ export const appRoutes: Routes = [
   { path: 'data-visualization', component: DataVisualizationsComponent},
   { path: 'peasant-kitchen', component: PeasantKitchenComponent },
   { path: 'space-video', component: SpaceVideoComponent },
-  { path: 'projects', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
