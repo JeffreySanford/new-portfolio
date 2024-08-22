@@ -1,0 +1,156 @@
+$small-screen: 600px;
+
+.filter {
+  margin-top: 1em;
+}
+
+.clear-button {
+  margin-right: 0.25em;
+}
+
+.table {
+  .mat-mdc-table {
+    max-width: 80%;
+    min-height: calc(50vh);
+    margin: 1em auto 1em;
+    z-index: 15;
+  }
+
+  /* Header styles */
+  .mat-mdc-header-cell {
+    background-color: #673ab7 !important; /* Purple */
+    color: white;
+  }
+
+  /* Row styles */
+  .mat-mdc-row {
+    border-bottom: 1px solid #673ab7 !important; /* Purple */
+    font-size: 1.25em;
+  }
+
+  .normal-row {
+    z-index: 100;
+  }
+
+  /* Cell styles */
+  .mat-mdc-cell {
+    color: #333 !important;
+  }
+
+  /* Button styles */
+  button {
+    background-color: yellow;
+    z-index: 10;
+    mat-icon {
+      color: darkred;
+    }
+  }
+
+  /* Hover styles for rows */
+  .mat-mdc-row:hover {
+    background-color: yellow;
+  }
+
+  /* Styles for expanded detail */
+  .expand-element-description {
+    background-color: turquoise;
+    color: black;
+    font-size: 1em;
+    padding: 0.25em 1em;
+    border-radius: 0.5em;
+    width: 50%;
+    height: 2em;
+    margin: .05em auto;
+  }
+
+  /* Paginator styles */
+  .mat-mdc-paginator {
+    min-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #673ab7; /* Purple */
+    color: #fff;
+  }
+
+  /* Styles for the paginator's page size options */
+  .mat-mdc-paginator-page-size-label,
+  .mat-mdc-paginator-range-label {
+    color: #fff;
+  }
+
+  .mat-mdc-paginator .mat-select-value {
+    color: #fff;
+  }
+
+  /* Styles for paginator buttons */
+  .mat-mdc-paginator-navigation-first,
+  .mat-mdc-paginator-navigation-last,
+  .mat-mdc-paginator-navigation-next,
+  .mat-mdc-paginator-navigation-previous {
+    color: #fff;
+  }
+
+  /* Styles for active paginator button */
+  .mat-mdc-paginator-navigation-first.mat-icon-button.mat-accent,
+  .mat-mdc-paginator-navigation-last.mat-icon-button.mat-accent,
+  .mat-mdc-paginator-navigation-next.mat-icon-button.mat-accent,
+  .mat-mdc-paginator-navigation-previous.mat-icon-button.mat-accent {
+    background-color: #009688; /* Teal */
+  }
+}
+
+.performance {
+  margin: 1em 15% 1em;
+  width: 70%;
+  text-align: center;
+
+  .dataset-generation {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    font-size: 1em;
+    background-color: lightblue;
+    border-radius: 0.5em;
+
+    .selector {
+      flex: 10%;
+      align-content: center;
+      font-size: 1em;
+      max-width: 10%;
+    }
+
+    .report {
+      flex: 65%; /* Take up the remaining 65% of the available space */
+      text-align: left;
+       p {
+        color: black;
+        font-size: 0.9em;
+        padding: 0 0 0 3em;  
+      }
+    }
+  }
+}
+
+.no-data-row {
+  margin: 25% 25%;
+  height: 1em;
+}
+
+mat-progress-spinner {
+  margin: 45% 45%;
+}
+
+.mat-progress-spinner circle {
+  stroke: lightblue !important;
+  margin: 25% 25%;
+}
+
+.no-data-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.data-loading {
+  margin: auto auto;
+}

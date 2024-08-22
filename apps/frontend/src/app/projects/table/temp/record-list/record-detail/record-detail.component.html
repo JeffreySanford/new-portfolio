@@ -1,0 +1,51 @@
+<mat-progress-spinner *ngIf="!user" mode="indeterminate" [diameter]="100" [style.color]="'lightblue'"></mat-progress-spinner>
+
+<div *ngIf="user" else #loading>
+  <div class="personal-info">
+    <mat-card class="address-card">
+        <mat-card-header>
+          <p><strong>Name:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-title>User Address</mat-card-title>
+          <p><strong>Address:</strong> {{ user.address.street }}</p>
+          <p><strong>City:</strong> {{ user.address.city }}</p>
+          <p><strong>State:</strong> {{ user.address.state }}</p>
+          <p><strong>Zipcode:</strong> {{ user.address.zipcode }}</p>
+          <p><strong>Telephone:</strong> ({{ user.phone.areaCode }}) {{ user.phone.phone}}</p>
+        </mat-card-content>
+      </mat-card>
+  </div>
+  <br />
+  <div class="companies">
+    <mat-card class="company-card">
+      <mat-card-header>
+        <mat-card-title>Company Group</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="user.salary" class="mat-elevation-z8">
+          <!-- Company Name Column -->
+          <ng-container matColumnDef="company">
+            <th mat-header-cell *matHeaderCellDef> Company </th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+          </ng-container>
+    
+          <!-- Salary Column -->
+          <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef> Salary </th>
+            <td mat-cell *matCellDef="let element"> {{element.annualSalary | currency}} </td>
+          </ng-container>
+    
+          <!-- Total Annual Salary Footer -->
+          <ng-container matColumnDef="totalSalary">
+            <!-- <td mat-footer-cell *matFooterCellDef colspan="2"> Total Annual Salary: </td> -->
+            <td mat-footer-cell *matFooterCellDef> <p>Total Annual Income: {{ getTotalSalary() | currency }}</p> </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="salaryDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: salaryDisplayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="['totalSalary']"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+</div>
