@@ -40,6 +40,7 @@
     "@angular/compiler-cli": "~18.2.0",
     "@angular/language-service": "~18.2.0",
     "@angular/material": "^18.2.0",
+    "@faker-js/faker": "^8.4.1",
     "@nestjs/mongoose": "^10.0.10",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/serve-static": "^4.0.2",

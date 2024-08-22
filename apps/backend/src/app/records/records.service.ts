@@ -1,18 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
-import { Phone, Record, Address } from './entities/record.entity';
+import { Phone, Record, Address } from './entities/record.interface';
 import { faker } from '@faker-js/faker';
-import { Company } from './entities/company.entity';
+import { Company } from './entities/company.interface';
 
 @Injectable()
-
 export class RecordsService {
   private mockDatabase: Record[] = [];
 
   getRecordByUID(UID: string): Record {
     // Mock database fetch
-    return this.mockDatabase.find(record => record.UID === UID);
+    return this.mockDatabase.find(record => record.UID === UID)!;
   }
 
   getAllRecords(): Record[] {
@@ -29,7 +28,6 @@ export class RecordsService {
   }
 
   generateCompany(): Company {
-
     return {
       companyName: faker.company.name(),
       annualSalary: faker.number.int({ min: 30000, max: 500000 }),
@@ -37,7 +35,7 @@ export class RecordsService {
   }
 
   generatePhone(): Phone {
-    const rawPhoneNumber = '###-###-####'.replace(/#/g, () => faker.number.int({ max: 9 }).toString());
+    const rawPhoneNumber = '##########'.replace(/#/g, () => faker.number.int({ max: 9 }).toString());
     const formattedPhoneNumber = rawPhoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 
     const areaCode = rawPhoneNumber.slice(0, 3);
@@ -49,7 +47,7 @@ export class RecordsService {
       areaCode,
       hasExtension,
       extension
-    }
+    };
 
     return phone;
   }
@@ -60,13 +58,13 @@ export class RecordsService {
       city: faker.location.city(),
       state: faker.location.state(),
       zipcode: faker.location.zipCode()
-    }
+    };
 
     return address;
   }
 
   generateRecord(): Record {
-    const generateRecord: CreateRecordDto = {
+    const generateRecord: Record = {
       UID: faker.number.int({ min: 100000000, max: 999999999 }).toString(),
       avatar: faker.image.avatar(),
       flicker: faker.image.urlLoremFlickr(),

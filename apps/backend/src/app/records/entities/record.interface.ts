@@ -1,9 +1,9 @@
-import { Company } from "./company.entity";
+import { Company } from "./company.interface";
 
 export interface Phone {
     number: string;
     hasExtension: boolean;
-    extension: string;
+    extension: string | null;
     areaCode: string;
 }
 
@@ -14,11 +14,10 @@ export interface Address {
     zipcode: string;
 }
 
-export class Record {
+export interface Record {
     UID: string;
-    avatar: any;
-    flicker: any;
-    name?: string;
+    avatar: string;
+    flicker: string;
     firstName: string;
     lastName: string;
     address: Address;
