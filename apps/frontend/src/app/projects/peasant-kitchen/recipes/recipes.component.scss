@@ -1,0 +1,60 @@
+:host ::ng-deep .mat-tab-body-content,
+.description {
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 255, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darkblue;
+    outline: 1px solid blue;
+  }
+}
+
+.mat-card {
+  height: 20em;
+  width: 14em;
+  margin: 0.5em;
+  justify-content: center;
+  background: rgba(0, 100, 0, 0.7);
+  z-index: 10;
+
+  .mat-card-actions,
+  .mat-card-subtitle,
+  .mat-card-content {
+    margin-top: 6em;
+  }
+
+  .recipe-icon {
+    position: absolute;
+    left: 0.5em;
+    font-size: 3em;
+  }
+
+  .mat-card-title {
+    color: blue;
+    position: absolute;
+    right: 0.25em;
+    font-size: 2.5em;
+    line-height: 0.8em;
+    text-align: right;
+    width: 5em;
+  }
+
+  .card-description {
+    margin-top: 1em;
+  }
+
+  .description {
+    margin-top: 5em;
+    padding: 0.25em;
+    font-size: 1.25em;
+    overflow: auto;
+    height: 8em;
+    margin-top: 6em;
+    z-index: 15;
+  }
+}

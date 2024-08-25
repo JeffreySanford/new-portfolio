@@ -1,0 +1,14 @@
+.page {
+  background-color: white;
+  margin: 2.5em 1em 0 12em;
+  width: 86%;
+
+  &.navigation-closed {
+    margin: 2em 1em 0 4em;
+    width: 95%;
+  }
+
+  .player {
+    margin: 1em 1em;
+  }
+}

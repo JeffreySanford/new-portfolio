@@ -8,10 +8,11 @@ describe('SpaceVideoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpaceVideoComponent]
-    })
-    .compileComponents();
+      declarations: [SpaceVideoComponent],
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(SpaceVideoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

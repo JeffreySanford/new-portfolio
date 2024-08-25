@@ -1,1 +1,24 @@
-<p>peasant-kitchen works!</p>
+<div rel="prefetch" [hidden]="!loaded">
+    <!-- <mat-toolbar color="primary" class="landing">
+        <img rel="prefetch" as="image" class="site-logo" src="../../../../assets/images/kitchen-table-site-logo.png" />
+        <span>Kitchen Table</span>
+        <span class="spacer"></span>
+        <img rel="prefetch" as="image" class="grape-masthead" src="../../../../assets/images/grape-01.png" />
+    </mat-toolbar>
+    <div class="content">
+        <mat-tab-group class="section-group" [selectedIndex]="active" (selectedIndexChange)="onTabChange($event)">
+            <mat-tab label="Recipes">
+                <div *ngIf="recipes && recipes.length > 0">
+                    <mat-card *ngFor="let recipe of recipes" class="recipe-card" (click)="showRecipe(recipe)">
+                        <app-recipes [recipe]="recipe"></app-recipes>
+                    </mat-card>
+                </div>
+                <div *ngIf="recipe">
+                    <mat-card class="recipe-card" (click)="showRecipe(recipe)">
+                        <app-recipe [recipe]="recipe"></app-recipe>
+                    </mat-card>
+                </div>
+            </mat-tab>
+        </mat-tab-group> -->
+    <!-- </div> -->
+</div>

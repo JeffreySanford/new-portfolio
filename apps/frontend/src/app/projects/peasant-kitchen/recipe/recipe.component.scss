@@ -1,0 +1,32 @@
+.mat-card {
+    height: 60vh;
+    width: 87vw;
+    background: rgba(0, 100, 0, 0.7);
+  
+    .mat-card-actions,
+    .mat-card-subtitle,
+    .mat-card-content {
+        width: 66vw;
+        // border: 1px solid blue;
+        .directions {
+            margin-top: 1em;
+            .step {
+                color: white;
+                width: 66vw;
+            }
+        }
+    }
+  
+    .mat-card-title {
+    }
+  
+    .card-description {
+        font-style: italic;
+
+    }
+  
+    .description {
+        border: 1px solid yellow;
+    }
+  }
+  
