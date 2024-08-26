@@ -30,8 +30,8 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   rowExpanded = false;
   totalRecords = 0;
   filterValue = '';
-  pageSizeOptions = [7, 25, 100];
-  dataSetSizes = [76, 15000, 100000, 750000];
+  pageSizeOptions = [10, 25, 100];
+  dataSetSizes = [100, 15000, 100000, 1000000];
   resolved = false;
   time?: Date;
   expandedElement?: Record | null;
@@ -110,8 +110,8 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   ngOnInit() {
     this.sort.active = 'UserID';
     this.sort.direction = 'asc';
-    this.generate(76);
-    this.pageSize = 7;
+    this.generate(1000);
+    this.pageSize = 10;
     this.expandedElement = null;
     this.rowExpanded = false;
     this.resolved = false;
