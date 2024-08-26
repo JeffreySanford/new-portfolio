@@ -4,7 +4,7 @@ import { Record } from './entities/record.interface';
 
 @Controller('records')
 export class RecordsController {
-  private recordGenerationTime: number = 0;
+  private recordGenerationTime = 0;
 
   constructor(private readonly recordService: RecordsService) {}
 

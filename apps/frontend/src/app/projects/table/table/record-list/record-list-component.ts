@@ -1,7 +1,7 @@
 import { AfterContentChecked, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatHeaderRow, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Record } from '../models/record';
@@ -151,6 +151,7 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
         } else {
           this.roundtripLabel = parseFloat(roundtrip.toFixed(2)) + " milliseconds"
         }
+        debugger
         this.dataset = dataset;
         this.resolved = false;
 

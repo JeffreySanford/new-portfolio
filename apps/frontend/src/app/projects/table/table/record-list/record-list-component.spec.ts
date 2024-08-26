@@ -1,16 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecordListComponent } from './record-list-component';
-import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from '../../material.module';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from '../../app.component';
-import { appRoutes } from '../../app.routes';
-import { MastheadModule } from '../../masthead/masthead.module';
-import { LandingComponent } from '../landing.component';
 import { RecordDetailComponent } from './record-detail/record-detail.component';
+import { MaterialModule } from '../../../../material.module';
 
 describe('RecordListComponentComponent', () => {
   let component: RecordListComponent;
@@ -18,8 +10,8 @@ describe('RecordListComponentComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterModule.forRoot(appRoutes),MastheadModule, MaterialModule, FormsModule, BrowserAnimationsModule],
-      declarations: [AppComponent, LandingComponent, RecordListComponent, RecordDetailComponent],
+      imports: [MaterialModule],
+      declarations: [RecordListComponent, RecordDetailComponent],
       providers: [
         provideAnimationsAsync()
       ],
