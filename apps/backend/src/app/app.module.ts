@@ -7,6 +7,8 @@ import { UsersModule } from './users/users.module';
 import { HttpModule } from '@nestjs/axios';
 import { JwtModule } from '@nestjs/jwt';
 import { RecordsModule } from './records/records.module';
+import { RecordsService } from './records/records.service';
+import { RecordsController } from './records/records.controller';
 
 @Module({
   imports: [
