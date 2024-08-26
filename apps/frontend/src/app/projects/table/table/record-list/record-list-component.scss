@@ -25,7 +25,7 @@ $small-screen: 600px;
   /* Row styles */
   .mat-mdc-row {
     border-bottom: 1px solid #673ab7 !important; /* Purple */
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   .normal-row {
@@ -68,7 +68,7 @@ $small-screen: 600px;
     min-width: 100%;
     width: 100%;
     margin: 0 auto;
-    background-color: #673ab7; /* Purple */
+    background-color: rgba(blue, 1);
     color: #fff;
   }
 

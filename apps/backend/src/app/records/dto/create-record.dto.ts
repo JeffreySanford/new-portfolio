@@ -3,8 +3,6 @@ import { Phone, Address } from "../entities/record.interface";
 
 export class CreateRecordDto {
     UID: string;
-    avatar: any;
-    flicker: any;
     name?: string;
     firstName: string;
     lastName: string;
@@ -15,8 +13,6 @@ export class CreateRecordDto {
 
     constructor() {
         this.UID = '';
-        this.avatar = null;
-        this.flicker = null;
         this.name = '';
         this.firstName = '';
         this.lastName = '';

@@ -66,8 +66,6 @@ export class RecordsService {
   generateRecord(): Record {
     const generateRecord: Record = {
       UID: faker.number.int({ min: 100000000, max: 999999999 }).toString(),
-      avatar: faker.image.avatar(),
-      flicker: faker.image.urlLoremFlickr(),
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
       address: this.generateAddress(),

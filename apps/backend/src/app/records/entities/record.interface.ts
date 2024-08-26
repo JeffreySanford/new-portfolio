@@ -16,8 +16,6 @@ export interface Address {
 
 export interface Record {
     UID: string;
-    avatar: string;
-    flicker: string;
     firstName: string;
     lastName: string;
     address: Address;
