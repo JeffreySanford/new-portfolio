@@ -1,18 +1,20 @@
 @use '@angular/material' as mat;
+// @use '@angular/material/core/theming/palette' as palette;
+
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 // Define the palettes
-$red-palette: mat.define-palette(mat.$red-palette);
-$blue-palette: mat.define-palette(mat.$blue-palette);
-$white-palette: mat.define-palette(mat.$grey-palette, 50);
+$red-palette: palette.define-palette(palette.$red-palette);
+$blue-palette: palette.define-palette(palette.$blue-palette);
+$white-palette: palette.define-palette(palette.$grey-palette, 50);
 
 // Define the theme colors
 $patriotic-theme: mat.define-light-theme((
   color: (
     primary: $red-palette,
     accent: $blue-palette,
-    warn: mat.define-palette(mat.$amber-palette),
+    warn: palette.define-palette(palette.$amber-palette),
     background: $white-palette
   )
 ));
@@ -57,4 +59,10 @@ $header-theme: (
 
 .stars-red {
   animation: redHighlight 4s ease-in-out;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; // Prevent horizontal overflow
 }

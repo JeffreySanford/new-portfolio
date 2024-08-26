@@ -1,0 +1,48 @@
+.tile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.chart-card {
+  flex: 1 1 calc(20% - 2em);
+  min-width: 12.5em;
+  max-width: 100%;
+  height: 12.5em;
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.125em solid blue;
+  cursor: pointer;
+  transition: transform 0.2s, flex 0.2s, height 0.2s;
+
+  &.expanded {
+    flex: 1 1 90%;
+    height: calc(52vh - 3em);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media (max-width: 1024px) {
+    .chart-card {
+      flex: 1 1 calc(33.33% - 32px); // Adjust to 3 tiles per row
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .chart-card {
+      flex: 1 1 calc(50% - 32px); // Adjust to 2 tiles per row
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .chart-card {
+      flex: 
+      1 1 calc(100% - 32px); // Adjust to 1 tile per row
+    }
+  }
+}

@@ -4,9 +4,8 @@
 .header-card {
   width: calc(100% - 1em); // Full width with 1em margins on left and right
   margin: 0 1em 1em 0;
-  height: 4em; // Height of the header card
   box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
-  background-color: rgba(54, 69, 79, 0.5); // Charcoal grey background
+  background-color: rgba(247, 3, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,11 +15,12 @@
 
 // Styles for the content inside the header card
 .header-content {
+  height: 4em;
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  position: relative
+  position: relative;
 }
 
 button {
@@ -33,7 +33,7 @@ button {
 .profile-icon {
   position: absolute;
   right: 1em;
-  color: #00f0ff; // Bright neon blue color
+  color: rgba(0,255,0, 1);
   border: 2px solid #00f0ff; // Bright neon blue border
   border-radius: 50%;
   padding: 4px; /* Adjust padding as needed */

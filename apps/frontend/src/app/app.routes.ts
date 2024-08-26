@@ -15,7 +15,7 @@ export const appRoutes: Routes = [
   { path: 'about', component: LandingComponent },
   { path: 'table', component: TableComponent },
   { path: 'mat-icon', component: MaterialIconsComponent },
-  { path: 'data-visualization', component: DataVisualizationsComponent},
+  { path: 'data-visualizations', component: DataVisualizationsComponent},
   { path: 'peasant-kitchen', component: PeasantKitchenComponent },
   { path: 'space-video', component: SpaceVideoComponent },
   { path: 'login', component: LoginComponent },

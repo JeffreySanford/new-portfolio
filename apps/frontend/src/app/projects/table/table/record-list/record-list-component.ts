@@ -151,7 +151,7 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
         } else {
           this.roundtripLabel = parseFloat(roundtrip.toFixed(2)) + " milliseconds"
         }
-        debugger
+
         this.dataset = dataset;
         this.resolved = false;
 
