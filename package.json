@@ -2,10 +2,8 @@
   "name": "@new-portfolio/source",
   "version": "0.0.0",
   "license": "MIT",
-  "type": "module",
   "scripts": {
-    "build": "npx nx build backend && npm run copy-ssl",
-    "copy-ssl": "node copy-ssl.mjs"
+    "build": "npx nx build backend"
   },
   "private": true,
   "dependencies": {

@@ -2,10 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": [],
-    "moduleResolution": "Node",
-    "module": "ES2022",
-    "target": "ES2022",
+    "types": ["jest",],
     "useDefineForClassFields": false,
     "paths": {
       "@angular/*": ["node_modules/@angular/*"]
