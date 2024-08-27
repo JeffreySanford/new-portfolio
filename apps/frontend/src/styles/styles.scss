@@ -1,21 +1,15 @@
 @use '@angular/material' as mat;
-// @use '@angular/material/core/theming/palette' as palette;
-
+@use  './_colors.scss' as colors;
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-// Define the palettes
-$red-palette: palette.define-palette(palette.$red-palette);
-$blue-palette: palette.define-palette(palette.$blue-palette);
-$white-palette: palette.define-palette(palette.$grey-palette, 50);
 
 // Define the theme colors
 $patriotic-theme: mat.define-light-theme((
   color: (
-    primary: $red-palette,
-    accent: $blue-palette,
-    warn: palette.define-palette(palette.$amber-palette),
-    background: $white-palette
+    primary: colors.$red-palette,
+    accent: colors.$blue-palette,
+    warn: colors.$red-palette,
+    background: colors.$white-palette
   )
 ));
 
@@ -28,7 +22,7 @@ $secondary-color: #ffcc00; // Chosen secondary color: Amber
 
 $header-theme: (
   color: (
-    primary: $red-palette,
+    primary: colors.$red-palette,
     secondary: $secondary-color,
   )
 );

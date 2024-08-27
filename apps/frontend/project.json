@@ -46,6 +46,7 @@
             }
           ],
           "styles": [
+            "apps/frontend/src/styles/styles.scss",
             "@angular/material/prebuilt-themes/rose-red.css"
           ],
           "scripts": []

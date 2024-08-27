@@ -5,4 +5,6 @@ export class Recipe {
   ingredients!: string[];
   directions!: string[];
   url: string = '';
+  servingSize?: string = '';
+  history?: string[] = [];
 }
