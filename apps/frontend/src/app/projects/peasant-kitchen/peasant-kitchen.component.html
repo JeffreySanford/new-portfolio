@@ -1,25 +1,21 @@
-<div class="faded-red-tile">
+<div rel="prefetch" [hidden]="!loaded">
     <mat-toolbar color="primary" class="landing">
-        <div class="title-container">
-            <img rel="prefetch" as="image" class="site-logo" src="assets/images/kitchen-table-site-logo.png" />
-            <span>Kitchen Table</span>
-        </div>
+        <img rel="prefetch" as="image" class="site-logo" src="../../../../assets/images/kitchen-table-site-logo.png" />
+        <span>Kitchen Table</span>
         <span class="spacer"></span>
-        <img rel="prefetch" as="image" class="grape-masthead" src="assets/images/grape-01.png" />
+        <img rel="prefetch" as="image" class="grape-masthead" src="../../../../assets/images/grape-01.png" />
     </mat-toolbar>
     <div class="content">
         <mat-tab-group class="section-group" [selectedIndex]="active" (selectedIndexChange)="onTabChange($event)">
             <mat-tab label="Recipes">
                 <div *ngIf="recipes && recipes.length > 0">
-                    <mat-card *ngFor="let recipe of recipes" class="recipe-card">
+                    <mat-card *ngFor="let recipe of recipes" class="recipe-card" (click)="showRecipe(recipe)">
                         <app-recipes [recipe]="recipe"></app-recipes>
-                        <button mat-button (click)="showRecipe(recipe)">View Recipe</button>
                     </mat-card>
                 </div>
                 <div *ngIf="recipe">
-                    <mat-card class="recipe-card">
+                    <mat-card class="recipe-card" (click)="showRecipe(recipe)">
                         <app-recipe [recipe]="recipe"></app-recipe>
-                        <button mat-button (click)="showRecipe(recipe)">View Recipe</button>
                     </mat-card>
                 </div>
             </mat-tab>
