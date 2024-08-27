@@ -1,10 +1,20 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "types": []
+    "outDir": "../../out-tsc/app",
+    "types": [],
+    "moduleResolution": "Node",
+    "module": "ES2022",
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "paths": {
+      "@angular/*": ["node_modules/@angular/*"]
+    }
   },
-  "files": ["src/main.ts"],
-  "include": ["src/**/*.d.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
 }

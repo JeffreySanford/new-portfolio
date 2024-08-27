@@ -1,4 +1,65 @@
-@use '@angular/material' as mat;
+@use '../../../../node_modules/@angular/material/' as mat;@use '../../../../node_modules/@angular/material/' as mat;
+@use './_colors.scss' as colors;
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+// Define the theme colors
+$patriotic-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette(colors.$red-palette),
+    accent: mat.define-palette(colors.$blue-palette),
+    warn: mat.define-palette(colors.$red-palette),
+    background: mat.define-palette(colors.$white-palette)
+  )
+));
+
+// Include Angular Material styles
+@include mat.all-component-themes($patriotic-theme);
+
+// Define additional color style for header component
+$charcoal-grey: #36454f;
+$secondary-color: #ffcc00; // Chosen secondary color: Amber
+
+$header-theme: (
+  color: (
+    primary: colors.$red-palette,
+    secondary: $secondary-color,
+  )
+);
+
+// Example usage of the header theme
+.header {
+  background-color: map-get(map-get($header-theme, color), primary);
+  color: white; // Assuming you want white text on the charcoal grey background
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+// Define keyframes for the blue and red highlights for the background flag
+@keyframes blueHighlight {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; filter: grayscale(0) hue-rotate(240deg); }
+}
+
+@keyframes redHighlight {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; filter: grayscale(0) hue-rotate(0deg); }
+}
+
+// Apply the animations with the desired timing
+.stars-blue {
+  animation: blueHighlight 4s ease-in-out;
+}
+
+.stars-red {
+  animation: redHighlight 4s ease-in-out;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; // Prevent horizontal overflow
+}
 @use  './_colors.scss' as colors;
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
@@ -6,10 +67,10 @@
 // Define the theme colors
 $patriotic-theme: mat.define-light-theme((
   color: (
-    primary: colors.$red-palette,
-    accent: colors.$blue-palette,
-    warn: colors.$red-palette,
-    background: colors.$white-palette
+    primary: mat.define-palette(colors.$red-palette),
+    accent: mat.define-palette(colors.$blue-palette),
+    warn: mat.define-palette(colors.$red-palette),
+    background: mat.define-palette(colors.$white-palette)
   )
 ));
 
