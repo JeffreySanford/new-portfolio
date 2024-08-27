@@ -1,14 +1,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": "./",
-    "paths": {
-      "@app/*": ["src/*"]
-    },
-    "types": ["jest"],
-
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "jest-extended"],
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["es2018", "dom"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

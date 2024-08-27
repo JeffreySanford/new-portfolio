@@ -1,8 +1,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "jest-extended"],
+    "target": "es2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["es2018"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
