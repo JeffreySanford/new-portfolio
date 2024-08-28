@@ -1,7 +1,8 @@
-/* footer.component.scss */
+/* Styles for the footer component */
 .footer-container {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align items vertically in the center */
   padding: 0.5em;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -13,18 +14,13 @@
   display: flex;
   flex-direction: column;
   color: gold;
-}
-
-.contact-block a mat-icon {
-  margin-right: 0.5em; /* Add space between icon and text */
-  color: gold; /* Set icon color to gold */
-  font-size: 1.75em;
+  align-items: flex-start; /* Align items to the left */
 }
 
 .logo-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-end; /* Align items to the right */
 }
 
 .icon-row,
@@ -38,7 +34,7 @@
 .icon-row img,
 .logo-row img {
   width: 6em;
-  height: 4em;
+  height: 5em;
 }
 
 .logo-row.bottom-row img {
@@ -47,17 +43,81 @@
 }
 
 .contact-block p {
-  font-size: 1.25em; /* Increase font size */
+  font-size: 1.25em; /* Font size */
   margin: 0; /* Remove margin */
-  padding: 0.2em 0; /* Add padding for slight spacing */
+  padding: 0.2em 0; /* Padding for spacing */
 }
 
 .contact-block a {
   font-size: 0.8em;
-  display: flex; /* Display as flex to align items in a row */
-  align-items: center; /* Align items vertically in the center */
+  display: flex; /* Align items in a row */
+  align-items: center; /* Center items vertically */
   margin: 0; /* Remove margin */
-  padding: 0.2em 0; /* Add padding for slight spacing */
-  color: gold; /* Set text color to gold */
+  padding: 0.2em 0; /* Padding for spacing */
+  color: gold; /* Text color */
   text-decoration: none; /* Remove underline from links */
+}
+
+mat-expansion-panel {
+  width: 100%; /* Ensure the expansion panel takes full width */
+  color: gold;
+  background-color: rgba(0, 0, 0, 0.7); /* Background color for the panel */
+}
+
+mat-expansion-panel[expanded] {
+  height: 10em; /* Set fixed height for expanded panel */
+}
+
+.mat-expansion-panel-title {
+  color: gold;
+  font-size: 1.25em; /* Font size */
+  font-weight: bold; /* Bold text */
+  padding: 0.5em; /* Padding for spacing */
+}
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  color: gold;
+  p {
+    margin-top: 1em;
+    margin-left: 1em;
+  }
+}
+
+:host ::ng-deep .mat-expansion-panel-header {
+  background-color: rgba(0, 0, 0, .3); /* Background color for collapsed panel */
+  color: gold;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space out the title and indicator */
+
+  .mat-expansion-indicator {
+    background-color: gold !important; /* Change the color of the arrow indicator with higher priority */
+    width: 1.5em;
+    height: 1.5em; /* Ensure the height matches the width */
+    border-radius: 1em;
+    color: black;
+    display: flex;
+    align-items: center; /* Center the arrow vertically */
+    justify-content: center; /* Center the arrow horizontally */
+  }
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-content > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.mat-panel-title {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.mat-panel-title mat-icon {
+  margin-right: 0.5em; /* Space between icon and text */
 }
