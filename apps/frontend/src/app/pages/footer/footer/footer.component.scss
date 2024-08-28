@@ -5,7 +5,7 @@
   align-items: center;
   padding: 0.5em;
   background-color: rgba(0, 0, 0, .2); /* Original grey */
-  background-color: rgba(44, 62, 80, 0.3); // Alternative: Dark Blue with 0.2 opacity
+  background-color: rgba(teal, 0.2); // Alternative: Dark Blue with 0.2 opacity
   position: fixed;
   bottom: 1.5em;
   width: 96%;
@@ -60,7 +60,7 @@
 
 .contact-block p {
   font-size: 1em;
-  color: #16a085; /* Alternative: Teal */
+  color: gold; /* Alternative: Teal */
   margin: 0;
   padding-left: 1em;
 }

@@ -4,7 +4,7 @@
 .header-card {
   width: calc(100% - 1em); // Full width with 1em margins on left and right
   margin: 0 1em 1em 0;
-  background-color: rgba(44, 62, 80, 0.5); // Alternative: Dark Blue with 0.2 opacity
+  background-color: rgba(teal, 0.2); // Alternative: Dark Blue with 0.2 opacity
   display: flex;
   align-items: center;
   justify-content: space-between;

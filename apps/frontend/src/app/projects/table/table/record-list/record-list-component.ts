@@ -40,6 +40,7 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   startTime?: () => number;
   generationTimeLabel = '';
   roundtripLabel = '';
+  showMinimalColumns = false;
 
   displayedColumns: string[] = ['userID', 'name', 'address', 'city', 'state', 'zip', 'phone', 'icons'];
   generateNewRecordSub?: Subscription;
@@ -59,14 +60,19 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   onResize(event: Event): void {
     this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
     this.showMediumColumns = window.innerWidth >= 800;
+    this.showMinimalColumns = window.innerWidth < 600; // New breakpoint for minimal columns
     this.updateDisplayedColumns();
   }
 
   // Update the displayed columns based on visibility settings
   updateDisplayedColumns(): void {
-      this.displayedColumns = this.showAddressColumns
-      ? ['userID', 'name', 'address', 'city', 'state', 'zip', 'phone', 'icons']
-      : ['userID', 'name', 'state', 'zip', 'phone', 'icons'];
+    if (this.showMinimalColumns) {
+      this.displayedColumns = ['userID', 'name', 'icons'];
+    } else if (this.showAddressColumns) {
+      this.displayedColumns = ['userID', 'name', 'address', 'city', 'state', 'zip', 'phone', 'icons'];
+    } else {
+      this.displayedColumns = ['userID', 'name', 'state', 'zip', 'phone', 'icons'];
+    }
   }
 
   ngAfterContentChecked() {
@@ -76,32 +82,22 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = (data: Record, filter: string) => {
-
         return data.UID.toLowerCase().includes(filter);
       };
       // Set initial column visibility based on window size
       this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
-      this.showMediumColumns = window.innerWidth >= 800;
+      this.showMediumColumns = window.innerWidth >= 1000;
+      this.showMinimalColumns = window.innerWidth < 972; // New breakpoint for minimal columns
 
       this.updateDisplayedColumns();
       this.resolved = true;
     }
   }
-
-  onPageChange(dataSetSize: number) {
-    this.resolved = false;
-    this.dataset = [];
-    this.dataSource.data = [];
-    this.startTime = new Date().getTime;
-    this.generate(dataSetSize);
-  }
-
-  ngOnDestroy() {
-
+  
+  ngOnDestroy(): void {
     if (this.generateNewRecordSub) {
       this.generateNewRecordSub.unsubscribe();
     }
-
     if (this.creationTimeSub) {
       this.creationTimeSub.unsubscribe();
     }
@@ -118,7 +114,8 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
 
     // Set initial column visibility based on window size
     this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
-    this.showMediumColumns = window.innerWidth >= 800;
+    this.showMediumColumns = window.innerWidth >= 1100;
+    this.showMinimalColumns = window.innerWidth < 1000; // New breakpoint for minimal columns
     this.updateDisplayedColumns();
   }
 
@@ -127,6 +124,11 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
     if (filterValue.length >= 2 || filterValue === '') {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+  }
+
+  onPageChange(event: any) {
+    this.pageSize = event.pageSize;
+    this.dataSource.paginator = this.paginator;
   }
 
   clearFilter() {

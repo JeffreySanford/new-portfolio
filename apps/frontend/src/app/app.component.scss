@@ -15,9 +15,18 @@
   opacity: 0.7; /* Adjust the opacity value to fade the video */
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: blue;
+  color: white;
+}
+
 .container {
   display: flex;
-  height: 23em;
+  height: calc(100vh - 7em); // Adjust the height to fit the content
+  overflow: hidden; // Optional: Hide the overflow
 }
 
 .sidebar {
