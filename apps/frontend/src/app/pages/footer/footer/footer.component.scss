@@ -2,11 +2,11 @@
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center;
   padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, .2);
   position: fixed;
-  bottom: 1em;
+  bottom: 1.5em;
   width: 96%;
 }
 
@@ -14,65 +14,72 @@
   display: flex;
   flex-direction: column;
   color: gold;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start;
 }
 
 .logo-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Align items to the right */
+  align-items: flex-end;
 }
 
 .icon-row,
 .logo-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.2em;
-  margin-right: 1em;
+  display: flex !important;
+  justify-content: flex-end; /* Corrected to flex-end */
+  align-items: center;
 }
 
 .icon-row img,
 .logo-row img {
-  width: 6em;
+  width: auto;
   height: 5em;
+  align-self: flex-end; /* Align individual images to the right */
+}
+
+.first-row {
+  margin-top: -3em !important; /* Move the first logo up by -5em */
 }
 
 .logo-row.bottom-row img {
   width: 3em;
   height: 3em;
+  align-self: flex-end; /* Align individual images to the right */
+  margin-left: 1em;
 }
 
 .contact-block p {
-  font-size: 1.25em; /* Font size */
-  margin: 0; /* Remove margin */
-  padding: 0.2em 0; /* Padding for spacing */
+  font-size: 1em;
+  color: pink;
+  margin: 0;
+  padding-left: 1em;
 }
 
 .contact-block a {
   font-size: 0.8em;
-  display: flex; /* Align items in a row */
-  align-items: center; /* Center items vertically */
-  margin: 0; /* Remove margin */
-  padding: 0.2em 0; /* Padding for spacing */
-  color: gold; /* Text color */
-  text-decoration: none; /* Remove underline from links */
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.2em 0;
+  color: gold;
+  text-decoration: none;
 }
 
 mat-expansion-panel {
-  width: 100%; /* Ensure the expansion panel takes full width */
+  width: 100%;
   color: gold;
-  background-color: rgba(0, 0, 0, 0.7); /* Background color for the panel */
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 mat-expansion-panel[expanded] {
-  height: 10em; /* Set fixed height for expanded panel */
+  height: 10em;
 }
 
 .mat-expansion-panel-title {
   color: gold;
-  font-size: 1.25em; /* Font size */
-  font-weight: bold; /* Bold text */
-  padding: 0.5em; /* Padding for spacing */
+  font-size: 1.25em;
+  font-weight: bold;
+  padding: 0.5em;
 }
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
@@ -84,21 +91,21 @@ mat-expansion-panel[expanded] {
 }
 
 :host ::ng-deep .mat-expansion-panel-header {
-  background-color: rgba(0, 0, 0, .3); /* Background color for collapsed panel */
+  background-color: rgba(0, 0, 0, .1) !important;
   color: gold;
   display: flex;
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Space out the title and indicator */
+  align-items: center;
+  justify-content: space-between;
 
   .mat-expansion-indicator {
-    background-color: gold !important; /* Change the color of the arrow indicator with higher priority */
+    background-color: gold !important;
     width: 1.5em;
-    height: 1.5em; /* Ensure the height matches the width */
+    height: 1.5em;
     border-radius: 1em;
     color: black;
     display: flex;
-    align-items: center; /* Center the arrow vertically */
-    justify-content: center; /* Center the arrow horizontally */
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -115,9 +122,9 @@ mat-expansion-panel[expanded] {
 
 .mat-panel-title {
   display: flex;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center;
 }
 
 .mat-panel-title mat-icon {
-  margin-right: 0.5em; /* Space between icon and text */
+  margin-right: 0.5em;
 }
