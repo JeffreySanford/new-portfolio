@@ -12,7 +12,7 @@ import { HeaderModule } from './pages/header/header.module';
 import { TableModule } from './projects/table/table.module';
 import { DataVisualizationsModule } from './projects/data-visualizations/data-visualizations.module';
 import { SpaceVideoModule } from './projects/space-video/space-video.module';
-import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
+import { FooterModule } from './pages/footer/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -30,12 +30,13 @@ import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen
     TableModule,
     DataVisualizationsModule,
     SpaceVideoModule,
-    PeasantKitchenModule
+    FooterModule
   ],
   exports: [
     SidebarModule,
     HeaderModule,
-    MaterialModule
+    MaterialModule,
+    FooterModule
   ],
   providers: [
   ],

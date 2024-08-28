@@ -46,8 +46,8 @@
     font-weight: bold;
     color: yellow;
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards;
+    transform: translateY(20px) scale(0.8);
+    animation: fadeInUpAndScale 1s forwards;
 
     &:nth-child(1) {
       animation-delay: 0s;
@@ -65,5 +65,12 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUpAndScale {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

@@ -6,7 +6,10 @@
   flex-direction: column;
   justify-content: space-between;
   color: black;
-  height: 80vh;
+  height: auto;
+  min-height: 20em;
+  height: auto;
+  margin: 1em 0;
 
   mat-sidenav {
     align-content: center;
