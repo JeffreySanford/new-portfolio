@@ -13,6 +13,8 @@ import { TableModule } from './projects/table/table.module';
 import { DataVisualizationsModule } from './projects/data-visualizations/data-visualizations.module';
 import { SpaceVideoModule } from './projects/space-video/space-video.module';
 import { FooterModule } from './pages/footer/footer/footer.module';
+import { RecordService } from './projects/table/table/record-list/record.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FooterModule } from './pages/footer/footer/footer.module';
     TableModule,
     DataVisualizationsModule,
     SpaceVideoModule,
-    FooterModule
+    FooterModule,
+    HttpClientModule
   ],
   exports: [
     SidebarModule,
@@ -39,6 +42,7 @@ import { FooterModule } from './pages/footer/footer/footer.module';
     FooterModule
   ],
   providers: [
+    RecordService
   ],
   bootstrap: [AppComponent]
 })

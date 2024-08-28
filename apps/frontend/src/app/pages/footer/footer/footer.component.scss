@@ -2,15 +2,48 @@
 .footer-container {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
+  padding: 0.5em;
   background-color: rgba(0, 0, 0, 0.5);
-  border-top: 1px solid #dee2e6;
+  position: fixed;
+  bottom: 1em;
+  width: 96%;
 }
 
 .contact-block {
   display: flex;
   flex-direction: column;
   color: gold;
+}
+
+.contact-block a mat-icon {
+  margin-right: 0.5em; /* Add space between icon and text */
+  color: gold; /* Set icon color to gold */
+  font-size: 1.75em;
+}
+
+.logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.icon-row,
+.logo-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.2em;
+  margin-right: 1em;
+}
+
+.icon-row img,
+.logo-row img {
+  width: 6em;
+  height: 4em;
+}
+
+.logo-row.bottom-row img {
+  width: 3em;
+  height: 3em;
 }
 
 .contact-block p {
@@ -20,31 +53,11 @@
 }
 
 .contact-block a {
+  font-size: 0.8em;
   display: flex; /* Display as flex to align items in a row */
   align-items: center; /* Align items vertically in the center */
   margin: 0; /* Remove margin */
   padding: 0.2em 0; /* Add padding for slight spacing */
   color: gold; /* Set text color to gold */
   text-decoration: none; /* Remove underline from links */
-}
-
-.contact-block a mat-icon {
-  margin-right: 0.5em; /* Add space between icon and text */
-  color: gold; /* Set icon color to gold */
-}
-
-.logo-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.2em; /* Reduced margin */
-}
-
-.icon-row img {
-  width: 40px;
-  height: 40px;
 }
