@@ -4,8 +4,8 @@
 .header-card {
   width: calc(100% - 1em); // Full width with 1em margins on left and right
   margin: 0 1em 1em 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
-  background-color: rgba(247, 3, 255, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1);
+  background-color: rgba(44, 62, 80, 0.5); // Alternative: Dark Blue with 0.2 opacity
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,11 +29,10 @@ button {
   top: 0.25em;
 }
 
-
 .profile-icon {
   position: absolute;
   right: 1em;
-  color: rgba(0,255,0, 1);
+  color: rgba(255, 223, 0, 1); // Accent: Soft Yellow
   border: 2px solid #00f0ff; // Bright neon blue border
   border-radius: 50%;
   padding: 4px; /* Adjust padding as needed */
@@ -56,7 +55,7 @@ mat-menu-item {
 
 // Styles for the mat-icon inside the header card
 mat-icon {
-  color: white; // White icon color to contrast with charcoal grey background
+  color: white; // White icon color to contrast with dark blue background
   font-size: 1em; // Larger icon size
   margin-left: auto; // Push the icon to the right
 }
