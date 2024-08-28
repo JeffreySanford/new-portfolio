@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { HttpInterceptorService } from './common/interceptors/http-interceptor.service';
 import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { SidebarModule } from './common/sidebar/sidebar.module';
+import { SidebarModule } from './pages/sidebar/sidebar.module';
 
 describe('AppComponent', () => {
   beforeEach((done) => {
@@ -17,8 +15,6 @@ describe('AppComponent', () => {
       ],
       declarations: [AppComponent],
       providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
       ]
     }).compileComponents()).pipe(
       switchMap(() => from(Promise.resolve()))

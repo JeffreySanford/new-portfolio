@@ -1,17 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/app",
-    "types": ["jest",],
-    "useDefineForClassFields": false,
-    "paths": {
-      "@angular/*": ["node_modules/@angular/*"]
-    }
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "node", "jsdom"],
+    "lib": ["es2022", "dom"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2022",
+    "module": "es2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "out-tsc"]
 }

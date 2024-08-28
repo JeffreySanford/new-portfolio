@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from './recipe.class';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-peasant-kitchen',
@@ -8,15 +9,13 @@ import { Recipe } from './recipe.class';
   styleUrls: ['./peasant-kitchen.component.scss'],
 })
 export class PeasantKitchenComponent implements OnInit, OnDestroy {
-  // private portfolioAPI =
-  // 'https://api-portfolio-65p75.ondigitalocean.app/recipes';
   private portfolioAPI = 'http://jeffreysanford.us:3000/recipes';
   recipes!: Recipe[];
   color = 'white';
   loaded = false;
   siteSections = ['landing', 'recipes', 'history', 'contact'];
   active = 0;
-  recipeSubscription: any;
+  recipeSubscription!: Subscription;
   recipe!: Recipe;
   allRecipes = true;
 

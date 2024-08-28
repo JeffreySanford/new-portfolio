@@ -129,6 +129,19 @@
           "^production",
           "{workspaceRoot}/jest.preset.js"
         ]
+      },
+      "new-target": {
+        "executor": "new-executor",
+        "options": {},
+        "configurations": {},
+        "parallelism": true,
+        "cache": true,
+        "inputs": [
+          "default",
+          "{workspaceRoot}/.newrc.json",
+          "{workspaceRoot}/.newignore",
+          "{workspaceRoot}/new.config.js"
+        ]
       }
     },
   "implicitDependencies": [],

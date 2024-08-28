@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { KitchenTableComponent } from './peasant-kitchen.component';
+import { PeasantKitchenComponent } from './peasant-kitchen.component';
 
-describe('KitchenTableComponent', () => {
-  let component: KitchenTableComponent;
-  let fixture: ComponentFixture<KitchenTableComponent>;
+describe('PeasantKitchenComponent', () => {
+  let component: PeasantKitchenComponent;
+  let fixture: ComponentFixture<PeasantKitchenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [KitchenTableComponent],
+      declarations: [PeasantKitchenComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KitchenTableComponent);
+    fixture = TestBed.createComponent(PeasantKitchenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

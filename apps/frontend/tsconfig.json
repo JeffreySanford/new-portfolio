@@ -2,16 +2,20 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["jest", "jest-extended"],
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "types": ["jest", "node"],
+    "lib": ["es2022", "dom"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "target": "es2022",
+    "module": "es2022",
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["es2018", "dom"]
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "out-tsc"],
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
 }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MaterialIconsComponent } from './material-icons.component';
 
 describe('MaterialIconsComponent', () => {

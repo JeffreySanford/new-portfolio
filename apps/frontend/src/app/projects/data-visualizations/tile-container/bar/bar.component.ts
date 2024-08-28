@@ -3,17 +3,16 @@ import * as d3 from 'd3';
 
 @Component({
   selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  templateUrl: './bar.component.html',
+  styleUrls: ['./bar.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class BarComponent implements OnInit {
   @Input() data: { date: string, value1: number, value2: number, value3: number }[] = [];
 
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
     this.createChart();
-    debugger
   }
 
   createChart(): void {

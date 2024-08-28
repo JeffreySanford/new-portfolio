@@ -1,0 +1,39 @@
+// Primary Colors
+$primary-red: #ff0000;
+$primary-white: #ffffff;
+$primary-blue: #0000ff;
+
+// Secondary Colors
+$secondary-red-light: #ff6666;
+$secondary-red-dark: #cc0000;
+$secondary-white-light: #f2f2f2;
+$secondary-white-dark: #cccccc;
+$secondary-blue-light: #6666ff;
+$secondary-blue-dark: #0000cc;
+
+// Accent Colors
+$accent-red: #ff9999;
+$accent-white: #e6e6e6;
+$accent-blue: #9999ff;
+
+// Export the Palette
+$patriotic-theme: (
+  primary: (
+    red: $primary-red,
+    white: $primary-white,
+    blue: $primary-blue
+  ),
+  secondary: (
+    red-light: $secondary-red-light,
+    red-dark: $secondary-red-dark,
+    white-light: $secondary-white-light,
+    white-dark: $secondary-white-dark,
+    blue-light: $secondary-blue-light,
+    blue-dark: $secondary-blue-dark
+  ),
+  accent: (
+    red: $accent-red,
+    white: $accent-white,
+    blue: $accent-blue
+  )
+);

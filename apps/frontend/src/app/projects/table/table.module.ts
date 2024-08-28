@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule
   ],
-  exports: [RecordListComponent, RecordDetailComponent],
+  exports: [TableComponent, RecordListComponent, RecordDetailComponent],
   providers: [RecordService]
 })
 export class TableModule { }

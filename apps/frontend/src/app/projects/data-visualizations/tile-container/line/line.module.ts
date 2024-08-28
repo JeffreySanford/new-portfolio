@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { LineComponent } from './line.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LineComponent],
   imports: [
     CommonModule
   ]

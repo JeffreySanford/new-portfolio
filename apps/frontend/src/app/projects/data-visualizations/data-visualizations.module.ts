@@ -13,12 +13,6 @@ import { DataVisualizationsComponent } from './data-visualizations.component';
     DataVisualizationsComponent,
   ],
   imports: [CommonModule, BarModule, LineModule, FintechModule, MapModule],
-  exports: [
-    TileContainerComponent,
-    BarModule,
-    LineModule,
-    FintechModule,
-    MapModule,
-  ],
+  exports: [],
 })
 export class DataVisualizationsModule {}

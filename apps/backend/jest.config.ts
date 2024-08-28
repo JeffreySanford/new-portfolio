@@ -1,17 +1,21 @@
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.mjs$': 'babel-jest'
-  },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  transformIgnorePatterns: ['node_modules/(?!(your-esm-package)/)'],
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
   globals: {
     'ts-jest': {
-      tsconfig: './tsconfig.spec.json'
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.html$',
+      astTransformers: {
+        before: ['jest-preset-angular/build/InlineFilesTransformer', 'jest-preset-angular/build/StripStylesTransformer']
+      }
     }
   },
-  displayName: 'backend',
-  coverageDirectory: '../../coverage/apps/backend',
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(ts|js|html)$': 'ts-jest'
+  },
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
+  coverageReporters: ['html'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.module.ts', '!src/main.ts', '!src/polyfills.ts']
 };

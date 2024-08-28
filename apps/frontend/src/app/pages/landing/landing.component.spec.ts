@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LandingComponent } from './landing.component';
-import { MaterialModule } from '../material.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpInterceptorService } from '../common/interceptors/http-interceptor.service';
+import { MaterialModule } from '../../material.module';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -19,10 +17,8 @@ describe('LandingComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [LandingComponent],
-      imports: [MaterialModule, HttpClientModule],
-      providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
-      ]
+      imports: [MaterialModule],
+      providers: []
     }).compileComponents();
   
     fixture = TestBed.createComponent(LandingComponent);
