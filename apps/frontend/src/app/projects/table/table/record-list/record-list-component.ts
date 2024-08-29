@@ -58,7 +58,6 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   // Method to toggle column visibility based on screen size
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    debugger
     this.updateDisplayedColumns();
   }
 
@@ -67,7 +66,6 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
     this.sort.active = event.active;
     this.sort.direction = event.direction;
     this.dataSource.sort = this.sort;
-    debugger
   }
 
   // Update the displayed columns based on visibility settings

@@ -3,11 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(teal, 0.7); 
   position: fixed;
   bottom: 0.5em;
-  width: 97.5%;
-  border-radius: .5em;
+  left: 0.25em;
+  width: 98.55%;
+  border-radius: 0;
 }
 
 .contact-block {
@@ -18,24 +18,29 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: -2em;
+  margin-top: 2em;
 }
 
 .logo-row {
   display: flex !important;
-  justify-content: flex-end; /* Corrected to flex-end */
+  justify-content: center; /* Center align the logos within each row */
   align-items: center;
-  margin: 0 2em 1em 0;
-  justify-content: center;
+  margin: 0.5em 2em 0 0; /* Add some vertical spacing between rows */
+  overflow: visible;
 }
 
 .logo-row img {
-  width: auto;
+  width: 4em;
   height: 4em;
-  align-self: flex-end; /* Align individual images to the right */
-  margin-left: 1em;
+  margin: 0 1em; /* Add horizontal spacing between images */
+  border: 1px solid gold;
+  background: linear-gradient(to bottom, green, black); /* Gradient background */
+  border-radius: 4px; /* Optional: Add rounded corners */
 
   &:hover {
-    transform: scale(2); /* 5x zoom on hover */
+    transform: scale(3); /* 2x zoom on hover */
+    margin-top: -9em;
   }
 }
 
@@ -59,11 +64,18 @@
 mat-expansion-panel {
   width: 100%;
   color: gold;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7) 0%,      // Black with 0.5 opacity
+      rgba(0, 50, 0, 0.7) 25%,    // Darkest Green with 0.5 opacity
+      rgba(0, 100, 0, 0.7) 50%,   // Darker Green with 0.5 opacity
+      rgba(0, 128, 0, 0.7) 75%,   // Green with 0.5 opacity
+      rgba(0, 128, 128, 0.7) 100% // Teal with 0.5 opacity
+  );
 }
 
 mat-expansion-panel[expanded] {
-  height: 10em;
+  height: 4em;
 }
 
 .mat-expansion-panel-title {
@@ -103,7 +115,7 @@ mat-expansion-panel[expanded] {
 .footer-content {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
 }
 
 .footer-content > div {
@@ -118,4 +130,5 @@ mat-expansion-panel[expanded] {
 
 .mat-panel-title mat-icon {
   margin-right: 0.5em;
+  background-color: teal
 }

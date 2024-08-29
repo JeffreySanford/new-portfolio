@@ -1,18 +1,21 @@
-<div class="app-container">
-  <app-header></app-header>
-  <div class="container">
-    <aside class="sidebar">
-      <app-sidebar></app-sidebar>
-    </aside>
-    <main class="content">
-      <mat-card class="landing-page-card">
-        <router-outlet></router-outlet>
-      </mat-card>
-    </main>
-    <video id="background-video" autoplay loop muted>
-      <source src="assets/us-flag-disa-navy.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+<div class="page-container">
+  <div class="app-container">
+    <app-header></app-header>
+    <div class="container">
+      <aside class="sidebar">
+        <app-sidebar></app-sidebar>
+      </aside>
+      <main class="content">
+        <mat-card class="main-stage">
+          <router-outlet></router-outlet>
+        </mat-card>
+      </main>
+      <video id="background-video" autoplay loop muted>
+        <source src="assets/us-flag-disa-navy.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <app-footer></app-footer>
   </div>
-  <app-footer></app-footer>
+  
 </div>

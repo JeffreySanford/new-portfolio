@@ -1,39 +1,17 @@
 <mat-sidenav-container class="sidebar-container">
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav mode="side" [opened]="!isCollapsed">
     <mat-nav-list>
-      <div>
-        <a mat-list-item class="mat-lists active" routerLink="/">
-          <div class="mat-list-content">
-            <mat-icon class='material-icons'>home</mat-icon>
-            <p class="mat-list-label">home</p>
+      <br />
+      <div *ngFor="let item of menuItems">
+        <a mat-list-item class="mat-lists" [routerLink]="item.routerLink">
+          <div class="mat-list-content" [class.collapsed]="isCollapsed">
+            <mat-icon class="material-icons">{{ item.icon }}</mat-icon>
+            <p class="mat-list-label">
+              {{ item.label }}
+            </p>
           </div>
         </a>
       </div>
-      
-      <a mat-list-item class="mat-lists" routerLink="/table">
-        <div class="mat-list-content">
-          <mat-icon class='material-icons'>table_chart</mat-icon>
-          <p class="mat-list-label">Table</p>
-        </div>
-      </a>
-      <a mat-list-item class="mat-lists" routerLink="/data-visualizations">
-        <div class="mat-list-content">
-          <mat-icon class='material-icons'>bar_chart</mat-icon>
-          <p class="mat-list-label">Data Visualization</p>
-        </div>
-      </a>
-      <a mat-list-item class="mat-lists" routerLink="/peasant-kitchen">
-        <div class="mat-list-content">
-          <mat-icon class='material-icons'>restaurant</mat-icon>
-          <p class="mat-list-label">Peasant Kitchen</p>
-        </div>
-      </a>
-      <a mat-list-item class="mat-lists" routerLink="/space-video">
-        <div class="mat-list-content">
-          <mat-icon class='material-icons'>movie</mat-icon>
-          <p class="mat-list-label">Movies</p>
-        </div>
-      </a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

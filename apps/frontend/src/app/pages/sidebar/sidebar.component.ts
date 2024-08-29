@@ -1,36 +1,47 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrls: ['./sidebar.component.scss'],
   animations: [
-    trigger('buttonClick', [
-      state('default', style({
-        backgroundColor: '*',
-      })),
-      state('clicked', style({
-        backgroundColor: 'blue',
-      })),
-      state('highlighted', style({
-        backgroundColor: 'teal',
-      })),
-      transition('default => clicked', [
-        animate('0.3s')
-      ]),
-      transition('clicked => default', [
-        animate('0.3s')
-      ]),
-      transition('default => highlighted', [
-        animate('0.1s')
-      ]),
-      transition('highlighted => default', [
-        animate('0.1s')
-      ])
-    ])
-  ]
+    trigger('flyInOut', [
+      state('in', style({ transform: 'translateX(0)' })),
+      state('out', style({ transform: 'translateX(0)' })),
+      transition('in => out', [animate('1s ease-in')]),
+      transition('out => in', [animate('1s ease-out')]),
+    ]),
+  ],
 })
 export class SidebarComponent {
+  isCollapsed = false;
 
+  menuItems = [
+    { icon: 'home', label: 'Home', routerLink: '/' },
+    { icon: 'table_chart', label: 'Table', routerLink: '/table' },
+    {
+      icon: 'bar_chart',
+      label: 'Data Visualizations',
+      routerLink: '/data-visualizations',
+    },
+    { icon: 'restaurant', label: 'Restaurant', routerLink: '/restaurant' },
+    { icon: 'movie', label: 'Movie', routerLink: '/movie' },
+  ];
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const width = (event.target as Window).innerWidth;
+    this.isCollapsed = width < 800;
+  }
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

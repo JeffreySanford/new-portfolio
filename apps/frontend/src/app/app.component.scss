@@ -16,23 +16,10 @@
   opacity: 0.7;
 }
 
-/* Styling for the landing component */
-:host ::ng-deep app-landing {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 16em);
-  overflow: hidden;
-}
-
-/* Global body styling */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: blue;
-  color: white;
+/* Centralized container styling */
+.page-container {
+  width: calc(100% - 0.5em);
+  margin: 0.25em;
 }
 
 /* Container styling */
@@ -42,16 +29,11 @@ body {
   overflow: hidden;
 }
 
-/* Sidebar styling */
-.sidebar {
-  margin-left: 0.5em;
-}
-
 /* Content area styling */
 .content {
   flex-grow: 1;
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: visible;
   height: calc(100vh - 12em);
 
   &::-webkit-scrollbar {
@@ -82,17 +64,27 @@ body {
   }
 }
 
-/* Landing page card styling */
-.landing-page-card {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 99%;
-  margin: -1em 0 0 1em;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2); /* Redundant box-shadow, keeping the latter */
-  background-color: rgba(255, 0, 0, 0.5); /* Redundant background-color, keeping the latter */
+/* Sidebar styling */
+.sidebar {
+  margin-left: 0.5em;
+  width: auto;
+  border: 1px solid gold;
+  transition: width 0.3s;
+  min-width: 5em; /* Ensure the sidebar does not collapse to zero */
+}
+
+.sidebar.expanded {
+  width: auto; /* Adjust this value as needed for the expanded state */
+}
+
+/* Main stage styling */
+.main-stage {
+  background-color: rgba(255, 0, 0, 0.5);
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Highlight section styling */
