@@ -1,3 +1,4 @@
+/* Background video styling */
 #background-video {
   position: fixed;
   top: 0;
@@ -8,13 +9,14 @@
   width: auto;
   height: auto;
   z-index: -1;
-  filter: grayscale(100%); /* Convert to black and white */
+  filter: grayscale(100%);
   object-fit: cover;
-  transform: scale(0.7); /* Adjust the scale value to zoom out */
-  transform-origin: left top; /* Ensure the scaling is centered */
-  opacity: 0.7; /* Adjust the opacity value to fade the video */
+  transform: scale(0.7);
+  transform-origin: left top;
+  opacity: 0.7;
 }
 
+/* Styling for the landing component */
 :host ::ng-deep app-landing {
   display: flex;
   flex-direction: column;
@@ -25,6 +27,7 @@
   border: 1px solid red;
 }
 
+/* Global body styling */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -33,49 +36,67 @@ body {
   color: white;
 }
 
+/* Container styling */
 .container {
   display: flex;
-  height: calc(100vh - 7em); // Adjust the height to fit the content
-  overflow: hidden; // Optional: Hide the overflow
+  height: calc(100vh - 7em);
+  overflow: hidden;
 }
 
+/* Sidebar styling */
 .sidebar {
   margin-left: 0.5em;
 }
 
+/* Content area styling */
 .content {
-  flex-grow: 1; // The content area will take up the remaining space
-  padding: 20px; // Optional: Add padding to the content area
-  overflow-y: auto; // Optional: Add scroll if content overflows
-  height: calc(100vh - 11em);
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 12em);
 
-  /* Styles for the custom scrollbar */
   &::-webkit-scrollbar {
-    width: 0.25em; /* Set the width of the scrollbar */
+    width: 0.25em;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, red, white, blue); /* Gradient background for the scrollbar thumb */
-    border-radius: 0.125em; /* Rounded corners for the scrollbar thumb */
+    background: linear-gradient(to bottom, red, white, blue);
+    border-radius: 0.125em;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent; /* Transparent background for the scrollbar track */
+    background: transparent;
   }
 }
 
+/* Scrollable container styling */
+.scrollable-container {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Landing page card styling */
 .landing-page-card {
-  background-color: #fff; // White background
+  background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 99%;
   margin: -1em 0 0 1em;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
-  background-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2); /* Redundant box-shadow, keeping the latter */
+  background-color: rgba(255, 0, 0, 0.5); /* Redundant background-color, keeping the latter */
 }
 
+/* Highlight section styling */
 .highlight-section {
   position: relative;
   margin-bottom: 3rem;
@@ -89,6 +110,7 @@ body {
   }
 }
 
+/* Keyframes for sparkle animation */
 @keyframes sparkle {
   0% {
     background-position: 0% 0%;
@@ -101,6 +123,7 @@ body {
   }
 }
 
+/* Animated section styling */
 .animated-section {
   display: flex;
   justify-content: center;
@@ -126,6 +149,7 @@ body {
   }
 }
 
+/* Keyframes for fadeInUp animation */
 @keyframes fadeInUp {
   to {
     opacity: 1;
