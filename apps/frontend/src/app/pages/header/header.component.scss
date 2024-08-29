@@ -5,7 +5,13 @@
   width: calc(100% - 0.5em);
   margin: 0 0.25em 0.5em;
   padding: 0 1em;
-  background-color: rgba(teal, 0.7);
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.7) 0%,    // Red with 0.7 opacity
+    rgba(255, 255, 255, 0.7) 10%, // White with 0.7 opacity
+    rgba(0, 0, 255, 0.7) 20%,   // Blue with 0.7 opacity
+    rgba(0, 128, 128, 0.7) 100% // Teal with 0.7 opacity
+  );
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +20,7 @@
 
 // Styles for the content inside the header card
 .header-content {
-  height: 4em;
+  height: 3em;
   display: flex;
   align-items: center;
   width: 100%;
@@ -25,12 +31,12 @@
 button {
   position: absolute;
   right: -1em;
-  top: 0.25em;
 }
 
 .profile-icon {
   position: absolute;
   right: 1em;
+  top: -0.25em;
   color: rgba(255, 223, 0, 1); // Accent: Soft Yellow
   border: 2px solid #00f0ff; // Bright neon blue border
   border-radius: 50%;
@@ -40,6 +46,9 @@ button {
 // Styles for the mat-menu
 mat-menu {
   background-color: rgba(255, 255, 255, 0.9); // Transparent background similar to sidebar
+  border: 2px solid #000; // Black border
+  height: 200px; // Set height
+  width: 300px; // Set width
 }
 
 // Styles for the mat-menu items
@@ -50,6 +59,7 @@ mat-menu-item {
   padding: 0.5em 1em; // Padding for menu items
   border-radius: 4px; // Rounded corners
   transition: background-color 0.3s; // Smooth background color transition
+  height: 10em;
 }
 
 // Styles for the mat-icon inside the header card

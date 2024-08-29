@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
       state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
       state('expanded', style({ height: '*', visibility: 'visible' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
+    ])
   ]
 })
 
@@ -30,8 +30,8 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   rowExpanded = false;
   totalRecords = 0;
   filterValue = '';
-  pageSizeOptions = [10, 25, 100];
-  dataSetSizes = [100, 15000, 100000, 1000000];
+  pageSizeOptions = [5, 25, 100, 1000];
+  dataSetSizes = [5, 15000, 100000, 1000000];
   resolved = false;
   time?: Date;
   expandedElement?: Record | null;
@@ -58,20 +58,29 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   // Method to toggle column visibility based on screen size
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
-    this.showMediumColumns = window.innerWidth >= 800;
-    this.showMinimalColumns = window.innerWidth < 600; // New breakpoint for minimal columns
+    debugger
     this.updateDisplayedColumns();
+  }
+
+  //  Sort data based on column and direction
+  sortData(event: any): void {
+    this.sort.active = event.active;
+    this.sort.direction = event.direction;
+    this.dataSource.sort = this.sort;
+    debugger
   }
 
   // Update the displayed columns based on visibility settings
   updateDisplayedColumns(): void {
-    if (this.showMinimalColumns) {
+    const width = window.innerWidth;
+    if (width < 1000) {
       this.displayedColumns = ['userID', 'name', 'icons'];
-    } else if (this.showAddressColumns) {
-      this.displayedColumns = ['userID', 'name', 'address', 'city', 'state', 'zip', 'phone', 'icons'];
+    } else if (width < 1200) {
+      this.displayedColumns = ['userID', 'name', 'state', 'zip', 'icons'];
+    } else if (width < 1400) {
+      this.displayedColumns = ['userID', 'name', 'city', 'state', 'zip', 'icons'];
     } else {
-      this.displayedColumns = ['userID', 'name', 'state', 'zip', 'phone', 'icons'];
+      this.displayedColumns = ['userID', 'name', 'address', 'city', 'state', 'zip', 'phone', 'icons'];
     }
   }
 
@@ -84,11 +93,6 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
       this.dataSource.filterPredicate = (data: Record, filter: string) => {
         return data.UID.toLowerCase().includes(filter);
       };
-      // Set initial column visibility based on window size
-      this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
-      this.showMediumColumns = window.innerWidth >= 1000;
-      this.showMinimalColumns = window.innerWidth < 972; // New breakpoint for minimal columns
-
       this.updateDisplayedColumns();
       this.resolved = true;
     }
@@ -107,15 +111,10 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
     this.sort.active = 'UserID';
     this.sort.direction = 'asc';
     this.generate(1000);
-    this.pageSize = 10;
+    this.pageSize = 5;
     this.expandedElement = null;
     this.rowExpanded = false;
     this.resolved = false;
-
-    // Set initial column visibility based on window size
-    this.showAddressColumns = window.innerWidth >= 1250; // Adjust breakpoint as needed
-    this.showMediumColumns = window.innerWidth >= 1100;
-    this.showMinimalColumns = window.innerWidth < 1000; // New breakpoint for minimal columns
     this.updateDisplayedColumns();
   }
 
@@ -134,6 +133,7 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   clearFilter() {
     this.filterValue = '';
     this.dataSource.filter = '';
+    this.resolved = false;
   }
   expandRow(record: Record): void {
     this.expandedElement = this.expandedElement === record ? null : record;

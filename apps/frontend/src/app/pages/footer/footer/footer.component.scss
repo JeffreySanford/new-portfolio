@@ -20,36 +20,23 @@
   align-items: flex-end;
 }
 
-.icon-row,
 .logo-row {
   display: flex !important;
   justify-content: flex-end; /* Corrected to flex-end */
   align-items: center;
-  margin-right: 2em;
+  margin: 0 2em 1em 0;
+  justify-content: center;
 }
 
-.icon-row img,
 .logo-row img {
   width: auto;
-  height: 5em;
-  align-self: flex-end; /* Align individual images to the right */
-}
-
-.first-row {
-  margin-top: -3em !important;
-
-  img {
-    height: 4em;
-    width: auto;
-    margin: 0 0.5em 0.5em 0;
-  }
-}
-
-.logo-row.bottom-row img {
-  width: auto;
-  height: 5em;
+  height: 4em;
   align-self: flex-end; /* Align individual images to the right */
   margin-left: 1em;
+
+  &:hover {
+    transform: scale(2); /* 5x zoom on hover */
+  }
 }
 
 .contact-block p {

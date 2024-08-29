@@ -1,41 +1,77 @@
 <div class="table-container">
   <!-- Move the spinner outside the table -->
   <mat-progress-spinner
-    *ngIf="!dataSource"
     mode="indeterminate"
     [diameter]="100"
     [style.color]="'lightblue'"
+    *ngIf="!resolved"
   ></mat-progress-spinner>
+
+  <div class="top-display-row">
+    <mat-card>
+      <mat-card-title>Record List</mat-card-title>
+      <mat-card-subtitle>Mock data for testing</mat-card-subtitle>
+
+      <mat-card-content>
+        <div class="top-display-row">
+          <div class="dataset-generation">
+            <mat-form-field class="performance" appearance="outline">
+              <mat-label>Select dataset size</mat-label>
+              <mat-select
+                class="selector"
+                [(value)]="totalRecords"
+                (selectionChange)="onPageChange($event.value)"
+              >
+                <mat-option *ngFor="let size of dataSetSizes" [value]="size">
+                  {{ size }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="report" *ngIf="generationTimeLabel">
+              <p>
+                Mock record set of {{ totalRecords }} records was generated in
+                {{ generationTimeLabel }} and delivered in {{ roundtripLabel }}.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter">
+          <mat-form-field appearance="outline" class="filter">
+            <mat-label>Filter</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Type to search..."
+              [(ngModel)]="filterValue"
+            />
+            <button
+              class="clear-button"
+              mat-icon-button
+              matSuffix
+              (click)="clearFilter()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
   <!-- Table and other elements -->
   <div class="table">
-    <mat-form-field appearance="outline" class="filter">
-      <mat-label>Filter</mat-label>
-      <input
-        matInput
-        (keyup)="applyFilter($event)"
-        placeholder="Type to search..."
-        [(ngModel)]="filterValue"
-      />
-      <button
-        class="clear-button"
-        mat-icon-button
-        matSuffix
-        (click)="clearFilter()"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-
     <table
-      [hidden]="!dataSource"
+      [hidden]="!resolved"
       mat-table
       [dataSource]="dataSource"
       matSort
       matSortActive="userID"
       matSortDirection="asc"
+      (sortChange)="sortData($event)"
       multiTemplateDataRows
-      class="mat-elevation-z8"
+      class="mat-elevation-z8 stripped"
     >
       <!-- Existing columns -->
       <ng-container matColumnDef="userID">
@@ -127,6 +163,7 @@
       <tr class="mat-row" *matNoDataRow class="no-data-row">
         <td class="mat-cell" [attr.colspan]="displayedColumns.length">
           <mat-progress-spinner
+            *ngIf="!resolved"
             class="data-loading"
             mode="indeterminate"
             [diameter]="100"
@@ -143,29 +180,8 @@
       [pageSize]="pageSize"
       [pageSizeOptions]="pageSizeOptions"
       showFirstLastButtons
+      (page)="onPageChange($event)"
     >
     </mat-paginator>
-
-    <div class="dataset-generation">
-      <mat-form-field class="performance" appearance="outline">
-        <mat-label>Select dataset size</mat-label>
-        <mat-select
-          class="selector"
-          [(value)]="totalRecords"
-          (selectionChange)="onPageChange($event.value)"
-        >
-          <mat-option *ngFor="let size of dataSetSizes" [value]="size">
-            {{ size }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div class="report" *ngIf="generationTimeLabel">
-        <p>
-          Mock record set of {{ totalRecords }} records was generated in {{
-          generationTimeLabel }} and delivered in {{ roundtripLabel }}.
-        </p>
-      </div>
-    </div>
   </div>
 </div>
