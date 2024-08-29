@@ -3,28 +3,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em;
-  background-color: rgba(0, 0, 0, .2); /* Original grey */
-  background-color: rgba(teal, 0.2); // Alternative: Dark Blue with 0.2 opacity
+  background-color: rgba(teal, 0.7); 
   position: fixed;
-  bottom: 1.5em;
-  width: 96%;
+  bottom: 0.5em;
+  width: 97.5%;
   border-radius: .5em;
 }
 
 .contact-block {
   display: flex;
-}
-
-/* Accenting colors */
-.faded-red {
-  color: #e74c3c; /* Original Faded Red */
-  color: #f39c12; /* Accent: Soft Yellow */
-}
-
-.faded-blue {
-  color: #3498db; /* Original Faded Blue */
-  color: #e67e22; /* Accent: Coral */
 }
 
 .logo-block {
@@ -38,6 +25,7 @@
   display: flex !important;
   justify-content: flex-end; /* Corrected to flex-end */
   align-items: center;
+  margin-right: 2em;
 }
 
 .icon-row img,
@@ -48,19 +36,25 @@
 }
 
 .first-row {
-  margin-top: -3em !important; /* Move the first logo up by -5em */
+  margin-top: -3em !important;
+
+  img {
+    height: 4em;
+    width: auto;
+    margin: 0 0.5em 0.5em 0;
+  }
 }
 
 .logo-row.bottom-row img {
-  width: 3em;
-  height: 3em;
+  width: auto;
+  height: 5em;
   align-self: flex-end; /* Align individual images to the right */
   margin-left: 1em;
 }
 
 .contact-block p {
   font-size: 1em;
-  color: gold; /* Alternative: Teal */
+  color: gold;
   margin: 0;
   padding-left: 1em;
 }
@@ -78,7 +72,7 @@
 mat-expansion-panel {
   width: 100%;
   color: gold;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 mat-expansion-panel[expanded] {

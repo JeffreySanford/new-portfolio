@@ -2,14 +2,14 @@
 
 // Styles for the header card
 .header-card {
-  width: calc(100% - 1em); // Full width with 1em margins on left and right
-  margin: 0 1em 1em 0;
-  background-color: rgba(teal, 0.2); // Alternative: Dark Blue with 0.2 opacity
+  width: calc(100% - 0.5em);
+  margin: 0 0.25em 0.5em;
+  padding: 0 1em;
+  background-color: rgba(teal, 0.7);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1em;
-  box-shadow: none; // Remove default mat-card shadow
+  box-shadow: none;
 }
 
 // Styles for the content inside the header card

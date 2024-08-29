@@ -15,6 +15,16 @@
   opacity: 0.7; /* Adjust the opacity value to fade the video */
 }
 
+:host ::ng-deep app-landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 16em);
+  overflow: hidden;
+  border: 1px solid red;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -37,7 +47,7 @@ body {
   flex-grow: 1; // The content area will take up the remaining space
   padding: 20px; // Optional: Add padding to the content area
   overflow-y: auto; // Optional: Add scroll if content overflows
-  height: calc(80vh);
+  height: calc(100vh - 11em);
 }
 
 .landing-page-card {
