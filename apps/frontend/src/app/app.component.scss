@@ -48,6 +48,20 @@ body {
   padding: 20px; // Optional: Add padding to the content area
   overflow-y: auto; // Optional: Add scroll if content overflows
   height: calc(100vh - 11em);
+
+  /* Styles for the custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 0.25em; /* Set the width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, red, white, blue); /* Gradient background for the scrollbar thumb */
+    border-radius: 0.125em; /* Rounded corners for the scrollbar thumb */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* Transparent background for the scrollbar track */
+  }
 }
 
 .landing-page-card {
