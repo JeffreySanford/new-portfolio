@@ -34,7 +34,6 @@ export class RecordsController {
 
     // Generate the records
     const records: Record[] = this.recordService.generateMultipleRecords(recordCount);
-    console.log('Generated records:', records);
     
     // End the timer
     const endTime = performance.now();

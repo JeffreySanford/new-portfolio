@@ -123,9 +123,11 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
     }
   }
 
-  onPageChange(event: any) {
-    this.pageSize = event.pageSize;
-    this.dataSource.paginator = this.paginator;
+  onPageChange(count: number) {
+    console.log('Page size: ' + count);
+    this.generate(count);
+    this.pageSize = count;
+    this.resolved = false;
   }
 
   clearFilter() {
@@ -138,12 +140,14 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
   }
 
   generate(count: number): void {
+    debugger
     const startTime = new Date().getTime();
     this.generationTimeLabel = '';
     this.roundtripLabel = '';
 
     this.generateNewRecordSub = this.recordService.generateNewRecordSet(count).subscribe((dataset: Record[]) => {
       if (dataset) {
+        console.log('Generated ' + dataset.length + ' records');
         const endTime = new Date().getTime();
         const roundtrip = endTime - startTime;
         if (roundtrip > 1000) {
@@ -152,15 +156,15 @@ export class RecordListComponent implements OnInit, AfterContentChecked, OnDestr
           this.roundtripLabel = parseFloat(roundtrip.toFixed(2)) + " milliseconds"
         }
 
-        this.dataset = dataset;
-        this.resolved = false;
-
         this.creationTimeSub = this.recordService.getCreationTime().subscribe((generationTime: number) => {
           if (generationTime > 1000) {
             this.generationTimeLabel = parseFloat((generationTime / 1000).toFixed(2)) + " seconds"
           } else {
             this.generationTimeLabel = parseFloat(generationTime.toFixed(2)) + " milliseconds"
           }
+
+          this.dataset = dataset;
+          this.resolved = false;
         });
       }
     });

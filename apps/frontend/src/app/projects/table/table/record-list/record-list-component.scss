@@ -1,58 +1,44 @@
-.top-display-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* Align items to the top */
-  justify-content: space-between; /* Distribute space between items */
-  border: 1px solid pink;
-  margin-bottom: 1em; /* Add some space below the top display row */
-  width: 62vw;
+.record-list {
+  height: 9em;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
 
-  .mat-card {
-    width: 98vw;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 0.125em solid gold;
+
+  .content-row {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-right: 1em; /* Add some space between cards */
-    padding: 1em;
-  }
+    height: auto;
+    transition: transform 1s ease-in-out;
 
-  .filter {
-    align-self: flex-start; /* Align to the top */
-    position: sticky;
-    top: 0.25em;
-    height: 3.5em;
-    display: flex;
-    width: 15em;
-    background-color: rgba(pink, 1);
-    margin-right: 1em; /* Add some space between filter and next element */
-
-    input {
-      background-color: rgba(255, 255, 255, 0.7);
-      z-index: 1; /* Ensure it stays above the table */
+    .fixed-width {
+      flex: 0 0 5em;
     }
 
-    .clear-button {
-      margin-right: 0.25em;
-    }
-  }
-
-  .dataset-generation {
-    border: 0.125em solid gold;
-    display: flex;
-    justify-self: left;
-    width: 20em;
-
-    .performance {
-      flex-direction: column;
-      background-color: rgba(pink, 0.7);
+    .left {
+      justify-content: flex-start;
     }
 
-    .report {
-      margin-top: 1em;
-      word-wrap: break-word;
+    .middle {
+      flex-grow: 1;
+      justify-content: flex-start;
+    }
+
+    .right {
+      justify-content: flex-end;
     }
   }
 }
+
+@keyframes flyIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.flyIn {
+  animation: flyIn 1s ease-in-out;
+}
+

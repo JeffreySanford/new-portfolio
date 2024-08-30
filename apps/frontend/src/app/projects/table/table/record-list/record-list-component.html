@@ -7,13 +7,20 @@
     *ngIf="!resolved"
   ></mat-progress-spinner>
 
-  <div class="top-display-row">
-    <mat-card>
-      <mat-card-title>Record List</mat-card-title>
-      <mat-card-subtitle>Mock data for testing</mat-card-subtitle>
-
-      <mat-card-content>
-        <div class="top-display-row">
+  <mat-card class="record-list">
+    <mat-card-header>
+      <mat-card-subtitle>
+        <div class="report" *ngIf="generationTimeLabel">
+          <p>
+            Mock record set of {{ totalRecords }} records was generated in {{
+            generationTimeLabel }} and delivered in {{ roundtripLabel }}.
+          </p>
+        </div></mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <div class="content-row" [@flyIn]>
+        <div class="fixed-width left">
           <div class="dataset-generation">
             <mat-form-field class="performance" appearance="outline">
               <mat-label>Select dataset size</mat-label>
@@ -27,38 +34,35 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-
-            <div class="report" *ngIf="generationTimeLabel">
-              <p>
-                Mock record set of {{ totalRecords }} records was generated in
-                {{ generationTimeLabel }} and delivered in {{ roundtripLabel }}.
-              </p>
-            </div>
           </div>
         </div>
-
-        <div class="filter">
-          <mat-form-field appearance="outline" class="filter">
-            <mat-label>Filter</mat-label>
-            <input
-              matInput
-              (keyup)="applyFilter($event)"
-              placeholder="Type to search..."
-              [(ngModel)]="filterValue"
-            />
-            <button
-              class="clear-button"
-              mat-icon-button
-              matSuffix
-              (click)="clearFilter()"
-            >
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+        <div class="flex-grow middle">
+          <!-- this page intentionally left blank -->
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+        <div class="fixed-width right">
+          <div class="filter">
+            <mat-form-field appearance="outline" class="filter">
+              <mat-label>Filter</mat-label>
+              <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Type to search..."
+                [(ngModel)]="filterValue"
+              />
+              <button
+                class="clear-button"
+                mat-icon-button
+                matSuffix
+                (click)="clearFilter()"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
   <!-- Table and other elements -->
   <div class="table">
