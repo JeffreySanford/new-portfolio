@@ -1,5 +1,4 @@
 <div class="table-container">
-  <!-- Move the spinner outside the table -->
   <mat-progress-spinner
     mode="indeterminate"
     [diameter]="100"
@@ -7,10 +6,10 @@
     *ngIf="!resolved"
   ></mat-progress-spinner>
 
-  <mat-card class="record-list">
+  <mat-card class="record-list" *ngIf="resolved">
     <mat-card-header>
       <mat-card-subtitle>
-        <div class="report" *ngIf="generationTimeLabel">
+        <div class="report" *ngIf="generationTimeLabel" [@flyIn]>
           <p>
             Mock record set of {{ totalRecords }} records was generated in {{
             generationTimeLabel }} and delivered in {{ roundtripLabel }}.
@@ -65,9 +64,8 @@
   </mat-card>
 
   <!-- Table and other elements -->
-  <div class="table">
+  <div class="table" *ngIf="resolved">
     <table
-      [hidden]="!resolved"
       mat-table
       [dataSource]="dataSource"
       matSort
