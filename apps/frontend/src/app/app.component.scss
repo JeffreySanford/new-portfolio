@@ -26,13 +26,11 @@
 .container {
   display: flex;
   height: calc(100vh - 7em);
-  overflow: hidden;
 }
 
 /* Content area styling */
 .content {
   flex-grow: 1;
-  padding: 20px;
   overflow-y: visible;
   height: calc(100vh - 12em);
 
@@ -81,9 +79,11 @@
   background-color: rgba(255, 0, 0, 0.5);
   display: flex;
   width: auto;
+  margin-left: 1em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: calc(82vh);
 }
 
 /* Highlight section styling */

@@ -6,9 +6,11 @@ import { RecordService } from './table/record-list/record.service';
 import { MaterialModule } from '../../material.module';
 import { RecordDetailComponent } from './table/record-list/record-detail/record-detail.component';
 import { FormsModule } from '@angular/forms';
+import { EmploymentIncomePipe } from './table/record-list/pipes/employment-income.pipe';
+import { TotalIncomePipe } from './table/record-list/pipes/total-income.pipe';
 
 @NgModule({
-  declarations: [TableComponent, RecordListComponent, RecordDetailComponent],
+  declarations: [TableComponent, RecordListComponent, RecordDetailComponent, EmploymentIncomePipe, TotalIncomePipe],
   imports: [
     CommonModule,
     MaterialModule,

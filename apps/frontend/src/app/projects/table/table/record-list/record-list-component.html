@@ -1,189 +1,202 @@
 <div class="table-container">
-  <mat-progress-spinner
-    mode="indeterminate"
-    [diameter]="100"
-    [style.color]="'lightblue'"
-    *ngIf="!resolved"
-  ></mat-progress-spinner>
-
-  <mat-card class="record-list" *ngIf="resolved">
-    <mat-card-header>
-      <mat-card-subtitle>
-        <div class="report" *ngIf="generationTimeLabel" [@flyIn]>
-          <p>
-            Mock record set of {{ totalRecords }} records was generated in {{
-            generationTimeLabel }} and delivered in {{ roundtripLabel }}.
-          </p>
-        </div></mat-card-subtitle
-      >
-    </mat-card-header>
-    <mat-card-content>
-      <div class="content-row" [@flyIn]>
-        <div class="fixed-width left">
-          <div class="dataset-generation">
-            <mat-form-field class="performance" appearance="outline">
-              <mat-label>Select dataset size</mat-label>
-              <mat-select
-                class="selector"
-                [(value)]="totalRecords"
-                (selectionChange)="onPageChange($event.value)"
-              >
-                <mat-option *ngFor="let size of dataSetSizes" [value]="size">
-                  {{ size }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+  <ng-template #noData>
+    <div class="no-data">
+      <mat-progress-spinner
+        mode="indeterminate"
+        [diameter]="100"
+        [style.color]="'lightblue'"
+      ></mat-progress-spinner>
+    </div>
+  </ng-template>
+  <span *ngIf="resolved else noData">
+    <mat-card class="record-list" *ngIf="resolved">
+      <mat-card-header>
+        <mat-card-subtitle>
+          <div class="report" *ngIf="generationTimeLabel" [@flyIn]>
+            <p>
+              Mock record set of {{ totalRecords }} records was generated in {{
+              generationTimeLabel }} and delivered in {{ roundtripLabel }}.
+            </p>
           </div>
-        </div>
-        <div class="flex-grow middle">
-          <!-- this page intentionally left blank -->
-        </div>
-        <div class="fixed-width right">
-          <div class="filter">
-            <mat-form-field appearance="outline" class="filter">
-              <mat-label>Filter</mat-label>
-              <input
-                matInput
-                (keyup)="applyFilter($event)"
-                placeholder="Type to search..."
-                [(ngModel)]="filterValue"
-              />
-              <button
-                class="clear-button"
-                mat-icon-button
-                matSuffix
-                (click)="clearFilter()"
-              >
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <!-- Table and other elements -->
-  <div class="table" *ngIf="resolved">
-    <table
-      mat-table
-      [dataSource]="dataSource"
-      matSort
-      matSortActive="userID"
-      matSortDirection="asc"
-      (sortChange)="sortData($event)"
-      multiTemplateDataRows
-      class="mat-elevation-z8 stripped"
-    >
-      <!-- Existing columns -->
-      <ng-container matColumnDef="userID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
-        <td mat-cell *matCellDef="let record">{{ record.UID }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let record">
-          {{ record.firstName }}&nbsp;{{ record.lastName }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-        <td mat-cell *matCellDef="let record">{{ record.address.street }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
-        <td mat-cell *matCellDef="let record">{{ record.address.city }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="state">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
-        <td mat-cell *matCellDef="let record">{{ record.address.state }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="zip">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip</th>
-        <td mat-cell *matCellDef="let record">{{ record.address.zipcode }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-        <td mat-cell *matCellDef="let record">{{ record.phone.number }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="icons">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let record">
-          <button
-            mat-icon-button
-            (click)="showDetailView(record)"
-            title="view record"
-          >
-            <mat-icon>person</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <!-- Expanded Content Column -->
-      <ng-container matColumnDef="expandedDetail">
-        <td
-          mat-cell
-          *matCellDef="let record"
-          [attr.colspan]="displayedColumns.length"
-        >
-          <div
-            class="expand-element-detail"
-            [@detailExpand]="
-            record === expandedElement ? 'expanded' : 'collapsed'
-          "
-          >
-            <div class="expand-element-description">
-              <p>
-                Total Annual Salary: {{ getTotalAnnualSalary(record.salary) |
-                currency }}
-              </p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="content-row" [@flyIn]>
+          <div class="fixed-width left">
+            <div class="dataset-generation">
+              <mat-form-field class="performance" appearance="outline">
+                <mat-label>Select dataset size</mat-label>
+                <mat-select
+                  class="selector"
+                  [(value)]="totalRecords"
+                  (selectionChange)="onDatasetChange($event.value)"
+                >
+                  <mat-option *ngFor="let size of dataSetSizes" [value]="size">
+                    {{ size }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
-        </td>
-      </ng-container>
+          <div class="flex-grow middle">
+            <!-- this page intentionally left blank -->
+          </div>
+          <div class="fixed-width right">
+            <div class="filter">
+              <mat-form-field appearance="outline" class="filter">
+                <mat-label>Filter</mat-label>
+                <input
+                  matInput
+                  (keyup)="applyFilter($event)"
+                  placeholder="Type to search..."
+                  [(ngModel)]="filterValue"
+                />
+                <button
+                  class="clear-button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="clearFilter()"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-      <!-- Rows -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr
-        mat-row
-        class="normal-row"
-        *matRowDef="let record; columns: displayedColumns"
-        (click)="expandRow(record)"
-      ></tr>
-      <tr
-        mat-row
-        [@detailExpand]="expandedElement === record ? 'expanded' : 'collapsed'"
-        *matRowDef="let record; columns: ['expandedDetail']"
-      ></tr>
-      <tr class="mat-row" *matNoDataRow class="no-data-row">
-        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-          <mat-progress-spinner
-            *ngIf="!resolved"
-            class="data-loading"
-            mode="indeterminate"
-            [diameter]="100"
-            [style.color]="'lightblue'"
-          ></mat-progress-spinner>
-          <p style="text-align: center">data loading...</p>
-        </td>
-      </tr>
-    </table>
+    <!-- Table and other elements -->
+    <div class="scrollable-container" *ngIf="resolved">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="userID"
+        matSortDirection="asc"
+        (sortChange)="sortData($event)"
+        multiTemplateDataRows
+        class="mat-elevation-z8 stripped"
+      >
+        <!-- Existing columns -->
+        <ng-container matColumnDef="userID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+          <td mat-cell *matCellDef="let record">{{ record.UID }}</td>
+        </ng-container>
 
-    <mat-paginator
-      class="mat-elevation-z8"
-      [length]="totalRecords"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
-      showFirstLastButtons
-      (page)="onPageChange($event)"
-    >
-    </mat-paginator>
-  </div>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let record">
+            {{ record.firstName }}&nbsp;{{ record.lastName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+          <td mat-cell *matCellDef="let record">{{ record.address.street }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+          <td mat-cell *matCellDef="let record">{{ record.address.city }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+          <td mat-cell *matCellDef="let record">{{ record.address.state }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="zip">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip</th>
+          <td mat-cell *matCellDef="let record">
+            {{ record.address.zipcode }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+          <td mat-cell *matCellDef="let record">{{ record.phone.number }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="icons">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let record">
+            <button
+              mat-icon-button
+              (click)="showDetailView(record)"
+              title="view record"
+            >
+              <mat-icon>person</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Expanded Content Column -->
+        <ng-container matColumnDef="expandedDetail">
+          <td
+            mat-cell
+            *matCellDef="let record"
+            [attr.colspan]="displayedColumns.length"
+          >
+            <div
+              class="expand-element-detail"
+              [@detailExpand]="record === expandedElement ? 'expanded' : 'collapsed'"
+            >
+              <div class="expand-element-description" [@flyIn]>
+                <strong>Employment Income:</strong>
+                <ul>
+                  <li *ngFor="let company of record.salary">
+                    <p>
+                      Company: {{ company.companyName }} ({{
+                      company.annualSalary | currency }})
+                    </p>
+                  </li>
+                </ul>
+                <strong
+                  >Total Annual Salary: {{ record.salary | employmentIncome |
+                  currency }}</strong
+                >
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          class="normal-row"
+          *matRowDef="let record; columns: displayedColumns"
+          (click)="expandRow(record)"
+        ></tr>
+        <tr
+          mat-row
+          [@detailExpand]="expandedElement === record ? 'expanded' : 'collapsed'"
+          *matRowDef="let record; columns: ['expandedDetail']"
+        ></tr>
+        <tr class="mat-row" *matNoDataRow class="no-data-row">
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            <mat-progress-spinner
+              *ngIf="!resolved"
+              class="data-loading"
+              mode="indeterminate"
+              [diameter]="100"
+              [style.color]="'lightblue'"
+            ></mat-progress-spinner>
+            <p style="text-align: center">data loading...</p>
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator
+        class="mat-elevation-z8"
+        [length]="totalRecords"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        showFirstLastButtons
+        (page)="onDisplayRowChange($event)"
+      >
+      </mat-paginator>
+    </div>
+  </span>
 </div>
