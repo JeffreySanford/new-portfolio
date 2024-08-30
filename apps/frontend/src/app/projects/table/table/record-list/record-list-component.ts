@@ -140,9 +140,11 @@ export class RecordListComponent implements OnInit, AfterContentChecked, AfterVi
         this.dataSource = new MatTableDataSource(records);
         this.dataSource.paginator = this.paginator;
         
-        this.dataSource.sort = new MatSort(this.sort);
+        this.sort = new MatSort(this.sort);
         this.sort.active = 'userID';
         this.sort.direction = 'asc';
+         
+        this.dataSource.sort = this.sort;
         
         this.pageSize = 5;
         this.expandedElement = null;
