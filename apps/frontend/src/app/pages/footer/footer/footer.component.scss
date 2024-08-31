@@ -14,8 +14,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    right: 1em;
   }
 }
 
@@ -69,18 +67,19 @@
     }
   }
 
-  .logo-block {
+  .logo-performance-block {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     z-index: 10;
-    margin: auto 1em 1em auto; /* Move 1em from the right and 1em from the bottom */
+    margin-top: -4em;
+    margin-right: 2em;
 
     .logo-row {
       display: flex !important;
       justify-content: center; /* Center align the logos within each row */
       align-items: center;
-      margin: 0.5em 1em 0 0; /* Add some vertical spacing between rows */
+      margin: 0.5em 0 0 0; /* Add some vertical spacing between rows */
       overflow: visible;
 
       img {
@@ -98,13 +97,19 @@
       }
     }
   }
-.performance-card {
-  margin-right: 2em;
-  background-color: rgba(white, .4);
-  height: 2em;
-  width: 65vw;
-  justify-content: center;
-}
+
+  .performance-card {
+    margin-top: 1em;
+    background-color: rgba(255, 255, 255, 0.4);
+    height: 2em;
+    width: 65vw;
+    justify-content: center;
+    position: absolute;
+    right: 0.25em;
+    bottom: 0.25em;
+    margin-top: 1em;
+  }
+
   .performance-metrics {
     display: flex;
     justify-content: center;
