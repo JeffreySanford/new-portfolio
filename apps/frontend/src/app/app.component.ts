@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,28 +10,80 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'frontend';
   private routerSubscription!: Subscription;
+  private videoCheckSubscription!: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.routerSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const page = this.route.snapshot.firstChild?.routeConfig?.path || 'homepage';
-        console.log(`Page visited: ${page}`);
-      });
+  ngOnInit() {
+    console.log('Step 1: ngOnInit called');
+    // Initialization logic here
   }
 
   ngAfterViewInit() {
+    console.log('Step 2: ngAfterViewInit called');
+    this.ensureVideoIsPlaying();
+    this.addUserInteractionListener();
+    this.startVideoCheckPolling();
+  }
+
+  ngOnDestroy() {
+    console.log('Step 4: ngOnDestroy called');
+    this.removeUserInteractionListener();
+    this.stopVideoCheckPolling();
+    // Cleanup logic here
+  }
+
+  private ensureVideoIsPlaying() {
     const video = document.getElementById('background-video') as HTMLVideoElement;
     if (video) {
+      console.log('Checking if video is playing');
       video.playbackRate = 0.5; // Slow down the video
+      if (video.paused || video.ended) {
+        console.log('Video is paused or ended, attempting to play');
+        video.play().then(() => {
+          console.log('Video started playing, stopping polling');
+          this.stopVideoCheckPolling();
+        }).catch(error => {
+          console.error('Error attempting to play the video:', error);
+        });
+      } else {
+        console.log('Video is already playing, stopping polling');
+        this.stopVideoCheckPolling();
+      }
+    } else {
+      console.error('Video element not found');
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
+  private addUserInteractionListener() {
+    console.log('Adding user interaction listeners');
+    document.addEventListener('click', this.handleUserInteraction);
+    document.addEventListener('keydown', this.handleUserInteraction);
+  }
+
+  private removeUserInteractionListener() {
+    console.log('Removing user interaction listeners');
+    document.removeEventListener('click', this.handleUserInteraction);
+    document.removeEventListener('keydown', this.handleUserInteraction);
+  }
+
+  private handleUserInteraction = () => {
+    console.log('User interaction detected');
+    this.ensureVideoIsPlaying();
+  }
+
+  private startVideoCheckPolling() {
+    console.log('Starting video check polling');
+    const videoCheckInterval = interval(5000); // Emit every 5 seconds
+    this.videoCheckSubscription = videoCheckInterval.subscribe(() => {
+      this.ensureVideoIsPlaying();
+    });
+  }
+
+  private stopVideoCheckPolling() {
+    console.log('Stopping video check polling');
+    if (this.videoCheckSubscription) {
+      this.videoCheckSubscription.unsubscribe();
     }
   }
 }
