@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidebar-container">
-  <mat-sidenav mode="side" [opened]="!isCollapsed">
+  <mat-sidenav mode="side" [opened]="!isCollapsed" [class.collapsed]="isCollapsed">
     <mat-nav-list>
       <br />
       <div *ngFor="let item of menuItems">
@@ -13,5 +13,8 @@
         </a>
       </div>
     </mat-nav-list>
+    <button mat-icon-button (click)="toggleCollapse()">
+      <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
   </mat-sidenav>
 </mat-sidenav-container>
