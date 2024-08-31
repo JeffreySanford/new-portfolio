@@ -8,9 +8,6 @@ import { MaterialIconsComponent } from './pages//landing/material-icons/material
 
 export const appRoutes: Routes = [
   { path: 'home', component: LandingComponent },
-  { path: 'product', component: LandingComponent },
-  { path: 'contact', component: LandingComponent },
-  { path: 'about', component: LandingComponent },
   { path: 'table', component: TableComponent },
   { path: 'mat-icon', component: MaterialIconsComponent },
   { path: 'data-visualizations', component: DataVisualizationsComponent},

@@ -5,7 +5,7 @@
   left: 0;
   bottom: 0;
   min-height: 100%;
-  scale: (1.25);
+  scale: (1.15);
   width: auto;
   height: auto;
   z-index: -1;
@@ -14,12 +14,14 @@
   transform: scale(0.7);
   transform-origin: left top;
   opacity: 0.7;
+  overflow-y: hidden;
 }
 
 /* Centralized container styling */
 .page-container {
   width: calc(100%);
   margin: 0;
+  overflow: hidden;
 }
 
 /* Container styling */
