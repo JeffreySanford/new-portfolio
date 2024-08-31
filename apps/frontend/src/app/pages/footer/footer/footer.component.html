@@ -5,24 +5,26 @@
         <mat-icon>star</mat-icon>
         <p>Jeffrey Sanford</p>
       </mat-panel-title>
-      <div class="performance-metrics">
-        <div class="metric" [ngClass]="getMemoryUsageClass()">
-          <label>Memory Usage:</label>
-          <span>{{ performanceMetrics.memoryUsage }}</span>
+      <mat-card class="performance-card">
+        <div class="performance-metrics">
+          <div class="metric" [ngClass]="getMemoryUsageClass()">
+            <label>Memory Usage:</label>
+            <span>{{ performanceMetrics.memoryUsage }}</span>
+          </div>
+          <div class="metric" [ngClass]="getCpuLoadClass()">
+            <label>CPU Load:</label>
+            <span>{{ performanceMetrics.cpuLoad }}</span>
+          </div>
+          <div class="metric">
+            <label>App Uptime:</label>
+            <span>{{ performanceMetrics.appUptime }}</span>
+          </div>
+          <div class="metric" [ngClass]="getNetworkLatencyClass()">
+            <label>Network Latency:</label>
+            <span>{{ performanceMetrics.networkLatency }}</span>
+          </div>
         </div>
-        <div class="metric" [ngClass]="getCpuLoadClass()">
-          <label>CPU Load:</label>
-          <span>{{ performanceMetrics.cpuLoad }}</span>
-        </div>
-        <div class="metric">
-          <label>App Uptime:</label>
-          <span>{{ performanceMetrics.appUptime }}</span>
-        </div>
-        <div class="metric" [ngClass]="getNetworkLatencyClass()">
-          <label>Network Latency:</label>
-          <span>{{ performanceMetrics.networkLatency }}</span>
-        </div>
-      </div>
+      </mat-card>
     </mat-expansion-panel-header>
     <div class="footer-content">
       <div class="contact-block">

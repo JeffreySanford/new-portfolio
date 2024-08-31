@@ -96,33 +96,33 @@ export class FooterComponent implements OnInit, OnDestroy {
   getMemoryUsageClass() {
     const usage = parseFloat(this.performanceMetrics.memoryUsage);
     if (usage < 50) {
-      return 'green-border';
+      return 'green-text';
     } else if (usage < 75) {
-      return 'yellow-border';
+      return 'yellow-text';
     } else {
-      return 'red-border';
+      return 'red-text';
     }
   }
 
   getCpuLoadClass() {
     const load = parseFloat(this.performanceMetrics.cpuLoad);
     if (load < 50) {
-      return 'green-border';
+      return 'green-text';
     } else if (load < 75) {
-      return 'yellow-border';
+      return 'yellow-text';
     } else {
-      return 'red-border';
+      return 'red-text';
     }
   }
 
   getNetworkLatencyClass() {
     const latency = parseFloat(this.performanceMetrics.networkLatency);
     if (latency < 100) {
-      return 'green-border';
+      return 'green-text';
     } else if (latency < 200) {
-      return 'yellow-border';
+      return 'yellow-text';
     } else {
-      return 'red-border';
+      return 'red-text';
     }
   }
 }

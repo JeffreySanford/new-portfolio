@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 0.5em;
+    right: 1em;
   }
 }
 
@@ -24,7 +24,7 @@
   align-items: center;
 
   mat-icon {
-    margin-right: 0.5em;
+    margin-right: 1em;
     background-color: teal;
   }
 }
@@ -52,14 +52,14 @@
     padding: 0.625em;
 
     p {
-      font-size: 0.5em;
+      font-size: 0.8em;
       color: gold;
       margin: 0;
       padding-left: 1em;
     }
 
     a {
-      font-size: 0.5em;
+      font-size: 1em;
       display: flex;
       align-items: center;
       margin: 0;
@@ -84,8 +84,8 @@
       overflow: visible;
 
       img {
-        width: 2em;
-        height: 2em;
+        width: 4em;
+        height: 4em;
         margin: 0 0.5em; /* Add horizontal spacing between images */
         border: 0.0625em solid gold;
         background: linear-gradient(to bottom, green, black); /* Gradient background */
@@ -98,37 +98,42 @@
       }
     }
   }
-
+.performance-card {
+  margin-right: 2em;
+  background-color: rgba(white, .4);
+  height: 2em;
+  width: 65vw;
+  justify-content: center;
+}
   .performance-metrics {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.4em;
-    margin-left: 1em;
+    font-size: 0.6em;
+    margin-right: 0.25em;
 
     .metric {
       display: flex;
       align-items: center;
       margin: 0.5em;
       padding: 0.5em;
-      border: 0.125em solid lime;
+      color: black; /* Default color */
 
       label {
-        font-weight: bold;
         margin-right: 0.5em; /* Slight indent before the metric */
       }
     }
 
-    .green-border {
-      border-color: green;
+    .green-text {
+      color: green;
     }
 
-    .yellow-border {
-      border-color: yellow;
+    .yellow-text {
+      color: yellow;
     }
 
-    .red-border {
-      border-color: red;
+    .red-text {
+      color: red;
     }
   }
 }
@@ -150,17 +155,11 @@ mat-expansion-panel[expanded] {
   height: auto;
 }
 
-.mat-expansion-panel-title {
-  color: gold;
-  font-size: 0.6em;
-  font-weight: bold;
-  padding: 0.5em;
-}
-
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
   color: gold;
   p {
-    margin-top: 0.75em;
+    font-size: 1.25em;
+    margin: 0 0 0 0.15em;
   }
 }
 
