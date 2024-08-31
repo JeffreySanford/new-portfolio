@@ -30,7 +30,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   private startPerformanceMonitoring() {
     console.log('Starting performance monitoring');
-    const performanceInterval = interval(15000); // Emit every 15 seconds
+    const performanceInterval = interval(3000); // Emit every 3 seconds
     this.performanceSubscription = performanceInterval.subscribe(() => {
       this.updatePerformanceMetrics();
     });

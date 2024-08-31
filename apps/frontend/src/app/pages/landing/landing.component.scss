@@ -1,10 +1,9 @@
 .landing-page-card {
-  background-color: #fff;
+  background-color: rgba(255, 0, 0, 0.5); /* Removed duplicate background-color */
   max-width: 99%;
   margin: -1em 0 0 1em;
   text-align: center;
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
-  background-color: rgba(255, 0, 0, 0.5);
   height: calc(100vh - 12.5em);
 }
 

@@ -18,8 +18,8 @@
 
 /* Centralized container styling */
 .page-container {
-  width: calc(100% - 0.5em);
-  margin: 0.25em;
+  width: calc(100%);
+  margin: 0;
 }
 
 /* Container styling */
@@ -64,14 +64,14 @@
 
 /* Sidebar styling */
 .sidebar {
-  margin-left: 0.5em;
-  width: auto;
-  transition: width 0.3s;
-  min-width: 5em; /* Ensure the sidebar does not collapse to zero */
+  width: 20em;
+  min-width: 5em;
+  transition: width 1s;
 }
 
 .sidebar.expanded {
-  width: auto; /* Adjust this value as needed for the expanded state */
+  width: 20em; /* Adjust this value as needed for the expanded state */
+  border: 1px solid green;
 }
 
 /* Main stage styling */
