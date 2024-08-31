@@ -6,14 +6,18 @@
     "lib": ["es2022", "dom"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2022",
-    "module": "es2022",
+    "target": "es5",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "dist", "out-tsc"],
   "angularCompilerOptions": {
     "enableIvy": false

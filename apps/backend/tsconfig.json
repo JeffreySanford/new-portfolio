@@ -13,6 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2020", "dom"] // Updated lib for Angular 18
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../global.d.ts"],
   "exclude": ["node_modules"]
 }
