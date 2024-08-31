@@ -26,13 +26,9 @@ export class SidebarComponent {
   menuItems = [
     { icon: 'home', label: 'Home', routerLink: '/' },
     { icon: 'table_chart', label: 'Table', routerLink: '/table' },
-    {
-      icon: 'bar_chart',
-      label: 'Data Visualizations',
-      routerLink: '/data-visualizations',
-    },
-    { icon: 'restaurant', label: 'Restaurant', routerLink: '/restaurant' },
-    { icon: 'movie', label: 'Movie', routerLink: '/movie' },
+    { icon: 'bar_chart', label: 'Data Visualizations', routerLink: '/data-visualizations'},
+    { icon: 'restaurant', label: 'Peasant Kitchen', routerLink: '/peasant-kitchen' },
+    { icon: 'movie', label: 'HTML Video', routerLink: '/space-video' },
   ];
 
   @HostListener('window:resize', ['$event'])

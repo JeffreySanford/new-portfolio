@@ -1,6 +1,9 @@
 <mat-sidenav-container class="sidebar-container">
   <mat-sidenav mode="side" [opened]="!isCollapsed" [class.collapsed]="isCollapsed">
     <mat-nav-list>
+      <button mat-icon-button (click)="toggleCollapse()">
+        <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+      </button>
       <br />
       <div *ngFor="let item of menuItems">
         <a mat-list-item class="mat-lists" [routerLink]="item.routerLink">
@@ -13,8 +16,5 @@
         </a>
       </div>
     </mat-nav-list>
-    <button mat-icon-button (click)="toggleCollapse()">
-      <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
-    </button>
   </mat-sidenav>
 </mat-sidenav-container>

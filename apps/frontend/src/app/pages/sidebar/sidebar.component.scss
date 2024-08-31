@@ -13,18 +13,9 @@
     align-content: center;
     height: auto;
     width: 20em; /* Default width */
-    min-width: 5em; /* Minimum width to prevent collapse to zero */
     margin-right: 1em;
     background-color: rgba(0, 0, 255, 0.5);
     border: 1px solid rgba(0, 0, 0, 0.5);
-
-    &.collapsed {
-      flex-direction: column;
-      align-items: center;
-      width: 5em; /* Ensure it doesn't collapse completely */
-      min-width: 5em;
-      border: 1px solid red;
-    }
 
     .mat-list-content {
       display: flex;
@@ -79,30 +70,6 @@
           overflow: hidden;
           text-overflow: ellipsis;
         }
-      }
-    }
-  }
-}
-
-@media (max-width: 800px) {
-  .sidebar-container {
-    mat-sidenav {
-      width: 5em; /* Ensure it doesn't collapse completely */
-      min-width: 5em;
-      visibility: visible; /* Ensure visibility */
-    }
-
-    .mat-list-content {
-      flex-direction: column;
-      align-items: center;
-
-      mat-icon {
-        margin-right: 0;
-      }
-
-      .mat-list-label {
-        width: 100%;
-        text-align: center;
       }
     }
   }
