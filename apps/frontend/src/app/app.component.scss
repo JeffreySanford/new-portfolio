@@ -82,6 +82,18 @@
   background-color: orchid;
 }
 
+/* Main stage styling */
+.main-stage {
+  background-color: rgba(255, 0, 0, 0.5);
+  display: flex;
+  width: auto;
+  margin-left: 1em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(72vh);
+}
+
 /* Highlight section styling */
 .highlight-section {
   position: relative;
