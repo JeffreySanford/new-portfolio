@@ -5,21 +5,21 @@
   left: 0;
   bottom: 0;
   min-height: 100%;
-  scale: (1.15);
+  scale: (0.8);
   width: auto;
   height: auto;
   z-index: -1;
-  filter: grayscale(100%);
+  filter: grayscale(80%);
   object-fit: cover;
-  transform: scale(0.7);
+  transform: scale(0.9);
   transform-origin: left top;
-  opacity: 0.7;
+  opacity: 0.3;
   overflow-y: hidden;
 }
 
 /* Centralized container styling */
 .page-container {
-  width: calc(100%);
+  width: 100%;
   margin: 0;
   overflow: hidden;
 }
@@ -66,26 +66,20 @@
 
 /* Sidebar styling */
 .sidebar {
-  width: 20em;
-  min-width: 5em;
-  transition: width 1s;
+  width: calc(30vw);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  background-color: orange;
+  border-radius: 1em;
+  padding: 0.5em;
 }
 
 .sidebar.expanded {
-  width: 20em; /* Adjust this value as needed for the expanded state */
-  border: 1px solid green;
-}
-
-/* Main stage styling */
-.main-stage {
-  background-color: rgba(255, 0, 0, 0.5);
-  display: flex;
-  width: auto;
-  margin-left: 1em;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(62vh);
+  width: calc(60vw); /* Adjust this value as needed for the expanded state */
+  background-color: orchid;
 }
 
 /* Highlight section styling */

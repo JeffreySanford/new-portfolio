@@ -1,20 +1,23 @@
-<mat-sidenav-container class="sidebar-container">
-  <mat-sidenav mode="side" [opened]="!isCollapsed" [class.collapsed]="isCollapsed">
-    <mat-nav-list>
-      <button mat-icon-button (click)="toggleCollapse()">
-        <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
-      </button>
-      <br />
+<div
+  class="sidebar-container"
+  [ngClass]="{ collapsed: isCollapsed, expanded: !isCollapsed }"
+>
+  <mat-card class="sidebar-card">
+    <mat-nav-list class="sidebar-list">
       <div *ngFor="let item of menuItems">
-        <a mat-list-item class="mat-lists" [routerLink]="item.routerLink">
-          <div class="mat-list-content" [class.collapsed]="isCollapsed">
-            <mat-icon class="material-icons">{{ item.icon }}</mat-icon>
-            <p class="mat-list-label">
-              {{ item.label }}
-            </p>
+        <a
+          sidebar-item
+          class="nav-item"
+          [routerLink]="item.routerLink"
+          [ngClass]="{ active: item.active }"
+          (click)="setActive(item)"
+        >
+          <div class="item-content">
+            <mat-icon class="material-icons item-icon">{{ item.icon }}</mat-icon>
+            <p class="item-label">{{ item.label }}</p>
           </div>
         </a>
       </div>
     </mat-nav-list>
-  </mat-sidenav>
-</mat-sidenav-container>
+  </mat-card>
+</div>

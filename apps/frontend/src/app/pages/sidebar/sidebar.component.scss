@@ -1,74 +1,69 @@
 @use '@angular/material' as mat;
 
 .sidebar-container {
-  background-color: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  color: black;
-  min-height: 20em;
-  transition: width 1s, min-width 1s;
+  justify-content: flex-start;
 
-  mat-sidenav {
-    align-content: center;
-    height: auto;
-    width: 20em; /* Default width */
-    margin-right: 1em;
-    background-color: rgba(0, 0, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.5);
+  &.collapsed {
+    // Styles for collapsed state
+  }
 
-    .mat-list-content {
-      display: flex;
-      align-items: center;
-      background-color: darkblue;
-      color: lightblue;
-      padding: 0.5em;
+  &.expanded {
+    // Styles for expanded state
+  }
 
-      mat-icon {
-        margin-right: 0.5em;
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        &.collapsed {
-          margin-right: 0;
-        }
-      }
-
-      .mat-list-label {
+    .sidebar-header-title {
+      h1 {
         margin: 0;
-        position: relative;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        &.collapsed {
-          width: 100%;
-          text-align: center;
-        }
+        font-size: 1.5em;
       }
     }
   }
 
-  mat-nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .sidebar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    background: blue;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 
-    .mat-lists {
+    .sidebar-list {
       display: flex;
-      align-items: space-between;
-      transition: transform 0.5s;
+      flex-direction: column;
+      gap: 0.25em; /* 1em space between buttons */
 
-      .mat-list-content {
+      .nav-item {
         display: flex;
         align-items: center;
+        width: auto;
+        border-radius: 0.5em;
+        padding: 0.5em;
+        background-color: teal;
 
-        .material-icons {
-          margin-right: 0.625em;
+        .item-content {
+          display: flex;
+          align-items: center;
+
+          .item-icon {
+            color: black; /* Black icons */
+            margin-right: 1em;
+          }
+
+          .item-label {
+            color: black; /* Black labels */
+          }
         }
 
-        .mat-list-label {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        &.active {
+          background: linear-gradient(to right, blue, white); /* Change background for active item */
         }
       }
     }

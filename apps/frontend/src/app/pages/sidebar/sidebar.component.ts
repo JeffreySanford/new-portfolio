@@ -7,6 +7,14 @@ import {
   animate,
 } from '@angular/animations';
 
+interface Item {
+  icon: string;
+  label: string;
+  routerLink?: string;
+  action?: string;
+  active: boolean;
+}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -23,12 +31,12 @@ import {
 export class SidebarComponent {
   isCollapsed = false;
 
-  menuItems = [
-    { icon: 'home', label: 'Home', routerLink: '/' },
-    { icon: 'table_chart', label: 'Table', routerLink: '/table' },
-    { icon: 'bar_chart', label: 'Data Visualizations', routerLink: '/data-visualizations'},
-    { icon: 'restaurant', label: 'Peasant Kitchen', routerLink: '/peasant-kitchen' },
-    { icon: 'movie', label: 'HTML Video', routerLink: '/space-video' },
+  menuItems: Item[] = [
+    { icon: 'home', label: 'Home', routerLink: '/', active: false },
+    { icon: 'table_chart', label: 'Table', routerLink: '/table', active: false },
+    { icon: 'bar_chart', label: 'Data Visualizations', routerLink: '/data-visualizations', active: false },
+    { icon: 'restaurant', label: 'Peasant Kitchen', routerLink: '/peasant-kitchen', active: false },
+    { icon: 'movie', label: 'HTML Video', routerLink: '/space-video', active: false }
   ];
 
   @HostListener('window:resize', ['$event'])
@@ -39,5 +47,15 @@ export class SidebarComponent {
 
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  setActive(item: Item) {
+    this.menuItems.forEach(menuItem => menuItem.active = false);
+    item.active = true;
+  }
+
+  getActiveItemLabel(): string {
+    const activeItem = this.menuItems.find(item => item.active);
+    return activeItem ? activeItem.label : '';
   }
 }
