@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Record } from '../../models/record';
+import { Record } from '../models/record';
 
 @Pipe({
   name: 'totalIncome'

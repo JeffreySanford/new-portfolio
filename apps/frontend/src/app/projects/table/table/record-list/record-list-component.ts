@@ -4,30 +4,19 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { Record } from '../models/record';
-import { Company } from '../models/company';
+import { Record } from './models/record';
+import { Company } from './models/company';
 import { RecordService } from './record.service';
 import { Subject, BehaviorSubject, of, Observable } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { switchMap, tap } from 'rxjs/operators';
+import { detailExpand, flyIn } from './animations';
 
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list-component.html',
   styleUrls: ['./record-list-component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
-      state('expanded', style({ height: '*', visibility: 'visible' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-    trigger('flyIn', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('1s ease-in-out', style({ transform: 'translateX(0)' }))
-      ])
-    ])
-  ]
+  animations: [detailExpand, flyIn]
 })
 
 export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit {

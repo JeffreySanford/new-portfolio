@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Company } from '../../models/company';
-import { Record } from '../../models/record';
+import { Company } from '../models/company';
+import { Record } from '../models/record';
 import { RecordService } from '../record.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
