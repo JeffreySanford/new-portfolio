@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table.component';
-import { RecordListComponent } from './table/record-list/record-list-component';
-import { RecordService } from './table/record-list/record.service';
+import { RecordListComponent } from './record-list-component';
+import { RecordDetailComponent } from './record-detail/record-detail.component';
+import { RecordService } from './record.service';
 import { MaterialModule } from '../../material.module';
-import { RecordDetailComponent } from './table/record-list/record-detail/record-detail.component';
+import { EmploymentIncomePipe } from './pipes/employment-income.pipe';
 import { FormsModule } from '@angular/forms';
-import { EmploymentIncomePipe } from './table/record-list/pipes/employment-income.pipe';
-import { TotalIncomePipe } from './table/record-list/pipes/total-income.pipe';
 
 @NgModule({
-  declarations: [TableComponent, RecordListComponent, RecordDetailComponent, EmploymentIncomePipe, TotalIncomePipe],
+  declarations: [RecordListComponent, RecordDetailComponent, EmploymentIncomePipe],
   imports: [
     CommonModule,
-    MaterialModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
-  exports: [TableComponent, RecordListComponent, RecordDetailComponent],
-  providers: [RecordService]
+  exports: [
+    RecordListComponent,
+    RecordDetailComponent,
+    EmploymentIncomePipe
+  ],
+  providers: [
+    RecordService
+  ],
 })
 export class TableModule { }

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecordDetailComponent } from './record-detail.component';
-import { MaterialModule } from '../../../../../material.module';
+import { MaterialModule } from '../../../material.module';
 import { RouterModule } from '@angular/router';
-import { appRoutes } from '../../../../../app.routes';
+import { appRoutes } from '../../../app.routes';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';

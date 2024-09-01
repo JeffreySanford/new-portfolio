@@ -45,9 +45,18 @@ mat-progress-spinner {
   table {
     width: calc(100% - 1em);
     margin: 1em 0.5em 0;
+    border-collapse: collapse;
 
     th {
+      position: sticky;
+      top: 0;
+      background-color: #3f51b5; /* Blue background */
+      color: #fff; /* White text */
+      font-size: 1.25em; /* Font size */
       font-weight: bold;
+      padding: 8px;
+      text-align: left;
+      z-index: 1; /* Ensure it stays on top */
     }
 
     td {

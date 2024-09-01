@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecordListComponent } from './record-list-component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RecordDetailComponent } from './record-detail/record-detail.component';
-import { MaterialModule } from '../../../../material.module';
+import { MaterialModule } from '../../material.module';
 
 describe('RecordListComponentComponent', () => {
   let component: RecordListComponent;

@@ -30,39 +30,6 @@
   height: calc(100vh - 7em);
 }
 
-/* Content area styling */
-.content {
-  flex-grow: 1;
-  overflow-y: visible;
-  height: calc(100vh - 12em);
-
-  &::-webkit-scrollbar {
-    width: 0.25em;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, red, white, blue);
-    border-radius: 0.125em;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-}
-
-/* Scrollable container styling */
-.scrollable-container {
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 0.25em;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-}
 
 /* Sidebar styling */
 .sidebar {
@@ -91,21 +58,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(72vh);
+  height: calc(75vh); /* Ensure this height is enough to show the table */
+  border: 1px solid pink;
+  overflow: hidden; /* Ensure the content doesn't overflow */
 }
 
 /* Highlight section styling */
 .highlight-section {
   position: relative;
   margin-bottom: 3rem;
-
-  .highlight-text {
-    font-size: 3rem;
-    font-weight: bold;
-    color: yellow;
-    position: relative;
-    display: inline-block;
-  }
 }
 
 /* Keyframes for sparkle animation */

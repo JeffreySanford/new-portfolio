@@ -7,7 +7,7 @@ describe('RecordServiceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule], // Include HttpClientModule here
+      imports: [HttpClientModule],
       providers: [RecordService],
     });
     service = TestBed.inject(RecordService);

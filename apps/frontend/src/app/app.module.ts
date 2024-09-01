@@ -9,12 +9,11 @@ import { LandingModule } from './pages/landing/landing.module';
 import { AppComponent } from './app.component';
 import { SidebarModule } from './pages/sidebar/sidebar.module';
 import { HeaderModule } from './pages/header/header.module';
-import { TableModule } from './projects/table/table.module';
 import { DataVisualizationsModule } from './projects/data-visualizations/data-visualizations.module';
 import { SpaceVideoModule } from './projects/space-video/space-video.module';
 import { FooterModule } from './pages/footer/footer/footer.module';
-import { RecordService } from './projects/table/table/record-list/record.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from './projects/table/table.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     LandingModule,
     SidebarModule,
     HeaderModule,
-    TableModule,
     DataVisualizationsModule,
     SpaceVideoModule,
+    TableModule,
     FooterModule,
     HttpClientModule
   ],
@@ -42,7 +41,6 @@ import { HttpClientModule } from '@angular/common/http';
     FooterModule
   ],
   providers: [
-    RecordService
   ],
   bootstrap: [AppComponent]
 })
