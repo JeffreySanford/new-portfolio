@@ -29,7 +29,7 @@
         "index": "apps/frontend/src/index.html",
         "browser": "apps/frontend/src/main.ts",
         "polyfills": [
-          "zone.js"
+          "apps/frontend/src/polyfills.ts"
         ],
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -46,8 +46,14 @@
           }
         ],
         "styles": [
-          "@angular/material/prebuilt-themes/rose-red.css"
+          "@angular/material/prebuilt-themes/azure-blue.css",
+          "apps/frontend/src/styles/styles.scss"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "apps/frontend/src/styles"
+          ]
+        },
         "scripts": []
       },
       "configurations": {
@@ -64,12 +70,15 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "optimization": true,
+          "sourceMap": false,
+          "extractLicenses": true
         },
         "development": {
           "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "extractLicenses": false
         }
       },
       "defaultConfiguration": "production",
@@ -102,7 +111,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "frontend:build"
+        "browserTarget": "frontend:build"
       },
       "configurations": {},
       "parallelism": true
@@ -134,14 +143,13 @@
       "executor": "new-executor",
       "options": {},
       "configurations": {},
-      "parallelism": true,
-      "cache": true,
       "inputs": [
         "default",
         "{workspaceRoot}/.newrc.json",
         "{workspaceRoot}/.newignore",
         "{workspaceRoot}/new.config.js"
-      ]
+      ],
+      "parallelism": true
     }
   },
   "implicitDependencies": []

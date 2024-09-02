@@ -7,10 +7,6 @@
   "targets": {
     "lint": {
       "cache": true,
-      "options": {
-        "cwd": "apps/backend",
-        "command": "eslint ."
-      },
       "inputs": [
         "default",
         "^default",
@@ -28,6 +24,7 @@
       ],
       "metadata": {
         "technologies": [
+          "eslint",
           "eslint"
         ],
         "description": "Runs ESLint on project",
@@ -41,17 +38,14 @@
         }
       },
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "command": "eslint ."
+      },
       "configurations": {},
       "parallelism": true
     },
     "build": {
-      "options": {
-        "cwd": "apps/backend",
-        "args": [
-          "--node-env=production"
-        ],
-        "command": "webpack-cli build"
-      },
       "cache": true,
       "dependsOn": [
         "^build"
@@ -70,6 +64,8 @@
       ],
       "metadata": {
         "technologies": [
+          "webpack",
+          "webpack",
           "webpack"
         ],
         "description": "Runs Webpack build",
@@ -86,6 +82,13 @@
         }
       },
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "args": [
+          "--node-env=production"
+        ],
+        "command": "webpack-cli build"
+      },
       "configurations": {},
       "parallelism": true
     },
@@ -110,15 +113,10 @@
       "parallelism": true
     },
     "preview": {
-      "options": {
-        "cwd": "apps/backend",
-        "args": [
-          "--node-env=production"
-        ],
-        "command": "webpack-cli serve"
-      },
       "metadata": {
         "technologies": [
+          "webpack",
+          "webpack",
           "webpack"
         ],
         "description": "Starts Webpack dev server in production mode",
@@ -135,10 +133,20 @@
         }
       },
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "args": [
+          "--node-env=production"
+        ],
+        "command": "webpack-cli serve"
+      },
       "configurations": {},
       "parallelism": true
     },
     "serve-static": {
+      "dependsOn": [
+        "build"
+      ],
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "build",

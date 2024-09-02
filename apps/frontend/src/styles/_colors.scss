@@ -1,39 +1,43 @@
-// Primary Colors
+// Base Colors
 $primary-red: #ff0000;
-$primary-white: #ffffff;
 $primary-blue: #0000ff;
+$primary-white: #ffffff;
 
-// Secondary Colors
-$secondary-red-light: #ff6666;
-$secondary-red-dark: #cc0000;
-$secondary-white-light: #f2f2f2;
-$secondary-white-dark: #cccccc;
-$secondary-blue-light: #6666ff;
-$secondary-blue-dark: #0000cc;
+// Lighter Shades
+$light-red: #ff6666;
+$light-blue: #6666ff;
+$light-white: #f2f2f2;
+
+// Darker Shades
+$dark-red: #cc0000;
+$dark-blue: #0000cc;
+$dark-white: #e6e6e6;
 
 // Accent Colors
 $accent-red: #ff9999;
-$accent-white: #e6e6e6;
 $accent-blue: #9999ff;
 
-// Export the Palette
+// Additional Colors
+$charcoal-grey: #333333;
+
+// Patriotic Theme Palette
 $patriotic-theme: (
   primary: (
     red: $primary-red,
-    white: $primary-white,
-    blue: $primary-blue
+    blue: $primary-blue,
+    white: $primary-white
   ),
   secondary: (
-    red-light: $secondary-red-light,
-    red-dark: $secondary-red-dark,
-    white-light: $secondary-white-light,
-    white-dark: $secondary-white-dark,
-    blue-light: $secondary-blue-light,
-    blue-dark: $secondary-blue-dark
+    red-light: $light-red,
+    red-dark: $dark-red,
+    blue-light: $light-blue,
+    blue-dark: $dark-blue,
+    white-light: $light-white,
+    white-dark: $dark-white
   ),
   accent: (
     red: $accent-red,
-    white: $accent-white,
-    blue: $accent-blue
+    blue: $accent-blue,
+    white: $dark-white
   )
 );

@@ -20,8 +20,7 @@
   width: 99%;
   padding: 0; /* Remove padding to align with header and main stage */
   margin: 0; /* Remove margin to align with header and main stage */
-  border-radius: 0;
-
+  
   .top-containers {
     display: flex;
     justify-content: space-between;
@@ -73,7 +72,6 @@
         margin: 0 0.5em; /* Add horizontal spacing between images */
         border: 0.0625em solid gold;
         background: linear-gradient(to bottom, green, black); /* Gradient background */
-        border-radius: 0.25em; /* Optional: Add rounded corners */
 
         &:hover {
           transform: scale(3); /* 2x zoom on hover */

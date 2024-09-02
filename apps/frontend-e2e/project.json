@@ -9,13 +9,10 @@
   "// targets": "to see all targets run: nx show project frontend-e2e --web",
   "targets": {
     "e2e": {
-      "options": {
-        "cwd": "apps/frontend-e2e",
-        "command": "playwright test"
-      },
       "parallelism": false,
       "metadata": {
         "technologies": [
+          "playwright",
           "playwright"
         ],
         "description": "Runs Playwright Tests",
@@ -43,16 +40,17 @@
         "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\test-output"
       ],
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "playwright test"
+      },
       "configurations": {}
     },
     "e2e-ci--src/example.spec.ts": {
-      "options": {
-        "cwd": "apps/frontend-e2e",
-        "command": "playwright test src/example.spec.ts"
-      },
       "parallelism": false,
       "metadata": {
         "technologies": [
+          "playwright",
           "playwright"
         ],
         "description": "Runs Playwright Tests in src/example.spec.ts in CI",
@@ -80,6 +78,10 @@
         "{workspaceRoot}\\dist\\.playwright\\apps\\frontend-e2e\\test-output"
       ],
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "playwright test src/example.spec.ts"
+      },
       "configurations": {}
     },
     "e2e-ci": {
@@ -108,6 +110,7 @@
       "parallelism": false,
       "metadata": {
         "technologies": [
+          "playwright",
           "playwright"
         ],
         "description": "Runs Playwright Tests in CI",
@@ -126,10 +129,6 @@
     },
     "lint": {
       "cache": true,
-      "options": {
-        "cwd": "apps/frontend-e2e",
-        "command": "eslint ."
-      },
       "inputs": [
         "default",
         "^default",
@@ -147,6 +146,7 @@
       ],
       "metadata": {
         "technologies": [
+          "eslint",
           "eslint"
         ],
         "description": "Runs ESLint on project",
@@ -160,6 +160,10 @@
         }
       },
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/frontend-e2e",
+        "command": "eslint ."
+      },
       "configurations": {},
       "parallelism": true
     }

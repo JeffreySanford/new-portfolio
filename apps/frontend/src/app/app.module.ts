@@ -14,6 +14,7 @@ import { SpaceVideoModule } from './projects/space-video/space-video.module';
 import { FooterModule } from './pages/footer/footer/footer.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from './projects/table/table.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { TableModule } from './projects/table/table.module';
     FooterModule
   ],
   providers: [
+  
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

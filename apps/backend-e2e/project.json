@@ -8,10 +8,6 @@
   "targets": {
     "lint": {
       "cache": true,
-      "options": {
-        "cwd": "apps/backend-e2e",
-        "command": "eslint ."
-      },
       "inputs": [
         "default",
         "^default",
@@ -29,6 +25,7 @@
       ],
       "metadata": {
         "technologies": [
+          "eslint",
           "eslint"
         ],
         "description": "Runs ESLint on project",
@@ -42,6 +39,10 @@
         }
       },
       "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend-e2e",
+        "command": "eslint ."
+      },
       "configurations": {},
       "parallelism": true
     },

@@ -1,3 +1,51 @@
+/* Page container styling */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Layout container styling */
+.layout-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 15.625em; /* 250px */
+  transition: width 0.3s ease-in-out;
+  flex-shrink: 0;
+
+  &.expanded {
+    width: 15.625em; /* 250px */
+  }
+
+  &.collapsed {
+    width: 5em; /* 80px */
+  }
+}
+
+/* Main stage styling */
+.main-stage {
+  background-color: rgba(255, 0, 0, 0.5); /* Semi-transparent red background */
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange children in a column */
+  justify-content: flex-start; /* Align children to the top */
+  align-items: space-between; /* Align children to the start */
+  height: 100vh; /* Set height to 100% of the viewport height */
+  width: 100%; /* Ensure it takes the full width */
+  border: 1px solid pink; /* Pink border for visual separation */
+  overflow: hidden; /* Prevent content from overflowing */
+  flex-grow: 1; /* Allow the main stage to grow and fill available space */
+  margin: 0; /* Remove any margin */
+  padding: 2em; /* Add padding for spacing */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 /* Background video styling */
 #background-video {
   position: fixed;
@@ -5,79 +53,23 @@
   left: 0;
   bottom: 0;
   min-height: 100%;
-  scale: (0.8);
+  scale: (1.15);
   width: auto;
   height: auto;
   z-index: -1;
   filter: grayscale(60%);
   object-fit: cover;
-  transform: scale(1.25);
-  transform-origin: left top;
   opacity: 0.2;
-  overflow-y: hidden;
-}
-
-/* Centralized container styling */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 97vh;
-  margin: 0;
   overflow: hidden;
 }
 
-/* Container styling */
-.container {
-  display: flex;
-  flex: 1; /* Allow the container to grow and fill the available space */
-  justify-content: space-between; /* Align sidebar to the left and main stage to the right */
-  align-items: stretch; /* Stretch items to fill the container height */
-  padding: 0; /* Remove padding to align with header and footer */
-}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 5em; /* 80px */
+  }
 
-/* Sidebar styling */
-.sidebar {
-  width: 15em; /* Fixed width */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start; /* Align items to the left */
-  background-color: rgba(darkblue, 0.3);
-  border-radius: 1em;
-  padding: 0.5em;
-  margin-left: 0; /* Align to the left margin */
-  transition: width 0.3s ease; /* Smooth transition for width change */
-  height: 80vh; /* Ensure the sidebar fills the available height */
-}
-
-.sidebar.expanded {
-  width: 15em; /* Keep the width fixed even when expanded */
-}
-
-/* Child sidebar template styling */
-.sidebar-container {
-  width: 100%; /* Take full width of the parent sidebar */
-  height: 100%; /* Take full height of the parent sidebar */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: blue; /* Blue background for the child sidebar */
-  border-radius: inherit; /* Inherit border radius from parent */
-  padding: 0.5em;
-}
-
-/* Main stage styling */
-.main-stage {
-  background-color: rgba(255, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 81vh;
-  border: 1px solid pink;
-  overflow: hidden; /* Ensure the content doesn't overflow */
-  flex-grow: 1; /* Allow the main stage to grow */
-  margin-right: 0em; /* Align to the right margin */
-  margin-left: 2em; /* Add buffer space between the sidebar and main stage */
+  .main-stage {
+    padding: 1em; /* Adjust padding for smaller screens */
+  }
 }

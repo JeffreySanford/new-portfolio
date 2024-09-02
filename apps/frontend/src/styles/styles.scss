@@ -1,82 +1,97 @@
-@use '@angular/material' as mat;
-@use '@angular/material/theming' as mat-theming;
-@import './colors';
+@import '@angular/material';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+// Basic custom styles
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 
-$red-palette: mat-theming.define-palette((
-  500: $primary-red,
-  300: $secondary-red-light,
-  700: $secondary-red-dark,
-  contrast: (
-    500: $primary-white,
-    300: $primary-white,
-    700: $primary-white
-  )
-));
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #3f51b5; /* Indigo color from the prebuilt theme */
+}
 
-$blue-palette: mat-theming.define-palette((
-  500: $primary-blue,
-  300: $secondary-blue-light,
-  700: $secondary-blue-dark,
-  contrast: (
-    500: $primary-white,
-    300: $primary-white,
-    700: $primary-white
-  )
-));
+// Use the colors directly from the prebuilt theme's CSS classes
+.mat-primary {
+  color: #3f51b5; /* Primary color */
+}
 
-$white-palette: mat-theming.define-palette((
-  50: $primary-white,
-  100: $secondary-white-light,
-  200: $secondary-white-dark,
-  contrast: (
-    50: $charcoal-grey,
-    100: $charcoal-grey,
-    200: $charcoal-grey
-  )
-));
+.mat-accent {
+  color: #e91e63; /* Accent color */
+}
 
-$patriotic-theme: mat-theming.define-light-theme((
-  color: (
-    primary: $red-palette,
-    accent: $blue-palette,
-    warn: mat-theming.define-palette(mat-theming.$amber-palette),
-    background: $white-palette
-  )
-));
+.mat-warn {
+  color: #f44336; /* Warn color */
+}
 
-@include mat.all-component-themes($patriotic-theme);
+// Custom styles for Material buttons
+.mat-button {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
 
-$header-theme: (
-  color: (
-    primary: $red-palette,
-    secondary: $secondary-color,
-  )
-);
-
-.header {
-  background-color: map-get($header-theme, color, primary);
+.mat-raised-button.mat-primary {
+  background-color: #3f51b5;
   color: white;
-  padding: 1rem;
-  font-family: $font-family;
 }
 
-@keyframes blueHighlight {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; filter: grayscale(0) hue-rotate(240deg); }
+.mat-raised-button.mat-accent {
+  background-color: #e91e63;
+  color: white;
 }
 
-@keyframes redHighlight {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; filter: grayscale(0) hue-rotate(0deg); }
+.mat-raised-button.mat-warn {
+  background-color: #f44336;
+  color: white;
 }
 
-.stars-blue {
-  animation: blueHighlight 4s ease-in-out;
+// Custom styles for Material cards
+.mat-card {
+  font-family: 'Montserrat', sans-serif;
+  padding: 16px;
+  border-radius: 8px;
 }
 
-.stars-red {
-  animation: redHighlight 4s ease-in-out;
+.mat-card-title {
+  color: #3f51b5; /* Primary color */
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  color: #e91e63; /* Accent color */
+}
+
+.mat-card-content {
+  color: #333;
+}
+
+// Custom styles for Material form fields
+.mat-form-field {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+}
+
+.mat-input-element {
+  color: #3f51b5; /* Primary color */
+}
+
+.mat-form-field-label {
+  color: #e91e63; /* Accent color */
+}
+
+.mat-focused .mat-form-field-label {
+  color: #3f51b5; /* Primary color */
+}
+
+.mat-error {
+  color: #f44336; /* Warn color */
+}
+
+// General typography styles
+.mat-typography {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.mat-display-1, .mat-display-2, .mat-display-3, .mat-display-4 {
+  color: #3f51b5; /* Primary color */
 }
