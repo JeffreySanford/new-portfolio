@@ -21,7 +21,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   rowExpanded = false;
   filterValue = '';
-  dataSetSizes = [1000, 15000, 100000, 1000000];
+  dataSetSizes = [1000, 15000, 100000, 750000];
   resolved = false;
   time?: Date;
   expandedElement?: Record | null;
