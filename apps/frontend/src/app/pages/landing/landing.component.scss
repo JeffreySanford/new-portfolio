@@ -34,3 +34,56 @@
   display: flex;
   gap: 1em;
 }
+
+/* Highlight section styling */
+.highlight-section {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+/* Keyframes for sparkle animation */
+@keyframes sparkle {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Animated section styling */
+.animated-section {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+
+  .animated-item {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: yellow;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    &:nth-child(3) {
+      animation-delay: 1s;
+    }
+  }
+}
+
+/* Keyframes for fadeInUp animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
