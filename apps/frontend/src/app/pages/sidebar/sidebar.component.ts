@@ -1,11 +1,5 @@
-import { Component, HostListener, EventEmitter, Output } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
+import { Component, HostListener, EventEmitter, Output, Input } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 interface Item {
   icon: string;
@@ -30,7 +24,8 @@ interface Item {
 })
 export class SidebarComponent {
   @Output() toggle = new EventEmitter<boolean>();
-  isCollapsed = false;
+  @Input() isCollapsed = false;
+  @Input() isSmallScreen = false;
 
   menuItems: Item[] = [
     { icon: 'home', label: 'Home', routerLink: '/', active: false },

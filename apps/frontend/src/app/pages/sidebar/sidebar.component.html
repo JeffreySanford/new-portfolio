@@ -1,20 +1,32 @@
-<div class="sidebar-container"[ngClass]="{ collapsed: isCollapsed, expanded: !isCollapsed }">
-  <mat-card class="sidebar-card">
-    <mat-nav-list class="sidebar-list">
+<div class="sidebar-container" [ngClass]="{ collapsed: isSmallScreen, expanded: !isSmallScreen }">
+  <div class="sidebar-card">
+    <div class="sidebar-list">
       <div *ngFor="let item of menuItems">
-        <a
-          sidebar-item
-          class="nav-item"
-          [routerLink]="item.routerLink"
-          [ngClass]="{ active: item.active }"
-          (click)="setActive(item)"
-        >
-          <div class="item-content">
-            <mat-icon class="material-icons item-icon">{{ item.icon }}</mat-icon>
-            <p class="item-label">{{ item.label }}</p>
-          </div>
-        </a>
+        <ng-container *ngIf="isSmallScreen; else largeScreen">
+          <button
+            mat-fab
+            class="nav-item"
+            [routerLink]="item.routerLink"
+            [ngClass]="{ active: item.active }"
+            (click)="setActive(item)"
+            aria-label="{{ item.label }}"
+          >
+            <mat-icon class="item-icon">{{ item.icon }}</mat-icon>
+          </button>
+        </ng-container>
+        <ng-template #largeScreen>
+          <button
+            mat-button
+            class="nav-item"
+            [routerLink]="item.routerLink"
+            [ngClass]="{ active: item.active }"
+            (click)="setActive(item)"
+          >
+            <mat-icon class="item-icon">{{ item.icon }}</mat-icon>
+            <span class="item-label">{{ item.label }}</span>
+          </button>
+        </ng-template>
       </div>
-    </mat-nav-list>
-  </mat-card>
+    </div>
+  </div>
 </div>

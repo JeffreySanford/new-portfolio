@@ -1,9 +1,17 @@
 <div class="page-container">
   <div class="app-container">
-    <app-header></app-header>
+    <app-header>
+      <button
+        mat-icon-button
+        (click)="toggleSidebar($event)"
+        class="sidebar-toggle"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </app-header>
     <div class="container">
-      <aside class="sidebar" [ngClass]="{ expanded: isExpanded }">
-        <app-sidebar (toggle)="toggleSidebar($event)"></app-sidebar>
+      <aside class="sidebar" [ngClass]="{ expanded: !isCollapsed }">
+        <app-sidebar [isSmallScreen]="isSmallScreen" [isCollapsed]="isCollapsed"></app-sidebar>
       </aside>
       <main class="content">
         <mat-card class="main-stage">

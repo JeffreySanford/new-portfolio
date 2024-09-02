@@ -1,29 +1,76 @@
-.sidebar-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  border-radius: 1em;
-  background: rgba(blue, 0.3);
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+/* Sidebar container with transition for width changes */
+.sidebar-container {
+  width: 15.625em; /* 250px */
+  transition: width 0.3s ease-in-out;
 
+  &.collapsed {
+    width: 5em; /* 80px */
+  }
+
+  &.expanded {
+    width: 15.625em; /* 250px */
+  }
+
+  /* Sidebar list styling */
   .sidebar-list {
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.25em; /* 1em space between buttons */
+    align-items: flex-start; /* Align items to the left */
 
+    /* Sidebar card styling */
+    .sidebar-card {
+      width: 100%;
+      color: #fff;
+    }
+
+    /* Navigation item styling for both button types */
     .nav-item {
       display: flex;
       align-items: center;
-      width: auto;
-      border-radius: 0.5em;
-      padding: 0.5em;
-      background-color: teal;
+      justify-content: flex-start; /* Align items to the left */
+      padding: 0.625em 1.25em; /* 10px 20px */
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(to bottom right, #0000ff, #ffffff); /* Gradient background */
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      border-radius: 0.3125em; /* 5px */
+      margin: 0.625em 0; /* 10px 0 */
 
-      .item-content {
-        display: flex;
-        align-items: center;
+      &:hover {
+        background-color: #303f9f;
+        transform: scale(1.05);
       }
+
+      &.active {
+        background-color: #1a237e;
+        border: 3px solid teal; /* Teal border for active button */
+      }
+    }
+
+    /* Floating action button (FAB) specific styling */
+    button.mat-fab.nav-item {
+      width: 3.75em; /* 60px */
+      height: 3.75em; /* 60px */
+      margin: 0.625em; /* 10px */
+    }
+
+    /* Regular button specific styling */
+    button.mat-button.nav-item {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    /* Item icon styling */
+    .item-icon {
+      font-size: 1.5em; /* 24px */
+      margin-right: 0.625em; /* 10px */
+    }
+
+    /* Item label styling */
+    .item-label {
+      font-size: 1em; /* 16px */
+      font-weight: 500;
     }
   }
 }

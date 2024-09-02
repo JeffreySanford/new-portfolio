@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription!: Subscription;
   private videoCheckSubscription!: Subscription;
   isExpanded = false;
+  isSmallScreen = false;
+  isCollapsed = false;;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    console.log('Step 1: ngOnInit called');
-    // Initialization logic here
+  constructor(private router: Router, private route: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
+  
+  ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      this.isSmallScreen = result.matches;
+      this.isCollapsed = this.isSmallScreen;
+    });
   }
 
   ngAfterViewInit() {
@@ -35,7 +40,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleSidebar(event: boolean) {
-    this.isExpanded = event;
+    this.isCollapsed = !this.isCollapsed;
   }
 
   private ensureVideoIsPlaying() {
