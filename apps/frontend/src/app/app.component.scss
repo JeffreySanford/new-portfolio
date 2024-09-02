@@ -9,11 +9,11 @@
   width: auto;
   height: auto;
   z-index: -1;
-  filter: grayscale(80%);
+  filter: grayscale(60%);
   object-fit: cover;
-  transform: scale(0.9);
+  transform: scale(1.25);
   transform-origin: left top;
-  opacity: 0.3;
+  opacity: 0.2;
   overflow-y: hidden;
 }
 
@@ -27,26 +27,41 @@
 /* Container styling */
 .container {
   display: flex;
+  justify-content: space-between; /* Align sidebar to the left and main stage to the right */
+  align-items: center; /* Center align vertically */
   height: calc(100vh - 7em);
+  padding: 0; /* Remove padding to align with header and footer */
 }
-
 
 /* Sidebar styling */
 .sidebar {
-  width: calc(30vw);
+  width: 15em; /* Fixed width */
   height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: top;
-  align-items: center;
+  align-items: flex-start; /* Align items to the left */
   background-color: orange;
   border-radius: 1em;
   padding: 0.5em;
+  margin-left: 0; /* Align to the left margin */
+  transition: width 0.3s ease; /* Smooth transition for width change */
 }
 
 .sidebar.expanded {
-  width: calc(60vw); /* Adjust this value as needed for the expanded state */
-  background-color: orchid;
+  width: 15em; /* Keep the width fixed even when expanded */
+}
+
+/* Child sidebar template styling */
+.sidebar-container {
+  width: 100%; /* Take full width of the parent sidebar */
+  height: 100%; /* Take full height of the parent sidebar */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: blue; /* Blue background for the child sidebar */
+  border-radius: inherit; /* Inherit border radius from parent */
+  padding: 0.5em;
 }
 
 /* Main stage styling */
@@ -54,13 +69,28 @@
   background-color: rgba(255, 0, 0, 0.5);
   display: flex;
   width: auto;
-  margin-left: 1em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(75vh); /* Ensure this height is enough to show the table */
   border: 1px solid pink;
   overflow: hidden; /* Ensure the content doesn't overflow */
+  flex-grow: 1; /* Allow the main stage to grow */
+  margin-right: 0; /* Align to the right margin */
+  margin-left: 2em; /* Add buffer space between the sidebar and main stage */
+}
+
+/* Footer styling */
+app-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Align items to the left and right */
+  padding: 0; /* Remove padding to align with header and main stage */
+  margin: 0; /* Remove margin to align with header and main stage */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* Highlight section styling */

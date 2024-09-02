@@ -1,7 +1,4 @@
-<div
-  class="sidebar-container"
-  [ngClass]="{ collapsed: isCollapsed, expanded: !isCollapsed }"
->
+<div class="sidebar-container"[ngClass]="{ collapsed: isCollapsed, expanded: !isCollapsed }">
   <mat-card class="sidebar-card">
     <mat-nav-list class="sidebar-list">
       <div *ngFor="let item of menuItems">

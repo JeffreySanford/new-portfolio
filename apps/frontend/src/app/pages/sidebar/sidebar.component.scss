@@ -1,70 +1,28 @@
-@use '@angular/material' as mat;
-
-.sidebar-container {
+.sidebar-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background: blue;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 
-  &.collapsed {
-    // Styles for collapsed state
-  }
-
-  &.expanded {
-    // Styles for expanded state
-  }
-
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .sidebar-header-title {
-      h1 {
-        margin: 0;
-        font-size: 1.5em;
-      }
-    }
-  }
-
-  .sidebar-card {
+  .sidebar-list {
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    padding: 1em;
-    border-radius: 1em;
-    background: blue;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+    gap: 0.25em; /* 1em space between buttons */
 
-    .sidebar-list {
+    .nav-item {
       display: flex;
-      flex-direction: column;
-      gap: 0.25em; /* 1em space between buttons */
+      align-items: center;
+      width: auto;
+      border-radius: 0.5em;
+      padding: 0.5em;
+      background-color: teal;
 
-      .nav-item {
+      .item-content {
         display: flex;
         align-items: center;
-        width: auto;
-        border-radius: 0.5em;
-        padding: 0.5em;
-        background-color: teal;
-
-        .item-content {
-          display: flex;
-          align-items: center;
-
-          .item-icon {
-            color: black; /* Black icons */
-            margin-right: 1em;
-          }
-
-          .item-label {
-            color: black; /* Black labels */
-          }
-        }
-
-        &.active {
-          background: linear-gradient(to right, blue, white); /* Change background for active item */
-        }
       }
     }
   }

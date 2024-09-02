@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, EventEmitter, Output } from '@angular/core';
 import {
   trigger,
   state,
@@ -29,6 +29,7 @@ interface Item {
   ],
 })
 export class SidebarComponent {
+  @Output() toggle = new EventEmitter<boolean>();
   isCollapsed = false;
 
   menuItems: Item[] = [
@@ -43,10 +44,12 @@ export class SidebarComponent {
   onResize(event: Event) {
     const width = (event.target as Window).innerWidth;
     this.isCollapsed = width < 800;
+    this.toggle.emit(!this.isCollapsed);
   }
 
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
+    this.toggle.emit(!this.isCollapsed);
   }
 
   setActive(item: Item) {

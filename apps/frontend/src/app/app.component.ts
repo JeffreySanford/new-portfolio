@@ -11,8 +11,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'frontend';
   private routerSubscription!: Subscription;
   private videoCheckSubscription!: Subscription;
+  isExpanded = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     console.log('Step 1: ngOnInit called');
@@ -31,6 +32,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.removeUserInteractionListener();
     this.stopVideoCheckPolling();
     // Cleanup logic here
+  }
+
+  toggleSidebar(event: boolean) {
+    this.isExpanded = event;
   }
 
   private ensureVideoIsPlaying() {
