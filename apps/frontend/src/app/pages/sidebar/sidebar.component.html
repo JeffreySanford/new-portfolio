@@ -5,7 +5,7 @@
         <ng-container *ngIf="isSmallScreen; else largeScreen">
           <button
             mat-fab
-            class="nav-item"
+            class="nav-item mat-elevation-z10"
             [routerLink]="item.routerLink"
             [ngClass]="{ active: item.active }"
             (click)="setActive(item)"

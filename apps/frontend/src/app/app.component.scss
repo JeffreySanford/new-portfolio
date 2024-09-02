@@ -16,16 +16,17 @@
 
 /* Sidebar styling */
 .sidebar {
-  width: 15.625em; /* 250px */
+  width: 18em; /* 250px */
   transition: width 0.3s ease-in-out;
   flex-shrink: 0;
+  margin-right: 1em;
 
   &.expanded {
-    width: 15.625em; /* 250px */
+    width: 18em;
   }
 
   &.collapsed {
-    width: 5em; /* 80px */
+    width: 6em;
   }
 }
 
@@ -36,13 +37,11 @@
   flex-direction: column; /* Arrange children in a column */
   justify-content: flex-start; /* Align children to the top */
   align-items: space-between; /* Align children to the start */
-  height: 84vh; /* Set height to 100% of the viewport height */
+  height: 80vh; /* Set height to 100% of the viewport height */
   width: 100%; /* Ensure it takes the full width */
-  border: 1px solid pink; /* Pink border for visual separation */
   overflow: hidden; /* Prevent content from overflowing */
   flex-grow: 1; /* Allow the main stage to grow and fill available space */
-  margin: 0; /* Remove any margin */
-  padding: 2em; /* Add padding for spacing */
+  padding: 1em; /* Add padding for spacing */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
@@ -53,13 +52,13 @@
   left: 0;
   bottom: 0;
   min-height: 100%;
-  scale: (1.15);
+  scale: (1);
   width: auto;
   height: auto;
   z-index: -1;
-  filter: grayscale(60%);
+  filter: grayscale(50%);
   object-fit: cover;
-  opacity: 0.2;
+  opacity: 0.7;
   overflow: hidden;
 }
 

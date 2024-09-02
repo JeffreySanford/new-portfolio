@@ -1,27 +1,14 @@
-/* Sidebar container with transition for width changes */
-.sidebar-container {
-  width: 15.625em; /* 250px */
-  transition: width 0.3s ease-in-out;
-
-  &.collapsed {
-    width: 5em; /* 80px */
-  }
-
-  &.expanded {
-    width: 15.625em; /* 250px */
-  }
-
-  /* Sidebar list styling */
-  .sidebar-list {
+.sidebar-list {
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the left */
+    padding: 1em;
+    background-color: rgba(0, 0, 255, 0.3);
 
     /* Sidebar card styling */
     .sidebar-card {
       width: 100%;
-      color: #fff;
     }
 
     /* Navigation item styling for both button types */
@@ -29,48 +16,26 @@
       display: flex;
       align-items: center;
       justify-content: flex-start; /* Align items to the left */
-      padding: 0.625em 1.25em; /* 10px 20px */
-      color: #fff;
+      padding: 0.625em 1em; /* 10px 20px */
+      color: black;
+      font-size: 1.1em;
       text-decoration: none;
-      background: linear-gradient(to bottom right, #0000ff, #ffffff); /* Gradient background */
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 0, 0, 0.8),  /* Red with 0.8 transparency */
+        rgba(255, 255, 255, 0.8),  /* White with 0.8 transparency */
+        rgba(0, 0, 255, 0.8)  /* Blue with 0.8 transparency */
+      ); 
       transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
       border-radius: 0.3125em; /* 5px */
       margin: 0.625em 0; /* 10px 0 */
+      border: 2px solid #000; /* Increase border width and change color to white */
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5); /* Increase shadow for better separation */
 
       &:hover {
-        background-color: #303f9f;
-        transform: scale(1.05);
-      }
-
-      &.active {
-        background-color: #1a237e;
-        border: 3px solid teal; /* Teal border for active button */
+        background-color: #ff5722; /* Change hover color to a bright orange */
+        transform: scale(1.1); /* Increase scale on hover */
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.7); /* Increase shadow on hover */
       }
     }
-
-    /* Floating action button (FAB) specific styling */
-    button.mat-fab.nav-item {
-      width: 3.75em; /* 60px */
-      height: 3.75em; /* 60px */
-      margin: 0.625em; /* 10px */
-    }
-
-    /* Regular button specific styling */
-    button.mat-button.nav-item {
-      width: 100%;
-      justify-content: flex-start;
-    }
-
-    /* Item icon styling */
-    .item-icon {
-      font-size: 1.5em; /* 24px */
-      margin-right: 0.625em; /* 10px */
-    }
-
-    /* Item label styling */
-    .item-label {
-      font-size: 1em; /* 16px */
-      font-weight: 500;
-    }
-  }
 }
