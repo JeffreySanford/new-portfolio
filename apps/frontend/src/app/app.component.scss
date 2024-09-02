@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 97vh;
   margin: 0;
   overflow: hidden;
 }
@@ -43,12 +43,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; /* Align items to the left */
-  background-color: orange;
+  background-color: rgba(darkblue, 0.3);
   border-radius: 1em;
   padding: 0.5em;
   margin-left: 0; /* Align to the left margin */
   transition: width 0.3s ease; /* Smooth transition for width change */
-  height: 100%; /* Ensure the sidebar fills the available height */
+  height: 80vh; /* Ensure the sidebar fills the available height */
 }
 
 .sidebar.expanded {
@@ -71,7 +71,7 @@
 .main-stage {
   background-color: rgba(255, 0, 0, 0.5);
   display: flex;
-  width: auto;
+  width: 73vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -79,21 +79,8 @@
   border: 1px solid pink;
   overflow: hidden; /* Ensure the content doesn't overflow */
   flex-grow: 1; /* Allow the main stage to grow */
-  margin-right: 0; /* Align to the right margin */
+  margin-right: 0em; /* Align to the right margin */
   margin-left: 2em; /* Add buffer space between the sidebar and main stage */
-}
-
-/* Footer styling */
-app-footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* Align items to the left and right */
-  padding: 0; /* Remove padding to align with header and main stage */
-  margin: 0; /* Remove margin to align with header and main stage */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 /* Highlight section styling */

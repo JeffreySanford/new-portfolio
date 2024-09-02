@@ -1,5 +1,6 @@
 .table-container {
   padding: 0.55em;
+  width: 100%;
 
   .record-list {
     display: flex;
@@ -40,51 +41,36 @@
 
   .table-wrapper {
     display: block;
+    min-height: 20em;
+    overflow-y: auto;
     overflow-x: auto;
     white-space: nowrap;
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-
-      &.stripped {
-        tr:nth-child(odd) {
-          background-color: red;
-        }
-
-        tr:nth-child(even) {
-          background-color: green;
-        }
-      }
-
-      th {
-        position: sticky;
-        top: 0;
-        background-color: #3f51b5; /* Blue background */
-        color: #fff; /* White text */
-        font-size: 1em; /* Font size */
-        text-align: left;
-        z-index: 1; /* Ensure it stays on top */
-      }
-
-      tbody {
-        display: block;
-        max-height: 20em; /* Set the max height for the scrollable area */
-        overflow-y: auto; /* Enable vertical scrolling */
-        width: 100%; /* Ensure the tbody takes the full width of the table */
-      }
-
-      thead, tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed; /* Ensure the table layout is fixed */
-      }
+  }
+  
+  :host ::ng-deep .stripped {
+    tr:nth-child(odd) {
+      background-color: red;
     }
+
+    tr:nth-child(even) {
+      background-color: green;
+    }
+  }
+  
+  .table-wrapper th {
+    position: sticky;
+    top: 0;
+    background-color: #3f51b5; /* Blue background */
+    color: #fff; /* White text */
+    font-size: 1em; /* Font size */
+    text-align: left;
+    z-index: 1; /* Ensure it stays on top */
   }
 }
 
 /* Scrollable container styling */
 .scrollable-container {
+  border: 3px solid blue;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -118,6 +104,8 @@
     width: 16px;
   }
 }
+
+
 
 @keyframes flyIn {
   from {
