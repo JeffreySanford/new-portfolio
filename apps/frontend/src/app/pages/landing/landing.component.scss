@@ -1,72 +1,36 @@
-.landing-page-card {
-  background-color: rgba(255, 0, 0, 0.5); /* Removed duplicate background-color */
-  max-width: 99%;
-  margin: -1em 0 0 1em;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
-  height: calc(100vh - 12.5em);
-}
-
-.highlight-section {
-  position: relative;
-  margin-bottom: 3rem;
-
-  .highlight-text {
-    font-size: 3rem;
-    font-weight: bold;
-    color: yellow;
-    position: relative;
-    display: inline-block;
-  }
-}
-
-@keyframes sparkle {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-.animated-section {
+/* Landing page styling */
+.landing-page {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-
-  .animated-item {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: yellow;
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-    animation: fadeInUpAndScale 1s forwards;
-
-    &:nth-child(1) {
-      animation-delay: 0s;
-    }
-    &:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-    &:nth-child(3) {
-      animation-delay: 1s;
-    }
-  }
+  flex: 1; /* Allow the landing page to grow and fill the available space */
+  background-color: #f0f0f0;
+  padding: 2em;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
 }
 
-@keyframes fadeInUpAndScale {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.landing-header {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.landing-description {
+  font-size: 1.25em;
+  margin-bottom: 2em;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 1em;
 }

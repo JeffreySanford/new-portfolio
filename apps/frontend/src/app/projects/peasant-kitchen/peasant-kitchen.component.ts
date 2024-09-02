@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./peasant-kitchen.component.scss'],
 })
 export class PeasantKitchenComponent implements OnInit, OnDestroy {
-  private portfolioAPI = 'http://jeffreysanford.us:3000/recipes';
+  private portfolioAPI = 'http://localhost:3000/recipes';
   recipes!: Recipe[];
   color = 'white';
   loaded = false;

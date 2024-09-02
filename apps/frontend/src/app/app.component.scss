@@ -19,7 +19,10 @@
 
 /* Centralized container styling */
 .page-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
 }
@@ -27,25 +30,25 @@
 /* Container styling */
 .container {
   display: flex;
+  flex: 1; /* Allow the container to grow and fill the available space */
   justify-content: space-between; /* Align sidebar to the left and main stage to the right */
-  align-items: center; /* Center align vertically */
-  height: calc(100vh - 7em);
+  align-items: stretch; /* Stretch items to fill the container height */
   padding: 0; /* Remove padding to align with header and footer */
 }
 
 /* Sidebar styling */
 .sidebar {
   width: 15em; /* Fixed width */
-  height: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   align-items: flex-start; /* Align items to the left */
   background-color: orange;
   border-radius: 1em;
   padding: 0.5em;
   margin-left: 0; /* Align to the left margin */
   transition: width 0.3s ease; /* Smooth transition for width change */
+  height: 100%; /* Ensure the sidebar fills the available height */
 }
 
 .sidebar.expanded {
@@ -72,7 +75,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(75vh); /* Ensure this height is enough to show the table */
+  height: 81vh;
   border: 1px solid pink;
   overflow: hidden; /* Ensure the content doesn't overflow */
   flex-grow: 1; /* Allow the main stage to grow */
