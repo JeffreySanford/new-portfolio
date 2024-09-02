@@ -6,7 +6,9 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Montserrat', sans-serif;
   color: #3f51b5; /* Indigo color from the prebuilt theme */
 }
@@ -92,6 +94,22 @@ h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.mat-display-1, .mat-display-2, .mat-display-3, .mat-display-4 {
+.mat-display-1,
+.mat-display-2,
+.mat-display-3,
+.mat-display-4 {
   color: #3f51b5; /* Primary color */
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: white;
+  color: blue;
+
 }

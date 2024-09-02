@@ -11,10 +11,13 @@
     rgba(0, 0, 255, 0.7) 20%,   // Blue with 0.7 opacity
     rgba(0, 128, 128, 0.7) 100% // Teal with 0.7 opacity
   );
+  border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: none;
+  border-radius: 0;
+
 }
 
 // Styles for the content inside the header card
@@ -26,6 +29,7 @@
   justify-content: space-between;
   position: relative;
   padding: 0 1em; /* Add padding to match other page margins */
+  border-radius: 0;
 }
 
 button {
@@ -40,6 +44,7 @@ button {
   color: rgba(255, 223, 0, 1); // Accent: Soft Yellow
   border: 2px solid #00f0ff; // Bright neon blue border
   padding: 4px; /* Adjust padding as needed */
+  border-radius: 1em;
 }
 
 // Styles for the mat-menu
