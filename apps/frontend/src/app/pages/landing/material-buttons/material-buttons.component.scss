@@ -1,0 +1,93 @@
+// Define color palettes
+$primary-color: white;
+$accent-color: #001f3f; // Dark Navy Blue
+$warn-color: #ff0000; // Red
+
+// Container styles
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 0, 0, 0.1); // Red translucent background
+  color: $primary-color;
+
+  h1 {
+    color: $primary-color;
+  }
+
+  p {
+    color: $primary-color;
+  }
+}
+
+// Button grid styles
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+// Card styles
+.button-card {
+  width: 250px; // Reduced width to fit within the main stage
+  padding: 15px; // Reduced padding for a more compact view
+  background-color: #ffffff; // White background for contrast
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  mat-card-title {
+    font-size: 16px; // Slightly smaller font size
+    color: $primary-color;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+      margin: 5px 0;
+    }
+  }
+}
+
+// Custom styles for elevated buttons
+.elevated-button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Custom styles for primary buttons
+button.mat-raised-button-primary {
+  background-color: $primary-color;
+  color: $accent-color;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Custom styles for accent buttons
+button.mat-raised-button-accent {
+  background-color: $accent-color;
+  color: $primary-color;
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
+}
+
+// Custom styles for warn buttons
+button.mat-raised-button-warn {
+  background-color: $warn-color;
+  color: white;
+
+  &:hover {
+    background-color: darken($warn-color, 10%);
+  }
+}

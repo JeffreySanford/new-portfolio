@@ -6,14 +6,16 @@ import { DataVisualizationsComponent } from './projects/data-visualizations/data
 import { RecordListComponent} from './projects/table/record-list-component';
 import { RecordDetailComponent } from './projects/table/record-detail/record-detail.component';
 import { MaterialIconsComponent } from './pages//landing/material-icons/material-icons.component';
+import { MaterialButtonsComponent } from './pages/landing/material-buttons/material-buttons.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: LandingComponent },
   { path: 'table', component: RecordListComponent },
   { path: 'table/:id', component: RecordDetailComponent },
-  { path: 'mat-icon', component: MaterialIconsComponent },
   { path: 'data-visualizations', component: DataVisualizationsComponent},
   { path: 'peasant-kitchen', component: PeasantKitchenComponent },
   { path: 'space-video', component: SpaceVideoComponent },
+  { path: 'material-icons', component: MaterialIconsComponent },
+  { path: 'material-buttons', component: MaterialButtonsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

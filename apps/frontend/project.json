@@ -21,16 +21,12 @@
     },
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/frontend",
         "index": "apps/frontend/src/index.html",
         "browser": "apps/frontend/src/main.ts",
-        "polyfills": [
-          "apps/frontend/src/polyfills.ts"
-        ],
+        "polyfills": ["apps/frontend/src/polyfills.ts"],
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -50,9 +46,7 @@
           "apps/frontend/src/styles/styles.scss"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "apps/frontend/src/styles"
-          ]
+          "includePaths": ["apps/frontend/src/styles", "node_modules"]
         },
         "scripts": []
       },
@@ -84,13 +78,8 @@
       "defaultConfiguration": "production",
       "parallelism": true,
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -118,9 +107,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/frontend/jest.config.ts",
         "passWithNoTests": true
@@ -133,11 +120,7 @@
       },
       "parallelism": true,
       "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ]
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "new-target": {
       "executor": "new-executor",
