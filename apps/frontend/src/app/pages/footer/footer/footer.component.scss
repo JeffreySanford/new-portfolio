@@ -1,15 +1,14 @@
-
 /* Styles for the footer component */
 .footer-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  bottom: 0.5em;
-  width: -webkit-fill-available;
-  margin-right: 0.75em;
+  position: relative;
+  width: 100%;
+  margin-top: auto; /* Push the footer to the bottom */
   border-radius: 0;
-  
+
   .top-containers {
     display: flex;
     justify-content: space-between;
@@ -124,7 +123,6 @@
     background-color: teal;
   }
 }
-
 
 mat-expansion-panel[expanded] {
   height: auto;

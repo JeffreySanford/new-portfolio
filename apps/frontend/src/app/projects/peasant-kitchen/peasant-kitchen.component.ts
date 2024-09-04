@@ -12,7 +12,7 @@ export class PeasantKitchenComponent implements OnInit, OnDestroy {
   private portfolioAPI = 'http://localhost:3000/recipes';
   recipes!: Recipe[];
   color = 'white';
-  loaded = false;
+  loaded = true;
   siteSections = ['landing', 'recipes', 'history', 'contact'];
   active = 0;
   recipeSubscription!: Subscription;

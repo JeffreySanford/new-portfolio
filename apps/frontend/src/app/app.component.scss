@@ -12,6 +12,7 @@
   display: flex;
   flex: 1;
   width: 100%;
+  overflow: hidden;
 }
 
 /* Sidebar styling */
@@ -36,16 +37,14 @@
   display: flex; /* Use flexbox layout */
   flex-direction: column; /* Arrange children in a column */
   justify-content: flex-start; /* Align children to the top */
-  align-items: space-between; /* Align children to the start */
-  height: 80vh; /* Set height to 100% of the viewport height */
-  width: 100%; /* Ensure it takes the full width */
-  overflow: hidden; /* Prevent content from overflowing */
+  align-items: flex-start; /* Align children to the start */
   flex-grow: 1; /* Allow the main stage to grow and fill available space */
   padding: 1em; /* Add padding for spacing */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow: auto; /* Allow scrolling if content overflows */
+  margin: 0.15em 0.15em 0.5em 0.15em;
+  border: 1px solid lime;
 }
-
-
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {

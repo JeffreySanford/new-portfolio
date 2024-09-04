@@ -1,90 +1,91 @@
-:host ::ng-deep app-footer {
-  position: fixed;
-  bottom: 0em;
-}
-
-:host ::ng-deep .mat-tab-body.mat-tab-body-active {
-  height: 70vh;
-}
-
-:host ::ng-deep .mat-tab-body-content {
-  display: flex;
-  justify-content: left;
-  width: 97%;
-  height: 60vh;
-  flex-wrap: wrap;
-}
-
-.mat-tab-group {
-  max-width: 77%;
-  margin-left: 7em;
-  max-height: 75%;
-}
-
-:host ::ng-deep .mat-tab-header {
-  border: none;
-}  
-
-:host ::ng-deep .mat-tab-list {
-  max-height: 4em;
-}
-
-:host ::ng-deep .mat-tab-label .mat-tab-label-content {
-  font-size: 2em;
-  color: forestgreen;
-  font-weight: 500;
-}
-
-:host ::ng-deep .mat-tab-body-content,
-.description {
-  &::-webkit-scrollbar {
-    width: 1em;
-  }
-
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 255, 0.3);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: darkblue;
-    outline: 1px solid blue;
-  }
-}
-
+/* Landing section */
 .landing {
-  background-color: white;
-  height: calc(86vh);
-  margin-top: 5em;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+  width: 78vw;
+  height: 74vh;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  box-sizing: border-box;
 
-  .banner {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-right: 7em;
+  /* Site logo */
+  .site-logo {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    height: 10vw;
+    width: auto;
+    z-index: 5; /* Ensure it is below the masthead */
+  }
 
-    h1 {
-      font-size: 7vw;
-      margin-top: 0.75em;
-      margin-right: 4em;
-      color: darkgreen;
-      line-height: 0.8em;
-      width: 6em;
-    }
+  /* Grape masthead */
+  .grape-masthead {
+    height: 40vw;
+    width: 40vw;
+    position: absolute;
+    right: -2em;
+    top: -1em;
+    z-index: 100; /* Ensure it is above all other elements */
+  }
 
-    .site-logo {
-      margin-top: -2.5em;
-      margin-left: 6.5em;
-      height: 14vw;
-      width: 12vw;
-    }
+  /* Content area */
+  .content {
+    margin-top: 10em;
+    padding: 2em;
+    width: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    z-index: 1; /* Ensure it is below the masthead */
+  }
+}
 
-    .grape-masthead {
-      height: 40vw;
-      width: 40vw;
-      position: absolute;
-      right: 0.25em;
-      top: 2em;
-      z-index: 10;
-    }
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .landing {
+    width: 90vw;
+    height: 80vh;
+    padding: 1em;
+  }
+
+  .site-logo {
+    height: 15vw;
+  }
+
+  .grape-masthead {
+    height: 50vw;
+    width: 50vw;
+    right: -1em;
+    top: -0.5em;
+  }
+
+  .content {
+    margin-top: 5em;
+    padding: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing {
+    width: 95vw;
+    height: 85vh;
+    padding: 0.5em;
+  }
+
+  .site-logo {
+    height: 20vw;
+  }
+
+  .grape-masthead {
+    height: 60vw;
+    width: 60vw;
+    right: 0;
+    top: 0;
+  }
+
+  .content {
+    margin-top: 2em;
+    padding: 0.5em;
   }
 }
