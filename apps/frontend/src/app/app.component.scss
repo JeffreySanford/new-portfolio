@@ -43,6 +43,8 @@
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   overflow: auto; /* Allow scrolling if content overflows */
   margin: 0.15em 0.15em 0.5em 0.15em;
+  width: 77vw;
+  height: 81.5vh;
   border: 1px solid lime;
   overflow: visible;
 }
