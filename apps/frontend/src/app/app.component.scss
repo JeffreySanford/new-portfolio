@@ -2,7 +2,7 @@
 .page-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 98vh;
   width: 100%;
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
 
 /* Sidebar styling */
 .sidebar {
-  width: 18em; /* 250px */
+  width: auto; /* 250px */
   transition: width 0.3s ease-in-out;
   flex-shrink: 0;
   margin-right: 1em;
@@ -26,7 +26,7 @@
   }
 
   &.collapsed {
-    width: 6em;
+    width: 7em;
   }
 }
 
@@ -45,22 +45,7 @@
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-/* Background video styling */
-#background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  min-height: 100%;
-  scale: (1);
-  width: auto;
-  height: auto;
-  z-index: -1;
-  filter: grayscale(50%);
-  object-fit: cover;
-  opacity: 0.7;
-  overflow: hidden;
-}
+
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {

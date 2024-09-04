@@ -41,12 +41,38 @@
 
   .table-wrapper {
     display: block;
-    min-height: 20em;
+    max-height: 20em; /* Set a max height to enable scrolling */
     overflow-y: auto;
     overflow-x: auto;
     white-space: nowrap;
+
+    /* Scrollbar styling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: linear-gradient(to bottom, red, white, blue) transparent; /* For Firefox */
+
+    &::-webkit-scrollbar {
+      width: 8px; /* Thin scrollbar width */
+      background-color: linear-gradient(to bottom, red, white, blue) transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, red, white, blue);
+      border-radius: 10px;
+      border: 2px solid transparent; /* Transparent border to create padding effect */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent; /* Transparent background */
+    }
+
+    &::-webkit-scrollbar-button {
+      background-color: blue; /* Blue controls */
+      display: block;
+      height: 16px;
+      width: 16px;
+    }
   }
-  
+
   :host ::ng-deep .stripped {
     tr:nth-child(odd) {
       background-color: red;
@@ -56,7 +82,7 @@
       background-color: green;
     }
   }
-  
+
   .table-wrapper th {
     position: sticky;
     top: 0;
@@ -66,46 +92,15 @@
     text-align: left;
     z-index: 1; /* Ensure it stays on top */
   }
-}
 
-/* Scrollable container styling */
-.scrollable-container {
-  border: 3px solid blue;
-  flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: purple #f1f1f1; /* For Firefox */
-
-  &::-webkit-scrollbar {
-    width: 8px; /* Thin scrollbar width */
-    background: linear-gradient(
-      to bottom,
-      red,
-      white,
-      blue
-    ); /* Gradient background */
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: purple; /* Purple thumb */
-    border-radius: 10px; /* Roundness of the scrollbar thumb */
-    border: 2px solid #f1f1f1; /* Padding around the scrollbar thumb */
-  }
-
-  &::-webkit-scrollbar-button {
-    background-color: purple; /* Purple arrows */
-    display: block;
-    height: 16px;
-    width: 16px;
+  .mat-paginator {
+    background-color: #3f51b5; /* Blue background */
+    color: #fff; /* White text */
+    font-size: 1em; /* Font size */
+    text-align: left;
+    z-index: 1; /* Ensure it stays on top */
   }
 }
-
-
 
 @keyframes flyIn {
   from {
