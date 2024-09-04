@@ -1,11 +1,13 @@
-<div class="video-container">
-  <video #videoPlayer controls class="player">
-    <source src="./media/haynes-astronauts.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="controls">
-    <button mat-button (click)="playVideo()">Play</button>
-    <button mat-button (click)="pauseVideo()">Pause</button>
-    <!-- <mat-slider min="0" max="1" step="0.01" (input)="changeVolume($event)" thumbLabel></mat-slider> -->
+<div class="page-container">
+  <div class="video-container">
+    <video #videoPlayer autoplay muted controls class="player">
+      <source src="assets/video/haynes-astronauts.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+      <button mat-button (click)="playVideo()">Play</button>
+      <button mat-button (click)="pauseVideo()">Pause</button>
+      <mat-slider min="0" max="1" step="0.01" (input)="changeVolume($event)" thumbLabel></mat-slider>
+    </div>
   </div>
 </div>

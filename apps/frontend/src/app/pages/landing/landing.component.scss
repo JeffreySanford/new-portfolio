@@ -1,13 +1,14 @@
-/* Landing page styling */
 .landing-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1; /* Allow the landing page to grow and fill the available space */
+  flex: 1;
   padding: 2em;
-  background-color: rgba(0,0,0, .3);
-  
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 77.5vw;
+  height: 78.5vh;
+
   .landing-header {
     font-size: 2.5em;
     font-weight: bold;
@@ -20,9 +21,9 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 75em;
     text-align: center;
-    background-color: rgba(red, .3);
+    background-color: rgba(red, 0.3);
 
     .landing-description {
       font-size: 1.25em;
@@ -34,94 +35,107 @@
       gap: 1em;
     }
   }
+
+  .highlight-section {
+    position: relative;
+    margin-bottom: 3em;
+  }
+
+  .animated-section {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+
+    .animated-item {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: yellow;
+      opacity: 0;
+      transform: translateY(1.25em);
+      animation: fadeInUp 1s ease-out forwards;
+
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+    }
+  }
+
+  .title {
+    font-size: 600%;
+    color: gold;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+
+    .word {
+      position: relative;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 0.25em;
+      top: -0.5em;
+      right: -1em;
+      font-size: 0em;
+      color: gold;
+      opacity: 1;
+      animation: sparkle 0.5s ease-out 5s forwards;
+    }
+
+    .word:nth-child(1) .sparkle {
+      animation-delay: 3s;
+    }
+
+    .word:nth-child(2) .sparkle {
+      margin-top: -1.5em;
+      animation-delay: 5s;
+    }
+  }
 }
 
-/* Highlight section styling */
-.highlight-section {
-  position: relative;
-  margin-bottom: 3rem;
-}
-
-/* Keyframes for sparkle animation */
-@keyframes sparkle {
+@keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(1.25em);
   }
-  50% {
+  100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: translateY(-1.4em);
+    font-size: 0.1em;
+  }
+  25% {
+    opacity: 0.75;
+    transform: translateY(-1.3em);
+    font-size: 0.15em;
+  }
+  50% {
+    opacity: 0.25;
+    transform: translateY(-1.2em);
+    font-size: 0.2em;
+  }
+  75% {
+    opacity: 0.1;
+    transform: translateY(-1.1em);
+    font-size: 0.25em;
   }
   100% {
     opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-/* Animated section styling */
-.animated-section {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-
-  .animated-item {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: yellow;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards;
-
-    &:nth-child(1) {
-      animation-delay: 0s;
-    }
-    &:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-    &:nth-child(3) {
-      animation-delay: 1s;
-    }
-  }
-}
-
-/* Keyframes for fadeInUp animation */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Styling for the title */
-.title {
-  font-size: 3em;
-  font-weight: bold;
-  color: gold;
-  text-align: center;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 0.5em;
-
-  .word {
-    position: relative;
-  }
-
-  .sparkle {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 0.5em;
-    color: gold;
-    opacity: 0;
-    animation: sparkle 2s infinite;
-  }
-
-  .word:nth-child(1) .sparkle {
-    animation-delay: 0s;
-  }
-
-  .word:nth-child(2) .sparkle {
-    animation-delay: 1s;
+    transform: translateX(-1em);
+    font-size: 0.3em;
   }
 }
