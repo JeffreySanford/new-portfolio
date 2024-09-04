@@ -15,6 +15,7 @@ import { FooterModule } from './pages/footer/footer/footer.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from './projects/table/table.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     SidebarModule,
     HeaderModule,
     DataVisualizationsModule,
+    PeasantKitchenModule,
     SpaceVideoModule,
     TableModule,
     FooterModule,

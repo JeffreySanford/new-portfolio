@@ -20,8 +20,5 @@
     "outDir": "../../dist/out-tsc"
   },
   "exclude": ["node_modules", "tmp"],
-  "include": [
-    "apps/frontend/src/**/*.ts",
-    "apps/backend/src/**/*.ts"
-  ]
+  "include": ["apps/frontend/src/**/*.ts", "apps/backend/src/**/*.ts"]
 }

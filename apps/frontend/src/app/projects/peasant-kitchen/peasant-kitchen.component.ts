@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Recipe } from './recipe.class';
 import { Subscription } from 'rxjs';
+import { Recipe } from './recipe.class';
+import { PeasantKitchenService } from './peasant-kitchen.service';
 
 @Component({
   selector: 'app-peasant-kitchen',
@@ -9,17 +9,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./peasant-kitchen.component.scss'],
 })
 export class PeasantKitchenComponent implements OnInit, OnDestroy {
-  private portfolioAPI = 'http://localhost:3000/recipes';
   recipes!: Recipe[];
-  color = 'white';
-  loaded = true;
-  siteSections = ['landing', 'recipes', 'history', 'contact'];
-  active = 0;
+  loaded = false;
   recipeSubscription!: Subscription;
   recipe!: Recipe;
   allRecipes = true;
 
-  constructor(private http: HttpClient) { }
+  constructor(private peasantKitchenService: PeasantKitchenService) {}
 
   ngOnDestroy() {
     if (this.recipeSubscription) {
@@ -28,16 +24,19 @@ export class PeasantKitchenComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.recipeSubscription = this.http
-      .get<Recipe[]>(this.portfolioAPI)
-      .subscribe((recipes: Recipe[]) => {
+    this.recipeSubscription = this.peasantKitchenService.getRecipes().subscribe({
+      next: (recipes: Recipe[]) => {
         this.recipes = recipes;
         this.loaded = true;
-      });
-  }
-
-  onTabChange(tabIndex: number) {
-    console.log(tabIndex);
+      },
+      error: (err) => {
+        console.error('Error fetching recipes:', err);
+        this.loaded = false;
+      },
+      complete: () => {
+        console.log('Recipe fetch complete');
+      }
+    });
   }
 
   showRecipe(recipe: Recipe) {

@@ -1,9 +1,37 @@
 <div class="landing">
-    <div class="header">
-        <img class="site-logo" src="../../../../assets/images/kitchen-table-site-logo.png" alt="Kitchen Table Logo" />
-        <img class="grape-masthead" src="../../../../assets/images/grape-01.png" alt="Grape Masthead" />
+  <div class="header">
+    <img class="site-logo" src="../../../../assets/images/kitchen-table-site-logo.png" alt="Kitchen Table Logo" />
+    <img class="grape-masthead" src="../../../../assets/images/grape-01.png" alt="Grape Masthead" />
+  </div>
+  <div class="content">
+    <div *ngIf="loaded; else loading">
+      <div *ngIf="allRecipes; else singleRecipe">
+        <div *ngFor="let recipe of recipes" class="mat-card">
+          <div class="mat-card-title">{{ recipe.name }}</div>
+          <div class="mat-card-content">{{ recipe.description }}</div>
+          <button mat-button (click)="showRecipe(recipe)">View Recipe</button>
+        </div>
+      </div>
+      <ng-template #singleRecipe>
+        <div class="mat-card">
+          <div class="mat-card-title">{{ recipe.name }}</div>
+          <div class="mat-card-content">
+            <p>{{ recipe.description }}</p>
+            <h3>Ingredients</h3>
+            <ul>
+              <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+            </ul>
+            <h3>Directions</h3>
+            <ol>
+              <li *ngFor="let direction of recipe.directions">{{ direction }}</li>
+            </ol>
+          </div>
+          <button mat-button (click)="allRecipes = true">Back to Recipes</button>
+        </div>
+      </ng-template>
     </div>
-    <div class="content">
-        <!-- Placeholder for future content like recipes -->
-    </div>
+    <ng-template #loading>
+      <p>Loading recipes...</p>
+    </ng-template>
+  </div>
 </div>
