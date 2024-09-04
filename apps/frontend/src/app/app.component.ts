@@ -83,7 +83,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private startVideoCheckPolling() {
-    console.log('Starting video check polling');
     const videoCheckInterval = interval(5000); // Emit every 5 seconds
     this.videoCheckSubscription = videoCheckInterval.subscribe(() => {
       this.ensureVideoIsPlaying();
@@ -91,7 +90,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private stopVideoCheckPolling() {
-    console.log('Stopping video check polling');
     if (this.videoCheckSubscription) {
       this.videoCheckSubscription.unsubscribe();
     }

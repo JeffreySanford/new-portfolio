@@ -1,0 +1,22 @@
+<!-- recipes.component.html -->
+<mat-card class="content">
+  <ng-container *ngIf="loaded && recipes.length > 0; else noRecipesOrLoading">
+    <ng-container *ngFor="let recipe of recipes">
+      <mat-card class="recipe-card" (click)="navigateToRecipe(recipe)">
+        <mat-icon class="recipe-icon">restaurant</mat-icon>
+        <mat-card-title class="recipe-title">{{ recipe.name }}</mat-card-title>
+        <button mat-mini-fab color="primary" class="recipe-button" (click)="navigateToRecipe(recipe)">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card>
+    </ng-container>
+  </ng-container>
+  <ng-template #noRecipesOrLoading>
+    <ng-container *ngIf="loaded; else loading">
+      <p>No recipes available.</p>
+    </ng-container>
+  </ng-template>
+  <ng-template #loading>
+    <p>Loading recipes...</p>
+  </ng-template>
+</mat-card>

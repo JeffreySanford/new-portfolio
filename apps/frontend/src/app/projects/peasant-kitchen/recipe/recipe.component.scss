@@ -1,32 +1,41 @@
-.mat-card {
-    height: 60vh;
-    width: 87vw;
-    background: rgba(0, 100, 0, 0.7);
-  
-    .mat-card-actions,
-    .mat-card-subtitle,
-    .mat-card-content {
-        width: 66vw;
-        // border: 1px solid blue;
-        .directions {
-            margin-top: 1em;
-            .step {
-                color: white;
-                width: 66vw;
-            }
-        }
-    }
-  
-    .mat-card-title {
-    }
-  
-    .card-description {
-        font-style: italic;
+/* recipe.component.scss */
+.card {
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical overflow with custom scrollbar */
+  position: relative;
+  top: 10em; /* Adjust as needed to fit under the parent styling */
+  width: 100%; /* Ensure the card fits within the parent container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-top: 20px; /* Adjust this value to ensure it starts below the logo */
+}
 
-    }
-  
-    .description {
-        border: 1px solid yellow;
-    }
-  }
-  
+.serving-size {
+  border: 1px solid green;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.ingredients {
+  border: 1px solid blue;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.directions {
+  border: 1px solid orange;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.card::-webkit-scrollbar {
+  width: 10px; /* Adjusted to vertical scrollbar width */
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, red, white, blue); /* Adjusted to vertical gradient */
+  border-radius: 10px;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, darkred, lightgray, darkblue); /* Adjusted to vertical gradient */
+}

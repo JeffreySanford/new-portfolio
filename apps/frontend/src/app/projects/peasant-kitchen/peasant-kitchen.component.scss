@@ -1,14 +1,15 @@
 /* Landing section */
 .landing {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-  width: 78vw;
+  background-color: rgba(255,255,255, 0.6); /* Semi-transparent white background */
+  width: 76vw;
   height: 74vh;
-  padding: 2em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   box-sizing: border-box;
+  overflow: visible;
 
   /* Site logo */
   .site-logo {
@@ -25,19 +26,10 @@
     height: 40vw;
     width: 40vw;
     position: absolute;
-    right: -2em;
+    right: 0.5em;
     top: -1em;
+    overflow: visible;
     z-index: 100; /* Ensure it is above all other elements */
-  }
-
-  /* Content area */
-  .content {
-    margin-top: 10em;
-    padding: 2em;
-    width: 100%;
-    flex-grow: 1;
-    overflow: auto;
-    z-index: 1; /* Ensure it is below the masthead */
   }
 }
 

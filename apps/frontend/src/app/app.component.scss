@@ -2,9 +2,9 @@
 .page-container {
   display: flex;
   flex-direction: column;
-  height: 98vh;
+  height: 96vh;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Layout container styling */
@@ -44,6 +44,7 @@
   overflow: auto; /* Allow scrolling if content overflows */
   margin: 0.15em 0.15em 0.5em 0.15em;
   border: 1px solid lime;
+  overflow: visible;
 }
 
 /* Media query for smaller screens */
