@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TileContainerComponent } from './tile-container/tile-container.component';
-import { BarModule } from './tile-container/bar/bar.module';
-import { LineModule } from './tile-container/line/line.module';
-import { FintechModule } from './tile-container/fintech/fintech.module';
-import { MapModule } from './tile-container/map/map.module';
 import { DataVisualizationsComponent } from './data-visualizations.component';
+import { MaterialModule } from '../../material.module';
+import { BarComponent } from './bar/bar.component';
+import { LineComponent } from './line/line.component';
+import { FintechComponent } from './fintech/fintech.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
-    TileContainerComponent,
     DataVisualizationsComponent,
+    BarComponent,
+    LineComponent,
+    FintechComponent,
+    MapComponent
   ],
-  imports: [CommonModule, BarModule, LineModule, FintechModule, MapModule],
-  exports: [],
+  imports: [
+    CommonModule,
+    MaterialModule,
+  ],
+  exports: [DataVisualizationsComponent],
 })
-export class DataVisualizationsModule {}
+export class DataVisualizationsModule { }
