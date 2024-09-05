@@ -123,9 +123,9 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
     if (this.resolved && this.dataSource.data.length > 0 && this.newData) {
       console.log('Step 8: ngAfterContentChecked called');
       this.paginator.pageIndex = 0;
-      this.paginator.pageSize = 10;
+      this.paginator.pageSize = 5;
       this.paginator.length = this.totalRecords;
-      this.paginator.pageSizeOptions = [10, 25, 100, 6000, 48000];
+      this.paginator.pageSizeOptions = [5, 25, 100, 6000, 48000];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = (data: Record, filter: string) => {

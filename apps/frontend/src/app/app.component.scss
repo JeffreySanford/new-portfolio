@@ -36,16 +36,15 @@
   background-color: rgba(255, 0, 0, 0.5); /* Semi-transparent red background */
   display: flex; /* Use flexbox layout */
   flex-direction: column; /* Arrange children in a column */
-  justify-content: flex-start; /* Align children to the top */
-  align-items: flex-start; /* Align children to the start */
+  justify-content: stretch; /* Align children to the top */
+  align-items: stretch; /* Ensure children take full width */
   flex-grow: 1; /* Allow the main stage to grow and fill available space */
   padding: 1em; /* Add padding for spacing */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   overflow: auto; /* Allow scrolling if content overflows */
   margin: 0.15em 0.15em 0.5em 0.15em;
-  width: 77vw;
-  height: 82.5vh;
-  overflow: visible;
+  width: 100%; /* Ensure main-stage takes full width */
+  height: 100%;
 }
 
 /* Media query for smaller screens */
