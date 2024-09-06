@@ -8,11 +8,13 @@
   background-color: rgba(0, 0, 0, 0.3);
   width: 75.5vw;
   height: 78.75vh;
+  animation: backgroundAnimation 10s infinite alternate;
 
   .landing-header {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 1em;
+    animation: fadeIn 2s ease-out forwards;
   }
 
   .landing-content {
@@ -24,6 +26,7 @@
     max-width: 75em;
     text-align: center;
     background-color: rgba(red, 0.3);
+    animation: fadeIn 2s ease-out forwards;
 
     .landing-description {
       font-size: 1.25em;
@@ -33,18 +36,36 @@
     .landing-buttons {
       display: flex;
       gap: 1em;
+
+      button {
+        padding: 0.5em 1em;
+        font-size: 1em;
+        border: none;
+        border-radius: 0.25em;
+        background-color: #3f51b5;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          background-color: #303f9f;
+          transform: scale(1.05);
+        }
+      }
     }
   }
 
   .highlight-section {
     position: relative;
     margin-bottom: 3em;
+    animation: fadeIn 2s ease-out forwards;
   }
 
   .animated-section {
     display: flex;
     justify-content: center;
     gap: 1.5em;
+    animation: fadeIn 2s ease-out forwards;
 
     .animated-item {
       font-size: 1.5em;
@@ -68,26 +89,56 @@
 
   .title {
     font-size: 600%;
-    color: gold;
+    color: red;
     text-align: center;
     position: relative;
     display: flex;
     justify-content: center;
     gap: 0.5em;
+    animation: textShadow 3s infinite alternate;
 
     .word {
       position: relative;
+      animation: colorChange 3s ease-out forwards;
+
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        animation-delay: 2s;
+      }
+      &:nth-child(3) {
+        animation-delay: 4s;
+      }
     }
 
-    .sparkle {
+    .sparkle, .sparkle-1, .sparkle-2, .sparkle-3 {
       position: absolute;
       font-size: 0.25em;
       top: -0.5em;
       right: -1em;
       font-size: 0em;
-      color: gold;
       opacity: 1;
+    }
+
+    .sparkle {
+      color: gold;
       animation: sparkle 0.5s ease-out 5s forwards;
+    }
+
+    .sparkle-1 {
+      color: blue;
+      animation: sparkle-1 0.5s ease-out 5s forwards;
+    }
+
+    .sparkle-2 {
+      color: green;
+      animation: sparkle-2 0.5s ease-out 5s forwards;
+    }
+
+    .sparkle-3 {
+      color: purple;
+      animation: sparkle-3 0.5s ease-out 5s forwards;
     }
 
     .word:nth-child(1) .sparkle {
@@ -97,6 +148,20 @@
     .word:nth-child(2) .sparkle {
       margin-top: -1.5em;
       animation-delay: 5s;
+    }
+
+    .word:nth-child(1) .sparkle-1 {
+      animation-delay: 3s;
+    }
+
+    .word:nth-child(2) .sparkle-2 {
+      margin-top: -1.5em;
+      animation-delay: 5s;
+    }
+
+    .word:nth-child(3) .sparkle-3 {
+      margin-top: -2em;
+      animation-delay: 7s;
     }
   }
 }
@@ -137,5 +202,72 @@
     opacity: 0;
     transform: translateX(-1em);
     font-size: 0.3em;
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    color: red;
+  }
+  100% {
+    color: gold;
+  }
+}
+
+// Additional sparkle animations
+@for $i from 1 through 3 {
+  @keyframes sparkle-#{$i} {
+    0% {
+      opacity: 1;
+      transform: translateY(-1.4em) translateX(0);
+      font-size: 0.1em;
+    }
+    25% {
+      opacity: 0.75;
+      transform: translateY(-1.3em) translateX(0.5em * $i);
+      font-size: 0.15em;
+    }
+    50% {
+      opacity: 0.25;
+      transform: translateY(-1.2em) translateX(1em * $i);
+      font-size: 0.2em;
+    }
+    75% {
+      opacity: 0.1;
+      transform: translateY(-1.1em) translateX(1.5em * $i);
+      font-size: 0.25em;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-1em) translateX(2em * $i);
+      font-size: 0.3em;
+    }
+  }
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes textShadow {
+  0% {
+    text-shadow: 0 0 10px gold;
+  }
+  100% {
+    text-shadow: 0 0 20px red;
   }
 }

@@ -3,29 +3,29 @@
 
 @font-face {
   font-family: 'Calibri';
-  src: url('../assets/fonts/calibri.ttf') format('truetype');
+  src: url('/assets/fonts/calibri.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Candara';
-  src: url('../assets/fonts/candara.ttf') format('truetype');
+  src: url('/assets/fonts/candara.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Segoe UI';
-  src: url('../assets/fonts/segoe-ui.ttf') format('truetype');
+  src: url('/assets/fonts/segoe-ui.ttf') format('truetype');
 }
 
-// Basic custom styles
-body {
-  font-family: 'Calibri', 'Candara', 'Segoe UI', sans-serif;
+// Override Angular Material's default font
+.mat-typography, body {
+  font-family: 'Calibri', 'Candara', 'Segoe UI', sans-serif !important;
   background-color: black;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Calibri', 'Candara', 'Segoe UI', sans-serif;
+  font-family: 'Calibri', 'Candara', 'Segoe UI', sans-serif !important;
   color: #3f51b5; /* Indigo color from the prebuilt theme */
 }
 
