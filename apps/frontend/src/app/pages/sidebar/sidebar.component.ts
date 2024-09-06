@@ -38,7 +38,7 @@ export class SidebarComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     const width = (event.target as Window).innerWidth;
-    this.isCollapsed = width < 800;
+    this.isCollapsed = width < 900;
     this.toggle.emit(!this.isCollapsed);
   }
 

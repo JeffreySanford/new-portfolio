@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 96vh;
-  width: 96vw;
+  width: 99vw;
   overflow: visible;
 }
 
@@ -48,7 +48,7 @@
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .sidebar {
     width: 5em; /* 80px */
   }
