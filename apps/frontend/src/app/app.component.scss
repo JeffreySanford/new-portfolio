@@ -41,7 +41,7 @@
   flex-grow: 1; /* Allow the main stage to grow and fill available space */
   padding: 1em; /* Add padding for spacing */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  overflow: auto; /* Allow scrolling if content overflows */
+  overflow: visible; /* Allow scrolling if content overflows */
   margin: 0.15em 0.15em 0.5em 0.15em;
   width: 77vw;
   height: 98.5%;
