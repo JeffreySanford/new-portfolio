@@ -5,7 +5,7 @@ import { Recipe } from './recipe.class';
 
 @Injectable()
 export class PeasantKitchenService {
-  private portfolioAPI = 'http://0.0.0.0:3000/recipes';
+  private portfolioAPI = 'http://jeffreysanford.us:3000/recipes';
   recipe!: Recipe;
 
   constructor(private http: HttpClient) {}
