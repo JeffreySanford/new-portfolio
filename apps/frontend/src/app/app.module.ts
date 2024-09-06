@@ -16,10 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from './projects/table/table.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
+import { ResumeComponent } from './pages/resume/resume.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen
     TableModule,
     FooterModule,
     HttpClientModule
+    
   ],
   exports: [
     SidebarModule,

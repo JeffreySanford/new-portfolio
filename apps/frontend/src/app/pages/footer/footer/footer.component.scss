@@ -27,14 +27,25 @@
       padding-left: 1em;
     }
 
-    a {
+    button {
       font-size: 1em;
       display: flex;
       align-items: center;
       margin: 0;
       padding: 0.125em 0;
       color: gold;
+      background: none;
+      border: none;
+      cursor: pointer;
       text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      mat-icon {
+        margin-right: 0.5em;
+      }
     }
   }
 

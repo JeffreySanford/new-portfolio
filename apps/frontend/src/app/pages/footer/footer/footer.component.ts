@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 
 @Component({
@@ -16,7 +17,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   private performanceSubscription!: Subscription;
   private appStartTime: number;
 
-  constructor() {
+  constructor(private router: Router) {
     this.appStartTime = performance.now();
   }
 
@@ -115,7 +116,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     }
   }
 
-  getNetworkLatencyClass() {
+  getNetworkLatencyClass(): string {
     const latency = parseFloat(this.performanceMetrics.networkLatency);
     if (latency < 100) {
       return 'green-text';
@@ -124,5 +125,17 @@ export class FooterComponent implements OnInit, OnDestroy {
     } else {
       return 'red-text';
     }
+  }
+
+  navigateToResume(): void {
+    this.router.navigate(['/resume']);
+  }
+
+  sendEmail(): void {
+    window.location.href = 'mailto:jeffreysanford@gmail.com';
+  }
+
+  openGitHub(): void {
+    window.open('https://github.com/jeffreysanford', '_blank');
   }
 }

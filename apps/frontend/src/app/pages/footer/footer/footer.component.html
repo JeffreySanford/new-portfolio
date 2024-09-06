@@ -8,18 +8,18 @@
     </mat-expansion-panel-header>
     <div class="footer-content">
       <div class="contact-block">
-        <a href="mailto:jeffreysanford@gmail.com">
+        <button mat-raised-button (click)="sendEmail()">
           <mat-icon>email</mat-icon>
           <p>jeffreysanford&#64;gmail.com</p>
-        </a>
-        <a href="https://github.com/jeffreysanford" target="_blank">
+        </button>
+        <button mat-raised-button (click)="openGitHub()">
           <mat-icon>code</mat-icon>
           <p>GitHub</p>
-        </a>
-        <a href="https://github.com/jeffreysanford" target="_blank">
+        </button>
+        <button mat-raised-button (click)="navigateToResume()">
           <mat-icon>description</mat-icon>
           <p>Resume</p>
-        </a>
+        </button>
       </div>
       <div class="logo-performance-block">
         <div class="logo-row">
