@@ -2,24 +2,21 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["jest", "node"],
-    "lib": ["es2022", "dom"],
+    "types": ["jest", "node", "jsdom"],
+    "lib": ["es2020", "dom"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es2020",
+    "module": "commonJS",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"]
+    },
     "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts"
-  ],
-  "exclude": ["node_modules", "dist", "out-tsc"],
-  "angularCompilerOptions": {
-    "enableIvy": false
-  }
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "out-tsc"]
 }

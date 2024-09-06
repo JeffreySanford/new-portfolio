@@ -1,15 +1,14 @@
 {
-    "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-      "outDir": "./dist/out-tsc",
-      "types": ["jest", "node"],
-      "allowSyntheticDefaultImports": true
-    },
-    "include": [
-      "apps/frontend/src/**/*.spec.ts",
-      "apps/backend/src/**/*.spec.ts",
-      "apps/frontend/src/**/*.d.ts",
-      "apps/backend/src/**/*.d.ts",
-      "global.d.ts"
-    ]
-  }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "types": ["jest", "node"],
+    "module": "commonjs", // Jest requires CommonJS module
+    "target": "es2020"
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "../../global.d.ts"
+  ]
+}

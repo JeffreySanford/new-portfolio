@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["dom"],
+    "lib": ["es2020", "dom"], // Common lib for both Angular and NestJS
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {},

@@ -15,6 +15,7 @@
     "@angular/platform-browser": "~18.2.0",
     "@angular/platform-browser-dynamic": "~18.2.0",
     "@angular/router": "~18.2.0",
+    "@jest/types": "^29.6.3",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/common": "^10.0.2",
     "@nestjs/config": "^3.2.3",
@@ -31,6 +32,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@angular-builders/jest": "^18.0.0",
     "@angular-devkit/build-angular": "~18.2.0",
     "@angular-devkit/core": "~18.2.0",
     "@angular-devkit/schematics": "~18.2.0",
@@ -94,7 +96,7 @@
     "prettier": "^2.6.2",
     "sass": "^1.77.8",
     "ts-jest": "^29.2.5",
-    "ts-node": "10.9.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.5.4",
     "webpack-cli": "^5.1.4"
   }

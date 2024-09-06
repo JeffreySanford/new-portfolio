@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "module": "commonjs", // Jest requires CommonJS module
+    "target": "es2020"
   },
   "include": [
     "src/**/*.spec.ts",
