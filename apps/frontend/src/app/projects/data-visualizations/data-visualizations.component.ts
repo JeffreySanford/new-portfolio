@@ -42,7 +42,7 @@ export class DataVisualizationsComponent implements OnInit {
     },
     { 
       name: 'Map', 
-      component: 'app-geo-chart', 
+      component: 'app-map-chart', 
       color: 'lightgoldenrodyellow', // Bright color for contrast
       data: [
         { name: 'Restaurant A', coordinates: [40.7128, -74.0060], city: 'New York', state: 'NY' },

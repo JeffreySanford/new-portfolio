@@ -29,7 +29,8 @@
     "mongoose": "^8.5.2",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@angular-builders/jest": "^18.0.0",
@@ -74,6 +75,7 @@
     "@types/node": "^18.19.44",
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-oauth2": "^1.4.17",
+    "@types/topojson-client": "^3.1.4",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@typescript-eslint/utils": "^7.16.0",

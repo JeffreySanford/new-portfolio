@@ -1,48 +1,25 @@
-<!--
 <div class="tile-container">
-    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
-      <mat-grid-tile 
-        *ngFor="let chart of charts; index as i" 
-        [colspan]="expandedTileIndex === i ? 4 : 1" 
-        [rowspan]="expandedTileIndex === i ? 2 : 1" 
-        [style.background]="chart.color" 
-        (click)="openTile(i)">
-        <mat-card class="chart-card" [class.expanded]="expandedTileIndex === i">
-          <mat-card-header>
-            <mat-card-title>{{ chart.name }}</mat-card-title>
-          </mat-card-header>
-          <ng-container [ngSwitch]="chart.component">
-            <app-line-chart *ngSwitchCase="'app-line-chart'" [data]="chart.data"></app-line-chart>
-            <app-bar-chart *ngSwitchCase="'app-bar-chart'" [data]="chart.data"></app-bar-chart>
-            <app-fintech-chart *ngSwitchCase="'app-fintech-chart'" [data]="chart.data"></app-fintech-chart>
-            <app-map-chart *ngSwitchCase="'app-geo-chart'" [data]="chart.data"></app-map-chart>
-          </ng-container>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div> -->
-
-  <div class="tile-container">
-    <mat-card 
-      *ngFor="let chart of charts; index as i" 
-      class="chart-card" 
-      [class.expanded]="expandedTileIndex === i" 
-      (click)="openTile(i)">
-      <mat-card-header>
-        <mat-card-title>{{ chart.name }}</mat-card-title>
-      </mat-card-header>
-      <!-- Chart components will be dynamically loaded here based on the chart type -->
-      <ng-container *ngIf="chart.component === 'app-line-chart'">
-        <app-line-chart [data]="chart.data"></app-line-chart>
-      </ng-container>
-      <ng-container *ngIf="chart.component === 'app-bar-chart'">
-        <app-bar-chart [data]="chart.data"></app-bar-chart>
-      </ng-container>
-      <ng-container *ngIf="chart.component === 'app-fintech-chart'">
-        <app-fintech-chart [data]="chart.data"></app-fintech-chart>
-      </ng-container>
-      <ng-container *ngIf="chart.component === 'app-map-chart'">
-        <app-map-chart [data]="chart.data"></app-map-chart>
-      </ng-container>
-    </mat-card>
-  </div>
+  <mat-card
+    *ngFor="let chart of charts; index as i"
+    class="chart-card"
+    [class.expanded]="expandedTileIndex === i"
+    (click)="openTile(i)"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ chart.name }}</mat-card-title>
+    </mat-card-header>
+    <!-- Chart components will be dynamically loaded here based on the chart type -->
+    <!-- <ng-container *ngIf="chart.component === 'app-line-chart'">
+      <app-line-chart [data]="chart.data"></app-line-chart>
+    </ng-container>
+    <ng-container *ngIf="chart.component === 'app-bar-chart'">
+      <app-bar-chart [data]="chart.data"></app-bar-chart>
+    </ng-container>
+    <ng-container *ngIf="chart.component === 'app-fintech-chart'">
+      <app-fintech-chart [data]="chart.data"></app-fintech-chart>
+    </ng-container> -->
+    <ng-container *ngIf="chart.component === 'app-map-chart'">
+      <app-map-chart [data]="chart.data"></app-map-chart>
+    </ng-container>
+  </mat-card>
+</div>
