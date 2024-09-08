@@ -1,5 +1,13 @@
-.bar-chart-container {
-    width: 100%;
-    height: 100%;
-  }
-  
+.line-chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.line-chart {
+  width: 100%;
+  height: 100%;
+}

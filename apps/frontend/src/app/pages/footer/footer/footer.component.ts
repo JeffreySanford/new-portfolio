@@ -78,7 +78,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 
     this.measureNetworkLatency();
 
-    console.log(`Updated Performance Metrics: Memory Usage: ${this.performanceMetrics.memoryUsage}, CPU Load: ${this.performanceMetrics.cpuLoad}, App Uptime: ${this.performanceMetrics.appUptime}, Network Latency: ${this.performanceMetrics.networkLatency}`);
+    // console.log(`Updated Performance Metrics: Memory Usage: ${this.performanceMetrics.memoryUsage}, CPU Load: ${this.performanceMetrics.cpuLoad}, App Uptime: ${this.performanceMetrics.appUptime}, Network Latency: ${this.performanceMetrics.networkLatency}`);
   }
 
   private measureNetworkLatency() {

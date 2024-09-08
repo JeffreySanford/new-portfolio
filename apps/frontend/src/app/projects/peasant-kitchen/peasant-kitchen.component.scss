@@ -16,15 +16,15 @@
     position: absolute;
     top: 2em;
     left: 2em;
-    height: 10vw;
+    height: 10em;
     width: auto;
-    z-index: 5; /* Ensure it is below the masthead */
+    z-index: 5;
   }
 
   /* Grape masthead */
   .grape-masthead {
-    height: 40vw;
-    width: 40vw;
+    height: 30em;
+    width: 30em;
     position: absolute;
     right: -2em;
     top: -1em;
