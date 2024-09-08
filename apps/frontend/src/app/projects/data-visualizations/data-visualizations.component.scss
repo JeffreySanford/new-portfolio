@@ -1,5 +1,24 @@
 .tile-container {
-  padding: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%; /* Ensure it takes the full height of the parent container */
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto; /* Allow scrolling if content overflows */
+  gap: 1em; /* 1em space between items */
+}
+
+.tile {
+  flex: 1 1 calc(50% - 1em); /* Two columns with a 1em gap */
+  max-width: calc(50% - 1em); /* Ensure tiles do not exceed 50% of the container width */
+  aspect-ratio: 1; /* Maintain a square aspect ratio */
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #00f; /* Bright blue border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  margin: 0; /* Remove margin to use gap for spacing */
+  transform: scale(0.8); /* Initially scale down the tiles */
 }
 
 .chart-card {
@@ -7,7 +26,7 @@
   transition: transform 0.2s, flex 0.2s, height 0.2s;
 
   &.expanded {
-    transform: scale(1.05);
+    transform: scale(1); /* Scale up to full size when expanded */
   }
 
   mat-card-title {
@@ -15,14 +34,9 @@
   }
 }
 
-mat-grid-tile {
-  border: 1px solid #ccc; /* Add border around each tile */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better visual separation */
-  transition: all 0.2s ease-in-out;
-}
-
 mat-card {
   height: 100%;
+  width: 100%;
 }
 
 mat-card-content {
@@ -40,4 +54,17 @@ mat-card-content {
 .chart {
   width: 100%;
   height: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%; /* Ensure the SVG does not exceed the width of the container */
+  max-height: 100%; /* Ensure the SVG does not exceed the height of the container */
+  object-fit: contain; /* Ensure the SVG scales down to fit within the container */
 }

@@ -1,41 +1,36 @@
 <div class="tile-container">
-  <mat-grid-list cols="2" rowHeight="1:1" gutterSize="16px">
-    <mat-grid-tile
-      *ngFor="let chart of charts; index as i"
-      [colspan]="expandedTileIndex === i ? 2 : 1"
-      [rowspan]="expandedTileIndex === i ? 2 : 1"
-      (click)="openTile(i)"
-      class="chart-card"
-      [class.expanded]="expandedTileIndex === i"
-    >
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ chart.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <!-- Chart components will be dynamically loaded here based on the chart type -->
-          <ng-container *ngIf="chart.component === 'app-line-chart'">
-            <div class="chart-container">
-              <app-line-chart [data]="chart.data" class="chart"></app-line-chart>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="chart.component === 'app-bar-chart'">
-            <div class="chart-container">
-              <app-bar-chart [data]="chart.data" class="chart"></app-bar-chart>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="chart.component === 'app-fintech-chart'">
-            <div class="chart-container">
-              <app-fintech-chart [data]="chart.data" class="chart"></app-fintech-chart>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="chart.component === 'app-map-chart'">
-            <div class="chart-container">
-              <app-map-chart [data]="chart.data" class="chart"></app-map-chart>
-            </div>
-          </ng-container>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div
+    *ngFor="let chart of charts; index as i"
+    (click)="openTile(i)"
+    class="tile chart-card"
+    [class.expanded]="expandedTileIndex === i"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ chart.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ng-container *ngIf="chart.component === 'app-line-chart'">
+          <div class="chart-container">
+            <app-line-chart [data]="chart.data" class="chart"></app-line-chart>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="chart.component === 'app-bar-chart'">
+          <div class="chart-container">
+            <app-bar-chart [data]="chart.data" class="chart"></app-bar-chart>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="chart.component === 'app-fintech-chart'">
+          <div class="chart-container">
+            <app-fintech-chart [data]="chart.data" class="chart"></app-fintech-chart>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="chart.component === 'app-map-chart'">
+          <div class="chart-container">
+            <app-map-chart [data]="chart.data" class="chart"></app-map-chart>
+          </div>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
