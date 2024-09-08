@@ -2,17 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["jest", "jest-extended"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "target": "es2020", // Updated target for Angular 18
-    "module": "commonjs", // Jest requires CommonJS module
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["es2020", "dom"] // Updated lib for Angular 18
+    "types": ["jest"]
   },
-  "include": ["src/**/*.ts", "../../global.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }

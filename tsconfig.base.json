@@ -8,16 +8,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true, // Required for seamless import/export interoperability
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2020", "dom"], // Common lib for both Angular and NestJS
+    "lib": ["es2020", "dom"], // ES2020 and DOM support for both Angular & NestJS
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {},
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["jest", "node"],
-    "outDir": "../../dist/out-tsc"
+    "baseUrl": ".", // Base URL to resolve imports across the monorepo
+    "paths": {}, // Can add aliases for shared libs if needed
+    "typeRoots": ["./node_modules/@types"], // Ensures Jest and Node types are found
+    "types": ["jest", "node"], // Include Jest types for testing
+    "outDir": "../../dist/out-tsc", // Output directory for the compiled code
+    "resolveJsonModule": true // Allows importing JSON files directly
   },
   "exclude": ["node_modules", "tmp"],
   "include": ["apps/frontend/src/**/*.ts", "apps/backend/src/**/*.ts"]

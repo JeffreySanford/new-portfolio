@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MapComponent } from './map.component';
 
 describe('MapComponent', () => {
@@ -8,7 +7,7 @@ describe('MapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MapComponent]
+      declarations: [MapComponent] // Correctly declare the component here
     })
     .compileComponents();
 

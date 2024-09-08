@@ -1,14 +1,9 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "types": ["jest", "node"],
-    "module": "commonjs", // Jest requires CommonJS module
-    "target": "es2020"
+    "outDir": "./out-tsc/spec",
+    "types": ["jest", "node"]
   },
-  "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts",
-    "../../global.d.ts"
-  ]
+  "files": ["src/test.ts", "setup-jest.ts"],
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }
