@@ -1,9 +1,7 @@
-// jest.config.ts
-import type { Config } from '@jest/types';
-import { pathsToModuleNameMapper } from 'ts-jest';
-import { compilerOptions } from './tsconfig.json';
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./tsconfig.json');
 
-const jestConfig: Config.InitialOptions = {
+module.exports = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   testEnvironment: 'jsdom',
@@ -12,7 +10,7 @@ const jestConfig: Config.InitialOptions = {
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment'
+    'jest-preset-angular/build/serializers/html-comment',
   ],
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   transform: {
@@ -25,8 +23,7 @@ const jestConfig: Config.InitialOptions = {
     ],
   },
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
-    prefix: '<rootDir>/'
+    prefix: '<rootDir>/',
   }),
 };
 
-export default jestConfig;
