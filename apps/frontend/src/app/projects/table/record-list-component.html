@@ -9,10 +9,10 @@
 </ng-template>
 
 <div class="table-container">
-  <mat-card class="record-list">
+  <mat-card class="record-list" [@flyIn] *ngIf="totalRecords > 0">
     <mat-card-header>
       <mat-card-subtitle>
-        <div class="report" [@flyIn] *ngIf="totalRecords > 0">
+        <div class="report">
           <p>
             Mock record set of {{ totalRecords }} records was generated in {{
             generationTimeLabel }} and delivered in {{ roundtripLabel }}.
