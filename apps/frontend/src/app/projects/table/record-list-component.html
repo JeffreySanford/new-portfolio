@@ -8,11 +8,11 @@
   </div>
 </ng-template>
 
-<div class="table-container" [hidden]="generationTimeLabel===''">
+<div class="table-container">
   <mat-card class="record-list">
     <mat-card-header>
       <mat-card-subtitle>
-        <div class="report" [@flyIn]>
+        <div class="report" [@flyIn] *ngIf="totalRecords > 0">
           <p>
             Mock record set of {{ totalRecords }} records was generated in {{
             generationTimeLabel }} and delivered in {{ roundtripLabel }}.
