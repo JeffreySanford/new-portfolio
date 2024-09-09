@@ -162,6 +162,9 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
 
   onDatasetChange(count: number): void {
     this.resolved = false;
+    this.generationTimeLabel = '';
+    this.changeDetectorRef.detectChanges();
+    
     console.log('Event: Dataset change requested with count:', count);
     this.recordService.generateNewRecordSet(count).pipe(
       takeUntil(this.destroy$),
@@ -221,7 +224,6 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   private updateCreationTime(): void {
-    this.generationTimeLabel = '';
     const startTime = new Date().getTime();
     this.recordService.getCreationTime().pipe(
       takeUntil(this.destroy$),
