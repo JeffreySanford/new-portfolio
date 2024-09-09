@@ -46,12 +46,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private ensureVideoIsPlaying() {
     const video = document.getElementById('background-video') as HTMLVideoElement;
     if (video) {
-      console.log('Checking if video is playing');
+      // console.log('Checking if video is playing');
       video.playbackRate = 0.5; // Slow down the video
       if (video.paused || video.ended) {
-        console.log('Video is paused or ended, attempting to play');
+        // console.log('Video is paused or ended, attempting to play');
         video.play().then(() => {
-          console.log('Video started playing, stopping polling');
+          // console.log('Video started playing, stopping polling');
           this.stopVideoCheckPolling();
         }).catch(error => {
           // console.error('Error attempting to play the video:', error);
