@@ -67,7 +67,7 @@
   </mat-card>
 
   <!-- Table and other elements -->
-  <div class="scrollable-container" [hidden]="!resolved" [@flyIn]>
+  <div class="scrollable-container" [hidden]="!resolved">
     <div class="table-wrapper">
       <table
         mat-table
@@ -78,6 +78,7 @@
         (matSortChange)="sortData($event)"
         multiTemplateDataRows
         class="mat-elevation-z8 stripped"
+        [@flyIn]
       >
         <!-- Existing columns -->
         <ng-container matColumnDef="userID">
