@@ -178,7 +178,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
           this.dataSource.filterPredicate = (data: Record, filter: string) => {
             return data.UID.toLowerCase().includes(filter);
           };
-    
+
           this.sort = { active: 'userID', direction: 'asc' } as MatSort;
           this.updateDisplayedColumns();
           this.changeDetectorRef.detectChanges(); // Notify Angular of changes
@@ -208,9 +208,9 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   expandRow(record: Record): void {
-      console.log('Event: Row expand requested for record:', record);
-      this.expandedElement = this.expandedElement?.UID === record.UID ? null : record;
-      console.log('Row: Expanded state updated');
+    console.log('Event: Row expand requested for record:', record);
+    this.expandedElement = this.expandedElement?.UID === record.UID ? null : record;
+    console.log('Row: Expanded state updated');
   }
 
   showDetailView(record: Record): void {
