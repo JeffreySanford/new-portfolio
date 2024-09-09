@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RecordListComponent } from '../record-list-component';
+import { RecordService } from '../record.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RecordDetailComponent', () => {
   let component: RecordDetailComponent;
@@ -14,9 +16,10 @@ describe('RecordDetailComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot(appRoutes), MaterialModule, FormsModule, BrowserAnimationsModule],
+      imports: [RouterModule.forRoot(appRoutes), MaterialModule, FormsModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [RecordListComponent, RecordDetailComponent],
       providers: [
+        RecordService,
         provideAnimationsAsync()
       ],
     }).compileComponents();

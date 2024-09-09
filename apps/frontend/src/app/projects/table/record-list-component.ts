@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { Record } from './models/record';
 import { RecordService } from './record.service';
 import { Subject, BehaviorSubject, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { switchMap, tap, takeUntil } from 'rxjs/operators';
+import { catchError, switchMap, tap, takeUntil } from 'rxjs/operators';
 import { detailExpand, flyIn } from './animations';
 
 @Component({
@@ -36,84 +35,69 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   private destroy$ = new Subject<void>();
   private resolvedSubject = new BehaviorSubject<boolean>(true);
   resolved$ = this.resolvedSubject.asObservable();
-  totalRecords = 0;
+  totalRecords = 100;
   newData = false;
 
   constructor(private router: Router, private recordService: RecordService, private changeDetectorRef: ChangeDetectorRef) {
-    console.log('Step 0: RecordListComponent constructor called');
+    console.log('Constructor: RecordListComponent initialized');
     this.resolved$.subscribe(resolved => {
-      console.log('Resolved state changed:', resolved);
+      console.log('Subscription: Resolved state changed:', resolved);
     });
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    console.log('Step 1: onResize called. Event:', event);
+    console.log('Event: Window resized');
     this.updateDisplayedColumns();
   }
 
   sortData(event: Sort): void {
-    console.log('Step 2: sortData called with event:', event);
+    console.log('Event: Data sorted with event:', event);
     this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
-    console.log('Step 3: applyFilter called with event:', event);
+    console.log('Event: Filter applied with event:', event);
     const filterValue = (event.target as HTMLInputElement).value;
     if (filterValue.length >= 2 || filterValue === '') {
       this.dataSource.filter = filterValue.trim().toLowerCase();
-      console.log('Step 3: Filter applied with value:', filterValue);
+      console.log('Filter: Applied with value:', filterValue);
     }
   }
 
   onDisplayRowChange(event: MatPaginator): void {
-    console.log('Step 4: onDisplayRowChange called with event:', event);
+    console.log('Event: Display row change with event:', event);
     if (this.paginator) {
       this.paginator.pageIndex = event.pageIndex;
       this.paginator.pageSize = event.pageSize;
       this.paginator.length = event.length;
-      console.log('Step 4: Paginator updated with pageIndex:', event.pageIndex, 'pageSize:', event.pageSize, 'length:', event.length);
+      console.log('Paginator: Updated with pageIndex:', event.pageIndex, 'pageSize:', event.pageSize, 'length:', event.length);
     }
   }
 
   ngOnInit(): void {
-    console.log('Step 5: ngOnInit called');
+    console.log('Lifecycle: ngOnInit called');
     this.resolved = false;
     this.recordService.generateNewRecordSet(100).pipe(
       takeUntil(this.destroy$),
       switchMap((dataset: Record[]) => {
         if (dataset) {
           this.dataSource.data = dataset;
+          this.totalRecords = dataset.length;
           this.resolved = true;
           this.newData = true;
-          this.changeDetectorRef.detectChanges();
+          this.changeDetectorRef.detectChanges(); // Notify Angular of changes
 
-          this.totalRecords = dataset.length;
-          console.log('Step 6: Data generated:', dataset.length);
+          console.log('Data: New record set generated with length:', dataset.length);
 
-          const startTime = new Date().getTime();
-          this.recordService.getCreationTime().pipe(
-            takeUntil(this.destroy$),
-            tap((generationTime: number) => {
-              const endTime = new Date().getTime();
-              const roundtrip = endTime - startTime;
-              this.roundtripLabel = roundtrip > 1000 ? `${(roundtrip / 1000).toFixed(2)} seconds` : `${roundtrip.toFixed(2)} milliseconds`;
-              this.generationTimeLabel = generationTime > 1000 ? `${(generationTime / 1000).toFixed(2)} seconds` : `${generationTime.toFixed(2)} milliseconds`;
-              console.log('Step 7: Data generation and timing labels updated:', this.generationTimeLabel, this.roundtripLabel);
-              this.resolvedSubject.next(true);
-            }),
-            catchError((error) => {
-              console.error('Error in getCreationTime:', error);
-              this.resolvedSubject.next(true);
-              return of('');
-            })
-          ).subscribe();
+          this.updateCreationTime();
         }
         return of([]);
       }),
       catchError((error) => {
-        console.error('Error in generateNewRecordSet:', error);
+        console.error('Error: generateNewRecordSet failed:', error);
         this.resolvedSubject.next(true);
+        this.changeDetectorRef.detectChanges(); // Notify Angular of changes
         return of([]);
       })
     ).subscribe();
@@ -121,7 +105,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
 
   ngAfterContentChecked(): void {
     if (this.resolved && this.dataSource.data.length > 0 && this.newData) {
-      console.log('Step 8: ngAfterContentChecked called');
+      console.log('Lifecycle: ngAfterContentChecked called');
       this.paginator.pageIndex = 0;
       this.paginator.pageSize = 5;
       this.paginator.length = this.totalRecords;
@@ -140,27 +124,27 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   ngAfterViewInit(): void {
-    console.log('Step 9: ngAfterViewInit called');
+    console.log('Lifecycle: ngAfterViewInit called');
   }
 
   ngOnDestroy(): void {
-    console.log('Step 10: ngOnDestroy called');
+    console.log('Lifecycle: ngOnDestroy called');
     this.destroy$.next();
     this.destroy$.complete();
   }
 
   private updateDisplayedColumns(): void {
-    console.log('Step 11: updateDisplayedColumns called');
+    console.log('Method: updateDisplayedColumns called');
     const width = window.innerWidth;
     if (width < 1000) {
       this.displayedColumns = ['userID', 'name', 'icons'];
-      console.log('Step 11.1: Width < 1000, displayedColumns updated to:', this.displayedColumns);
+      console.log('Displayed Columns: Width < 1000, updated to:', this.displayedColumns);
     } else if (width < 1200) {
       this.displayedColumns = ['userID', 'name', 'state', 'zip', 'icons'];
-      console.log('Step 11.2: Width < 1200, displayedColumns updated to:', this.displayedColumns);
+      console.log('Displayed Columns: Width < 1200, updated to:', this.displayedColumns);
     } else if (width < 1400) {
       this.displayedColumns = ['userID', 'name', 'city', 'state', 'zip', 'icons'];
-      console.log('Step 11.3: Width < 1400, displayedColumns updated to:', this.displayedColumns);
+      console.log('Displayed Columns: Width < 1400, updated to:', this.displayedColumns);
     } else {
       this.displayedColumns = [
         'userID',
@@ -172,13 +156,13 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
         'phone',
         'icons',
       ];
-      console.log('Step 11.4: Width >= 1400, displayedColumns updated to:', this.displayedColumns);
+      console.log('Displayed Columns: Width >= 1400, updated to:', this.displayedColumns);
     }
   }
 
   onDatasetChange(count: number): void {
     this.resolved = false;
-    console.log('Step 12: onDatasetChange called with count:', count);
+    console.log('Event: Dataset change requested with count:', count);
     this.recordService.generateNewRecordSet(count).pipe(
       takeUntil(this.destroy$),
       switchMap((dataset: Record[]) => {
@@ -197,57 +181,64 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
     
           this.sort = { active: 'userID', direction: 'asc' } as MatSort;
           this.updateDisplayedColumns();
-          this.changeDetectorRef.detectChanges();
+          this.changeDetectorRef.detectChanges(); // Notify Angular of changes
 
           this.totalRecords = dataset.length;
-          console.log('Step 13: Data generated:', dataset.length);
+          console.log('Data: New record set generated with length:', dataset.length);
 
-          const startTime = new Date().getTime();
-          this.recordService.getCreationTime().pipe(
-            takeUntil(this.destroy$),
-            tap((generationTime: number) => {
-              const endTime = new Date().getTime();
-              const roundtrip = endTime - startTime;
-              this.roundtripLabel = roundtrip > 1000 ? `${(roundtrip / 1000).toFixed(2)} seconds` : `${roundtrip.toFixed(2)} milliseconds`;
-              this.generationTimeLabel = generationTime > 1000 ? `${(generationTime / 1000).toFixed(2)} seconds` : `${generationTime.toFixed(2)} milliseconds`;
-              console.log('Step 14: Data generation and timing labels updated:', this.generationTimeLabel, this.roundtripLabel);
-              this.resolvedSubject.next(true);
-            }),
-            catchError((error) => {
-              console.error('Error in getCreationTime:', error);
-              this.resolvedSubject.next(true);
-              return of('');
-            })
-          ).subscribe();
+          this.updateCreationTime();
         }
         return of([]);
       }),
       catchError((error) => {
-        console.error('Error in generateNewRecordSet:', error);
+        console.error('Error: generateNewRecordSet failed:', error);
         this.resolvedSubject.next(true);
+        this.changeDetectorRef.detectChanges(); // Notify Angular of changes
         return of([]);
       })
     ).subscribe();
   }
 
   clearFilter(): void {
-    console.log('Step 15: clearFilter called');
+    console.log('Event: Clear filter requested');
     this.filterValue = '';
     this.dataSource.filter = '';
     this.resolved = false;
-    console.log('Step 15: Filter cleared');
+    console.log('Filter: Cleared');
   }
 
   expandRow(record: Record): void {
-    console.log('Step 16: expandRow called with record:', record);
-    this.expandedElement = this.expandedElement === record ? null : record;
-    console.log('Step 16: Row expanded state updated');
+      console.log('Event: Row expand requested for record:', record);
+      this.expandedElement = this.expandedElement?.UID === record.UID ? null : record;
+      console.log('Row: Expanded state updated');
   }
 
   showDetailView(record: Record): void {
-    console.log('Step 17: showDetailView called with record:', record);
+    console.log('Event: Show detail view requested for record:', record);
     this.recordService.setSelectedUID(record.UID);
     this.router.navigate(['record-detail', record.UID]);
-    console.log('Step 17: Navigated to record detail view');
+    console.log('Navigation: Navigated to record detail view');
+  }
+
+  private updateCreationTime(): void {
+    const startTime = new Date().getTime();
+    this.recordService.getCreationTime().pipe(
+      takeUntil(this.destroy$),
+      tap((generationTime: number) => {
+        const endTime = new Date().getTime();
+        const roundtrip = endTime - startTime;
+        this.roundtripLabel = roundtrip > 1000 ? `${(roundtrip / 1000).toFixed(2)} seconds` : `${roundtrip.toFixed(2)} milliseconds`;
+        this.generationTimeLabel = generationTime > 1000 ? `${(generationTime / 1000).toFixed(2)} seconds` : `${generationTime.toFixed(2)} milliseconds`;
+        console.log('Timing: Data generation and roundtrip time updated:', this.generationTimeLabel, this.roundtripLabel);
+        this.resolvedSubject.next(true);
+        this.changeDetectorRef.detectChanges(); // Notify Angular of changes
+      }),
+      catchError((error) => {
+        console.error('Error: getCreationTime failed:', error);
+        this.resolvedSubject.next(true);
+        this.changeDetectorRef.detectChanges();
+        return of('');
+      })
+    ).subscribe();
   }
 }

@@ -12,12 +12,7 @@ import { RecipesModule } from './recipes/recipes.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath:
-        process.env.NODE_ENV === 'production'
-          ? '.env.production'
-          : '.env.development',
     }),
-    AuthModule,
     UsersModule,
     HttpModule,
     JwtModule,
