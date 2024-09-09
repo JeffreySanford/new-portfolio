@@ -221,6 +221,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   private updateCreationTime(): void {
+    this.generationTimeLabel = '';
     const startTime = new Date().getTime();
     this.recordService.getCreationTime().pipe(
       takeUntil(this.destroy$),
