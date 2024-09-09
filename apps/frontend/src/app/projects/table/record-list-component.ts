@@ -162,9 +162,9 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
 
   onDatasetChange(count: number): void {
     this.resolved = false;
-    this.generationTimeLabel = '';
+    this.totalRecords = 0;
     this.changeDetectorRef.detectChanges();
-    
+
     console.log('Event: Dataset change requested with count:', count);
     this.recordService.generateNewRecordSet(count).pipe(
       takeUntil(this.destroy$),
