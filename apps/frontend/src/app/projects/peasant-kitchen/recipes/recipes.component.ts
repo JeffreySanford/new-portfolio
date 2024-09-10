@@ -43,6 +43,6 @@ export class RecipesComponent implements OnInit, OnDestroy, OnInit {
   navigateToRecipe(recipe: Recipe): void {
     console.log('Navigating to recipe:', recipe);
     this.peasantKitchenService.setRecipe(recipe);
-    this.router.navigate([`/peasant-kitchen/recipe/${recipe.url}`]); // Adjust as needed
+    this.router.navigate([`/peasant-kitchen/recipe/:${recipe.url}`]);
   }
 }

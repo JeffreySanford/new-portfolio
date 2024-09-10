@@ -25,7 +25,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   time?: Date;
   expandedElement?: Record | null;
   dataSource = new MatTableDataSource<Record>([]);
-  startTime?: () => number;
+  startTime = 0;
   generationTimeLabel = '';
   roundtripLabel = '';
   showAddressColumns = true;
@@ -78,6 +78,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   ngOnInit(): void {
     console.log('Lifecycle: ngOnInit called');
     this.resolved = false;
+    this.startTime = new Date().getTime();
     this.recordService.generateNewRecordSet(100).pipe(
       takeUntil(this.destroy$),
       switchMap((dataset: Record[]) => {
@@ -118,7 +119,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
 
       this.sort = { active: 'userID', direction: 'asc' } as MatSort;
       this.updateDisplayedColumns();
-      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.detectChanges(); // Notify Angular of changes
       this.newData = false;
     }
   }
@@ -166,6 +167,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
     this.changeDetectorRef.detectChanges();
 
     console.log('Event: Dataset change requested with count:', count);
+    this.startTime = new Date().getTime();
     this.recordService.generateNewRecordSet(count).pipe(
       takeUntil(this.destroy$),
       switchMap((dataset: Record[]) => {
@@ -196,7 +198,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
       catchError((error) => {
         console.error('Error: generateNewRecordSet failed:', error);
         this.resolvedSubject.next(true);
-        this.changeDetectorRef.detectChanges(); // Notify Angular of changes
+        this.changeDetectorRef.detectChanges();
         return of([]);
       })
     ).subscribe();
@@ -211,9 +213,9 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   expandRow(record: Record): void {
-    console.log('Event: Row expand requested for record:', record);
-    this.expandedElement = this.expandedElement?.UID === record.UID ? null : record;
-    console.log('Row: Expanded state updated');
+      console.log('Event: Row expand requested for record:', record);
+      this.expandedElement = this.expandedElement?.UID === record.UID ? null : record;
+      console.log('Row: Expanded state updated');
   }
 
   showDetailView(record: Record): void {
@@ -224,17 +226,17 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
 
   private updateCreationTime(): void {
-    const startTime = new Date().getTime();
     this.recordService.getCreationTime().pipe(
       takeUntil(this.destroy$),
       tap((generationTime: number) => {
         const endTime = new Date().getTime();
-        const roundtrip = endTime - startTime;
+        const roundtrip = endTime - this.startTime;
         this.roundtripLabel = roundtrip > 1000 ? `${(roundtrip / 1000).toFixed(2)} seconds` : `${roundtrip.toFixed(2)} milliseconds`;
         this.generationTimeLabel = generationTime > 1000 ? `${(generationTime / 1000).toFixed(2)} seconds` : `${generationTime.toFixed(2)} milliseconds`;
-        console.log('Timing: Data generation and roundtrip time updated:', this.generationTimeLabel, this.roundtripLabel);
+        console.log('Timing: Data generation time:', this.generationTimeLabel, 'Roundtrip time:', this.roundtripLabel);
         this.resolvedSubject.next(true);
-        this.changeDetectorRef.detectChanges(); // Notify Angular of changes
+        console.log('Resolved: Subject updated');
+        this.changeDetectorRef.detectChanges();
       }),
       catchError((error) => {
         console.error('Error: getCreationTime failed:', error);

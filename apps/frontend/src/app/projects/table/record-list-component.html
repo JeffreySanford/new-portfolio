@@ -9,7 +9,7 @@
 </ng-template>
 
 <div class="table-container">
-  <mat-card class="record-list" [@flyIn] *ngIf="totalRecords > 0">
+  <mat-card class="record-list" [@flyIn] [hidden]="totalRecords === 0">
     <mat-card-header>
       <mat-card-subtitle>
         <div class="report">
