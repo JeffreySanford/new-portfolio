@@ -6,4 +6,5 @@ export class Recipe {
   url?: string;
   countryOfOrigin?: string;
   servingSize?: string;
+  id?: number;
 }
