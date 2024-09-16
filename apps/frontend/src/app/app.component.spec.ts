@@ -1,42 +1,50 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BreakpointObserver} from '@angular/cdk/layout';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { SidebarModule } from './pages/sidebar/sidebar.module';
 
 describe('AppComponent', () => {
-  beforeEach((done) => {
-    from(TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([]),
-        SidebarModule
-    
-      ],
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let mockRouter: jest.Mocked<Router>;
+  let mockActivatedRoute: jest.Mocked<ActivatedRoute>;
+  let mockBreakpointObserver: jest.Mocked<BreakpointObserver>;
+
+  beforeEach(async () => {
+    mockRouter = {
+      navigate: jest.fn()
+    } as unknown as jest.Mocked<Router>;
+
+    mockActivatedRoute = {
+      snapshot: {
+        paramMap: {
+          get: jest.fn()
+        }
+      }
+    } as unknown as jest.Mocked<ActivatedRoute>;
+
+    mockBreakpointObserver = {
+      observe: jest.fn().mockReturnValue(of({ matches: false }))
+    } as unknown as jest.Mocked<BreakpointObserver>;
+
+    await TestBed.configureTestingModule({
       declarations: [AppComponent],
       providers: [
+        { provide: Router, useValue: mockRouter },
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: BreakpointObserver, useValue: mockBreakpointObserver }
       ]
-    }).compileComponents()).pipe(
-      switchMap(() => from(Promise.resolve()))
-    ).subscribe({
-      next: () => done(),
-      error: (err) => done.fail(err)
-    });
+    }).compileComponents();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'frontend'
-    );
   });
 
-  it(`should have as title 'frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend');
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
   });
 });

@@ -17,6 +17,7 @@ import { TableModule } from './projects/table/table.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
 import { ResumeComponent } from './pages/resume/resume.component';
+import { BusyService } from './common/services/busy.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ResumeComponent } from './pages/resume/resume.component';
   ],
   providers: [
   
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    BusyService
   ],
   bootstrap: [AppComponent]
 })
