@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BreakpointObserver} from '@angular/cdk/layout';
-import { of } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -25,7 +24,7 @@ describe('AppComponent', () => {
     } as unknown as jest.Mocked<ActivatedRoute>;
 
     mockBreakpointObserver = {
-      observe: jest.fn().mockReturnValue(of({ matches: false }))
+      observe: jest.fn()
     } as unknown as jest.Mocked<BreakpointObserver>;
 
     await TestBed.configureTestingModule({
@@ -46,5 +45,34 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggle sidebar correctly', () => {
+    component.isCollapsed = false;
+    component.toggleSidebar(true);
+    expect(component.isCollapsed).toBe(true);
+
+    component.toggleSidebar(true);
+    expect(component.isCollapsed).toBe(false);
+  });
+
+  it('should add user interaction listeners', () => {
+    const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
+    component['addUserInteractionListener']();
+    expect(addEventListenerSpy).toHaveBeenCalledWith('click', component['handleUserInteraction']);
+    expect(addEventListenerSpy).toHaveBeenCalledWith('keydown', component['handleUserInteraction']);
+  });
+
+  it('should remove user interaction listeners', () => {
+    const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
+    component['removeUserInteractionListener']();
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('click', component['handleUserInteraction']);
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', component['handleUserInteraction']);
+  });
+
+  it('should handle user interaction', () => {
+    const ensureVideoIsPlayingSpy = jest.spyOn(component as any, 'ensureVideoIsPlaying');
+    component['handleUserInteraction']();
+    expect(ensureVideoIsPlayingSpy).toHaveBeenCalled();
   });
 });

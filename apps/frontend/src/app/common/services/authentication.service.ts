@@ -69,7 +69,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): void  {
-    const api = 'http://localhost:3000/';
+    const api = 'http://jeffreysanford.us:3000/';
 
     this.http.get(api + 'users/:' + username).subscribe((next) => {
       const user = Object.values(next)[0];

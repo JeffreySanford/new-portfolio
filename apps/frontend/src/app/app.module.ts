@@ -18,6 +18,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
 import { ResumeComponent } from './pages/resume/resume.component';
 import { BusyService } from './common/services/busy.service';
+import { ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { BusyService } from './common/services/busy.service';
   providers: [
   
     provideAnimationsAsync(),
-    BusyService
+    BusyService,
+    ToastrService
   ],
   bootstrap: [AppComponent]
 })
