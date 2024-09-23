@@ -8,7 +8,7 @@ import { Record } from './models/record';
 })
 export class RecordService {
 
-  private baseUrl = 'https://jeffreysanford.us:3000/records';
+  private baseUrl = 'jeffreysanford.us:3000/records';
   selectedUserID = "0000000";
 
   constructor(private http: HttpClient) { }
