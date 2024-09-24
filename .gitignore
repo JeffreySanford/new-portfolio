@@ -42,14 +42,10 @@ Thumbs.db
 
 .angular
 
-
-# SSL
-/ssl/server.key
-/ssl/server.crt
-
 # Secrets
 .env
-*.env
-**/*.env
-.env/
-**/.env/
+
+# Certificates
+*.pem
+*.key
+*.csr
