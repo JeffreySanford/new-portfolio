@@ -15,7 +15,9 @@ async function bootstrap() {
 
   // Enable CORS
   app.enableCors({
-    origin: ['http://localhost:4200', 'http://jeffreysanford.us:4200', 'http://128.199.8.63:4200'],
+    origin: process.env.NODE_ENV === 'production' 
+      ? ['https://jeffreysanford.us', 'https://128.199.8.63'] 
+      : ['http://localhost:4200'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
