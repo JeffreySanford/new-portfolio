@@ -9,8 +9,8 @@
     }
   },
   "/api": {
-    "target": "http://jeffreysanford.us:3000",
-    "secure": false,
+    "target": "https://jeffreysanford.us:3000",
+    "secure": true,
     "changeOrigin": false,
     "logLevel": "debug"
   }
