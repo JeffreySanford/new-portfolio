@@ -4,20 +4,20 @@ import { AppModule } from './app/app.module';
 import * as fs from 'fs';
 
 async function bootstrap() {
-  const httpsOptions = {
-    key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
-  };
+  const isProduction = process.env.NODE_ENV === 'production';
+  const httpsOptions = isProduction
+    ? {
+        key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
+      }
+    : undefined;
 
   const app = await NestFactory.create(AppModule, {
     httpsOptions,
   });
 
-  // Enable CORS
   app.enableCors({
-    origin: process.env.NODE_ENV === 'production' 
-      ? ['https://jeffreysanford.us', 'https://128.199.8.63'] 
-      : ['http://localhost:4200'],
+    origin: process.env.CORS_ORIGIN,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
@@ -32,7 +32,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000, '0.0.0.0');
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
+
 bootstrap();
