@@ -3,7 +3,7 @@ module.exports = {
     apps: [
       {
         name: 'Backend API',
-        script: 'dist/apps/backend/main.js',
+        script: 'apps/backend/dist/apps/backend/main.js',
         env: {
           NODE_ENV: 'development',
           PORT: 3000,
