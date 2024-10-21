@@ -13,7 +13,7 @@ async function bootstrap() {
       cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
     }
     : undefined;
-  const host = isProduction ? 'jeffreysanford.us' : '0.0.0.0';
+  const host = isProduction ? 'jeffreysanford.us' : 'localhost';
   const port = process.env.PORT || 3000;
   const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
 
