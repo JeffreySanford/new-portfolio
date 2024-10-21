@@ -1,9 +1,9 @@
-//  This is for pm2 to run the server
+// This is for pm2 to run the server
 module.exports = {
   apps: [
     {
       name: 'Backend API',
-      script: './apps/backend/dist/apps/backend/main.js',
+      script: 'dist/apps/backend/main.js',  // Ensure this path matches the build output
       env: {
         NODE_ENV: 'development',
         PORT: 3000,
