@@ -38,3 +38,27 @@
       }
     }
 }
+
+.mat-raised-button.glass-button {
+  background: linear-gradient(to bottom, #e0e0e0, #ffffff 50%, #d4d4d4 100%) !important; /* Glassy gradient */
+  border: 1px solid #a3a3a3 !important; /* Border for button edge */
+  border-radius: 12px !important; /* Rounded corners */
+  color: #333 !important; /* Button text color */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8) !important; /* Slight text shadow for depth */
+  box-shadow: inset 0px 2px 3px rgba(255, 255, 255, 0.6), /* Inner shadow for glossy effect */
+              0px 4px 6px rgba(0, 0, 0, 0.2) !important; /* Outer shadow for button elevation */
+  padding: 10px 20px !important;
+  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out !important;
+
+  &:hover {
+    background: linear-gradient(to bottom, #ffffff, #e0e0e0 50%, #cfcfcf 100%) !important; /* Lighter on hover */
+    box-shadow: inset 0px 2px 5px rgba(255, 255, 255, 0.7), 0px 6px 8px rgba(0, 0, 0, 0.3) !important; /* Enhance shadow on hover */
+    transform: translateY(-2px) !important; /* Hover lift effect */
+  }
+
+  &:active {
+    background: linear-gradient(to bottom, #cfcfcf, #bfbfbf 50%, #a0a0a0 100%) !important; /* Darker on active/pressed */
+    box-shadow: inset 0px 2px 5px rgba(255, 255, 255, 0.4), 0px 3px 4px rgba(0, 0, 0, 0.2) !important; /* Pressed effect */
+    transform: translateY(2px) !important; /* Pressed down effect */
+  }
+}

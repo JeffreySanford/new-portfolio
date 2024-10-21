@@ -7,7 +7,7 @@ module.exports = {
       env: {
         NODE_ENV: 'development',
         PORT: 3000,
-        CORS_ORIGIN: 'http://localhost:4200',
+        CORS_ORIGIN: 'https://localhost:4200',
       },
       env_production: {
         NODE_ENV: 'production',

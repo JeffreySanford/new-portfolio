@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './material.module';
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialIconsComponent } from './pages/landing/material-icons/material-icons.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -24,11 +28,14 @@ describe('AppComponent', () => {
     } as unknown as jest.Mocked<ActivatedRoute>;
 
     mockBreakpointObserver = {
-      observe: jest.fn()
+      observe: jest.fn().mockReturnValue({
+        subscribe: jest.fn()
+      })
     } as unknown as jest.Mocked<BreakpointObserver>;
 
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, SidebarComponent, MaterialIconsComponent],
+      imports: [MaterialModule, HttpClientModule],
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
@@ -72,7 +79,7 @@ describe('AppComponent', () => {
 
   it('should handle user interaction', () => {
     const ensureVideoIsPlayingSpy = jest.spyOn(component as any, 'ensureVideoIsPlaying');
-    component['handleUserInteraction']();
+    component['handleUserInteraction'].call(component);
     expect(ensureVideoIsPlayingSpy).toHaveBeenCalled();
   });
 });

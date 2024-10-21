@@ -20,7 +20,7 @@ async function bootstrap() {
   app$.pipe(
     tap(app => {
       app.enableCors({
-        origin: ['localhost:4200', 'https://jeffreysanford.us', 'https://www.jeffreysanford.us'],
+        origin: ['https://localhost:4200', 'https://jeffreysanford.us', 'https://www.jeffreysanford.us'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
       });

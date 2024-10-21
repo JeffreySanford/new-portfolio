@@ -19,6 +19,7 @@ export class AuthenticationService {
   token: any;
   isLoggedIn = new BehaviorSubject(false);
   isAuthenticated = new BehaviorSubject(false);
+  api = 'http://localhost:3000/';
 
   constructor(
     private http: HttpClient,
@@ -69,9 +70,16 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): void  {
-    const api = 'https://jeffreysanford.us:3000/';
 
-    this.http.get(api + 'users/:' + username).subscribe((next) => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    if (isProduction) {
+      this.api = 'https://jeffreysanford.us:3000/';
+      this.notifyService.showSuccess('Running in production mode', 'Production');      
+    } else {      
+      this.notifyService.showSuccess('Running in development mode', 'Development');
+    }
+
+    this.http.get(this.api + 'users/:' + username).subscribe((next) => {
       const user = Object.values(next)[0];
       if (user) {
         this.getUser(user).subscribe((next) => {
@@ -82,7 +90,7 @@ export class AuthenticationService {
             const username = next.username;
             const password = next.password;
 
-            this.http.post<Response>(api + 'users/authenticate', { username, password }).subscribe((auth)=>{
+            this.http.post<Response>(this.api + 'users/authenticate', { username, password }).subscribe((auth)=>{
               console.log(user.username + ' authenticated: ' + user.username + ' is ' + auth);
               this.isLoggedIn.next(true);
               this.isAuthenticated.next(true);
