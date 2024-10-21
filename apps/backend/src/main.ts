@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import * as fs from 'fs';
+import { from } from 'rxjs';
+import { tap, switchMap } from 'rxjs/operators';
 
 async function bootstrap() {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -12,30 +14,34 @@ async function bootstrap() {
       }
     : undefined;
 
-  const app = await NestFactory.create(AppModule, {
-    httpsOptions,
-  });
+  const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
 
-  app.enableCors({
-    origin: process.env.CORS_ORIGIN,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true,
-  });
+  app$.pipe(
+    tap(app => {
+      app.enableCors({
+        origin: process.env.CORS_ORIGIN,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        credentials: true,
+      });
 
-  const options = new DocumentBuilder()
-    .setTitle('Jeffrey Sanford')
-    .setDescription('Portfolio for Jeffrey Sanford')
-    .setVersion('1.0')
-    .addTag('portfolio')
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+      const options = new DocumentBuilder()
+        .setTitle('Jeffrey Sanford')
+        .setDescription('Portfolio for Jeffrey Sanford')
+        .setVersion('1.0')
+        .addTag('portfolio')
+        .addBearerAuth()
+        .build();
+      const document = SwaggerModule.createDocument(app, options);
+      SwaggerModule.setup('api', app, document);
+    }),
+    switchMap(app => from(app.listen(process.env.PORT || 3000, '0.0.0.0')).pipe(
+      tap(() => {
+        console.log(`Application is running on: ${app.getUrl()}`);
+        console.log(`Environment: ${process.env.NODE_ENV}`);
+        console.log(`CORS Origin: ${process.env.CORS_ORIGIN}`);
+      })
+    ))
+  ).subscribe();
+}
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port, '128.199.8.63');  // Bind to all network interfaces
-  console.log(`Application is running on: ${await app.getUrl()}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-  console.log(`CORS Origin: ${process.env.CORS_ORIGIN}`);
-    console.log(`Listening on port: ${port}`);
-  }
+bootstrap();
