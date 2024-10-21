@@ -39,7 +39,7 @@ async function bootstrap() {
 
       return from(app.listen(port, host)).pipe(
         tap(() => {
-          console.log(`Application is running on: ${app.getUrl()}`);
+          console.log(`Application is running on: '+ ${host}:${port}`);
           console.log(`Environment: ${process.env.NODE_ENV}`);
           console.log(`Listening on port: ${port}`);
           console.log(`Listening on host: ${host}`);
