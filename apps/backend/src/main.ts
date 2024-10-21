@@ -37,4 +37,5 @@ async function bootstrap() {
   console.log(`Application is running on: ${await app.getUrl()}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`CORS Origin: ${process.env.CORS_ORIGIN}`);
-  console.log(`Listening on port: ${port}`);
+    console.log(`Listening on port: ${port}`);
+  }
