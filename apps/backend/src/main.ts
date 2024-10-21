@@ -33,7 +33,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const port = process.env.PORT || 3000;
-  await app.listen(port, '0.0.0.0');  // Bind to all network interfaces
+  await app.listen(port, '128.199.8.63');  // Bind to all network interfaces
   console.log(`Application is running on: ${await app.getUrl()}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`CORS Origin: ${process.env.CORS_ORIGIN}`);
