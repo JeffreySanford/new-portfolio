@@ -9,11 +9,12 @@ async function bootstrap() {
   const isProduction = process.env.NODE_ENV === 'production';
   const httpsOptions = isProduction
     ? {
-        key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
-      }
+      key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
+    }
     : undefined;
-
+  const host = isProduction ? 'jeffreysanford.us' : '0.0.0.0';
+  const port = process.env.PORT || 3000;
   const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
 
   app$.pipe(
@@ -35,8 +36,6 @@ async function bootstrap() {
       SwaggerModule.setup('api', app, document);
     }),
     switchMap(app => {
-      const host = isProduction ? 'jeffreysanford.us' : '0.0.0.0';
-      const port = process.env.PORT || 3000;
 
       return from(app.listen(port, host)).pipe(
         tap(() => {
