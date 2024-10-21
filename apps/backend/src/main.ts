@@ -36,7 +36,7 @@ async function bootstrap() {
       }),
       switchMap(app => {
         const port = process.env.PORT || 3000;
-        const host = process.env.NODE_ENV === 'production' ? 'your-reserved-ip-address' : '0.0.0.0';  // Replace with your reserved IP address
+        const host = process.env.NODE_ENV === 'production' ? '128.199.8.63' : '0.0.0.0';
         return from(app.listen(port, host)).pipe(
           tap(() => {
             console.log(`Application is running on: ${app.getUrl()}`);
