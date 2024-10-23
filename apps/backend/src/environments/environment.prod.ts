@@ -1,5 +1,7 @@
 export const environment = {
-    production: false,
-    host: 'localhost',
-    port: 3000
-  };
+  production: true,
+  host: 'jeffreysanford.us',
+  port: 3000,
+  keyPath: '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem',
+  certPath: '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'
+};

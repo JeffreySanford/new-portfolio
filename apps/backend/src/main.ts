@@ -6,17 +6,29 @@ import { from } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
 import { environment } from './environments/environment';
 
+// Load environment variables from .env file
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 async function bootstrap() {
   const isProduction = environment.production;
+  if (isProduction) {
+    console.log(`Running in production mode: ${isProduction}`);
+  }
   const host = environment.host;
   const port = environment.port;
 
-  const httpsOptions = isProduction
-    ? {
-        key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'),
-      }
-    : undefined;
+  const keyPath = environment.keyPath;
+  const certPath = environment.certPath;
+
+  if (!keyPath || !certPath) {
+    throw new Error('Key path or certificate path is not defined');
+  }
+
+  const httpsOptions = {
+    key: fs.readFileSync(keyPath),
+    cert: fs.readFileSync(certPath),
+  };
 
   const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
 
@@ -42,7 +54,9 @@ async function bootstrap() {
       return from(app.listen(port, host)).pipe(
         tap(() => {
           console.log(`Application is running on: ${host}:${port}`);
-          console.log(`Environment: ${isProduction ? 'production' : 'development'}`);
+          console.log(`Environment: ${process.env.NODE_ENV}`);
+          console.log(`Listening on port: ${port}`);
+          console.log(`Listening on host: ${host}`);
         })
       );
     })
