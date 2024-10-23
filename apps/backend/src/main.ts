@@ -4,13 +4,13 @@ import { AppModule } from './app/app.module';
 import * as fs from 'fs';
 import { from } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
-import * as dotenv from 'dotenv';
-
-// Load environment variables from .env file
-dotenv.config();
+import { environment } from './environments/environment';
 
 async function bootstrap() {
-  const isProduction = process.env.NODE_ENV === 'production';
+  const isProduction = environment.production;
+  const host = environment.host;
+  const port = environment.port;
+
   const httpsOptions = isProduction
     ? {
         key: fs.readFileSync('/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'),
@@ -18,8 +18,6 @@ async function bootstrap() {
       }
     : undefined;
 
-  const host = isProduction ? 'jeffreysanford.us' : 'localhost';
-  const port = process.env.PORT || 3000;
   const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
 
   app$.pipe(
@@ -44,9 +42,7 @@ async function bootstrap() {
       return from(app.listen(port, host)).pipe(
         tap(() => {
           console.log(`Application is running on: ${host}:${port}`);
-          console.log(`Environment: ${process.env.NODE_ENV}`);
-          console.log(`Listening on port: ${port}`);
-          console.log(`Listening on host: ${host}`);
+          console.log(`Environment: ${isProduction ? 'production' : 'development'}`);
         })
       );
     })
