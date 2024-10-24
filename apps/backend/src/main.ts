@@ -1,66 +1,66 @@
+import * as fs from 'fs';
+import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
-import * as fs from 'fs';
-import { from } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
-import { environment } from './environments/environment';
 
-// Load environment variables from .env file
-import * as dotenv from 'dotenv';
-dotenv.config();
+// Load environment variables based on NODE_ENV
+const envFilePath = process.env.NODE_ENV === 'production' ? '.production.env' : '.env';
+dotenv.config({ path: envFilePath });
 
 async function bootstrap() {
-  const isProduction = environment.production;
-  if (isProduction) {
-    console.log(`Running in production mode: ${isProduction}`);
-  }
-  const host = environment.host;
-  const port = environment.port;
+  const isProduction = process.env.NODE_ENV === 'production';
+  console.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
 
-  const keyPath = environment.keyPath;
-  const certPath = environment.certPath;
+  const host = process.env.HOST || 'localhost';
+  const port = process.env.PORT || 3000;
 
-  if (!keyPath || !certPath) {
-    throw new Error('Key path or certificate path is not defined');
+  // Use environment variables if provided, otherwise fallback to default paths
+  const keyPath = process.env.KEY_PATH || (isProduction
+    ? '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'
+    : './apps/backend/ssl/server.key');
+
+  const certPath = process.env.CERT_PATH || (isProduction
+    ? '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'
+    : './apps/backend/ssl/server.crt');
+
+  if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
+    throw new Error(`SSL certificate files not found. Key path: ${keyPath}, Cert path: ${certPath}`);
   }
 
   const httpsOptions = {
-    key: fs.readFileSync(keyPath),
-    cert: fs.readFileSync(certPath),
+    key: fs.readFileSync(keyPath, 'utf8'),
+    cert: fs.readFileSync(certPath, 'utf8'),
   };
 
-  const app$ = from(NestFactory.create(AppModule, { httpsOptions }));
+  const app = await NestFactory.create(AppModule, { httpsOptions });
 
-  app$.pipe(
-    tap(app => {
-      app.enableCors({
-        origin: ['http://localhost:4200', 'https://jeffreysanford.us', 'https://www.jeffreysanford.us'],
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-        credentials: true,
-      });
+  // Enable CORS
+  app.enableCors({
+    origin: ['http://localhost:4200', 'https://jeffreysanford.us', 'https://www.jeffreysanford.us'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
 
-      const options = new DocumentBuilder()
-        .setTitle('Jeffrey Sanford')
-        .setDescription('Portfolio for Jeffrey Sanford')
-        .setVersion('1.0')
-        .addTag('portfolio')
-        .addBearerAuth()
-        .build();
-      const document = SwaggerModule.createDocument(app, options);
-      SwaggerModule.setup('api', app, document);
-    }),
-    switchMap(app => {
-      return from(app.listen(port, host)).pipe(
-        tap(() => {
-          console.log(`Application is running on: ${host}:${port}`);
-          console.log(`Environment: ${process.env.NODE_ENV}`);
-          console.log(`Listening on port: ${port}`);
-          console.log(`Listening on host: ${host}`);
-        })
-      );
-    })
-  ).subscribe();
+  // Swagger setup for development
+  if (!isProduction) {
+    const swaggerConfig = new DocumentBuilder()
+      .setTitle('API Documentation')
+      .setDescription('API description')
+      .setVersion('1.0')
+      .addBearerAuth() // Optionally add authorization if needed
+      .build();
+
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('api-docs', app, document);
+
+    console.log('Swagger API documentation is available at /api-docs');
+  }
+
+  // Start the application
+  await app.listen(port, () => {
+    console.log(`Server is running on ${host}:${port}`);
+  });
 }
 
 bootstrap();
