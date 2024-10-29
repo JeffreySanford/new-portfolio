@@ -18,11 +18,11 @@ async function bootstrap() {
   // Use environment variables if provided, otherwise fallback to default paths
   const keyPath = process.env.KEY_PATH || (isProduction
     ? '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'
-    : './apps/backend/ssl/server.key');
+    : './ssl/server.key');
 
   const certPath = process.env.CERT_PATH || (isProduction
     ? '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'
-    : './apps/backend/ssl/server.crt');
+    : './ssl/server.crt');
 
   if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
     throw new Error(`SSL certificate files not found. Key path: ${keyPath}, Cert path: ${certPath}`);

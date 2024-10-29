@@ -87,6 +87,7 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
           this.totalRecords = dataset.length;
           this.resolved = true;
           this.newData = true;
+          debugger
           this.changeDetectorRef.detectChanges(); // Notify Angular of changes
 
           console.log('Data: New record set generated with length:', dataset.length);
@@ -246,4 +247,6 @@ export class RecordListComponent implements OnInit, OnDestroy, AfterViewInit, Af
       })
     ).subscribe();
   }
+
+   
 }

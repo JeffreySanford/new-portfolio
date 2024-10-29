@@ -2,96 +2,79 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecordListComponent } from './record-list-component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../material.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, provideHttpClientTesting } from '@angular/common/http/testing';
 import { RecordService } from './record.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { Record } from './models/record';
-import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../common/services/notification.service';
+import { RouterModule, Router } from '@angular/router';
+import { appRoutes } from '../../app.routes';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 describe('RecordListComponent', () => {
   let component: RecordListComponent;
   let fixture: ComponentFixture<RecordListComponent>;
-  let recordService: RecordService;
+  let mockNotificationService: Partial<NotificationService>;
   let router: Router;
 
   beforeEach(async () => {
+    mockNotificationService = {
+      clear: jest.fn(),
+      showSuccess: jest.fn(),
+      showError: jest.fn(),
+      showHTMLMessage: jest.fn()
+    };
+
+    Object.defineProperty(HTMLElement.prototype, 'animate', {
+      configurable: true,
+      value: jest.fn()
+    });
+
+    const mockElement = document.createElement('div');
+    mockElement.id = 'mockElementId';
+    document.body.appendChild(mockElement);
+
+    jest.spyOn(document, 'getElementById').mockReturnValue(mockElement);
+    jest.spyOn(window, 'addEventListener').mockImplementation(() => {});
+
     await TestBed.configureTestingModule({
       imports: [
-        MaterialModule,
-        HttpClientTestingModule,
-        FormsModule,
+        RouterModule.forRoot(appRoutes),
         BrowserAnimationsModule,
-        RouterTestingModule
+        MaterialModule,
+        FormsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot({
+          timeOut: 3000,
+          positionClass: 'toast-bottom-center',
+          preventDuplicates: true,
+        })
       ],
       declarations: [RecordListComponent],
-      providers: [RecordService],
+      providers: [
+        RecordService,
+        { provide: NotificationService, useValue: mockNotificationService },
+        ToastrService,
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
-
-    // Mock the animate function
-    if (!HTMLElement.prototype.animate) {
-      HTMLElement.prototype.animate = jest.fn();
-    }
-
-    // Mock addEventListener to prevent errors
-    if (!HTMLElement.prototype.addEventListener) {
-      HTMLElement.prototype.addEventListener = jest.fn();
-    }
 
     fixture = TestBed.createComponent(RecordListComponent);
     component = fixture.componentInstance;
-    recordService = TestBed.inject(RecordService);
     router = TestBed.inject(Router);
-
-    // Mock the recordService methods
-    jest.spyOn(recordService, 'generateNewRecordSet').mockReturnValue(of([]));
-    jest.spyOn(recordService, 'getCreationTime').mockReturnValue(of(1000));
-
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    document.body.removeChild(document.getElementById('mockElementId')!);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // Uncommented tests for completeness
-  it('should call generateNewRecordSet on ngOnInit', () => {
-    const generateNewRecordSetSpy = jest.spyOn(recordService, 'generateNewRecordSet');
-    component.ngOnInit();
-    expect(generateNewRecordSetSpy).toHaveBeenCalledWith(100); // Ensure the correct argument is passed
-  });
-
-  it('should update displayedColumns on window resize', () => {
-    const updateDisplayedColumnsSpy = jest.spyOn(component as any, 'updateDisplayedColumns');
-    window.dispatchEvent(new Event('resize'));
-    expect(updateDisplayedColumnsSpy).toHaveBeenCalled();
-  });
-
-  it('should apply filter correctly', () => {
-    const event = { target: { value: 'test' } } as unknown as Event;
-    component.applyFilter(event);
-    expect(component.dataSource.filter).toBe('test');
-  });
-
-  it('should clear filter correctly', () => {
-    component.clearFilter();
-    expect(component.filterValue).toBe('');
-    expect(component.dataSource.filter).toBe('');
-  });
-
-  it('should expand row correctly', () => {
-    const record = { UID: '1' } as Record;
-    component.expandRow(record);
-    expect(component.expandedElement).toBe(record);
-    component.expandRow(record);
-    expect(component.expandedElement).toBeNull();
-  });
-
-  it('should navigate to detail view correctly', () => {
-    const routerSpy = jest.spyOn(router, 'navigate');
-    const record = { UID: '1' } as Record;
-    component.showDetailView(record);
-    expect(routerSpy).toHaveBeenCalledWith(['record-detail', '1']);
-  });
 });

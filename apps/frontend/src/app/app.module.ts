@@ -18,7 +18,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { PeasantKitchenModule } from './projects/peasant-kitchen/peasant-kitchen.module';
 import { ResumeComponent } from './pages/resume/resume.component';
 import { BusyService } from './common/services/busy.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,12 @@ import { ToastrService } from 'ngx-toastr';
     SpaceVideoModule,
     TableModule,
     FooterModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    })
     
   ],
   exports: [

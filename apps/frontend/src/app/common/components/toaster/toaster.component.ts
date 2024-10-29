@@ -4,14 +4,16 @@ import { NotificationService } from '../../services/notification.service';
 
 
 @Component({
-  selector: 'broken-leaf-toaster',
+  selector: 'app-toaster',
   templateUrl: './toaster.component.html',
   styleUrls: ['./toaster.component.scss'],
 })
 export class ToasterComponent implements OnInit {
   constructor(private toastr: ToastrService, private notifyService: NotificationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('ToasterComponent');
+  }
 
   showToaster(message: string, title: string) {
     this.notifyService.showSuccess(message, title);

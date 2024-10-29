@@ -9,7 +9,7 @@ import { NotificationService } from '../../common/services/notification.service'
 })
 export class RecordService {
 
-  private api = 'https://locahost:3000/records';
+  private api = 'https://localhost:3000/records';
   selectedUserID = "0000000";
   
   constructor(private http: HttpClient, private notifyService: NotificationService) {
