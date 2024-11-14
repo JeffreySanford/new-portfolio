@@ -6,7 +6,7 @@ DEST_DIR="/usr/share/nginx/html"
 
 # Build the frontend application
 echo "Building the frontend application..."
-nx build frontend
+npx nx build frontend
 
 # Check if the build was successful
 if [ $? -ne 0 ]; then
