@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'Backend API',
-      script: 'dist/apps/backend/main.js', // Ensure this path is correct
+      script: 'apps/backend/dist/apps/backend/main.js',
       instances: 1,
       autorestart: true,
       max_memory_restart: '1G',
