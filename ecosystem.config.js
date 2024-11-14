@@ -2,22 +2,39 @@ module.exports = {
   apps: [
     {
       name: 'Backend API',
-      script: 'apps/backend/dist/apps/backend/main.js',  // Ensure this path matches the build output
+      script: 'apps/backend/dist/main.js',
+      instances: 1,
+      autorestart: true,
+      max_memory_restart: '1G',
       env: {
         NODE_ENV: 'development',
         PORT: 3000,
         CORS_ORIGIN: 'https://localhost:4200',
+        KEY_PATH: './certs/development/server.key',
+        CERT_PATH: './certs/development/server.crt',
+        // Other development variables
       },
       env_production: {
         NODE_ENV: 'production',
         PORT: 3000,
         CORS_ORIGIN: 'https://jeffreysanford.us',
-        SSL_KEY_PATH: process.env.SSL_KEY_PATH,
-        SSL_CERT_PATH: process.env.SSL_CERT_PATH
+        KEY_PATH: '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem',
+        CERT_PATH: '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem',
+        // Other production variables
       },
-      node_args: '-r dotenv/config',
-      args: '&& node -e "console.log(`NODE_ENV: ${process.env.NODE_ENV}`); console.log(`PORT: ${process.env.PORT}`); console.log(`CORS_ORIGIN: ${process.env.CORS_ORIGIN}`);"',
     },
   ],
-};
 
+  deploy: {
+    production: {
+      user: 'root',
+      host: 'jeffreysanford.us',
+      ref: 'origin/master',
+      repo: 'https://github.com/JeffreySanford/new-portfolio',
+      path: '/var/www/jeffreysanford',
+      'pre-deploy-local': '',
+      'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production',
+      'pre-setup': '',
+    },
+  },
+};

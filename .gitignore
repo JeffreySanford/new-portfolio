@@ -46,6 +46,8 @@ Thumbs.db
 .env
 
 # Certificates
-*.pem
 *.key
 *.csr
+
+certs/*.key
+certs/*.crt

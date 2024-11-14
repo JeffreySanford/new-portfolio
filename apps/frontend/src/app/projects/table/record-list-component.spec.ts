@@ -36,7 +36,9 @@ describe('RecordListComponent', () => {
     document.body.appendChild(mockElement);
 
     jest.spyOn(document, 'getElementById').mockReturnValue(mockElement);
-    jest.spyOn(window, 'addEventListener').mockImplementation(() => {});
+    jest.spyOn(window, 'addEventListener').mockImplementation(() => {
+      console.log('addEventListener');
+    });
 
     await TestBed.configureTestingModule({
       imports: [

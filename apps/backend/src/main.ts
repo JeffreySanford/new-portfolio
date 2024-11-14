@@ -1,28 +1,19 @@
 import * as fs from 'fs';
-import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
-
-// Load environment variables based on NODE_ENV
-const envFilePath = process.env.NODE_ENV === 'production' ? '.production.env' : '.env';
-dotenv.config({ path: envFilePath });
+import { Logger } from '@nestjs/common';
+import { environment } from '../../../environments/environment';
 
 async function bootstrap() {
-  const isProduction = process.env.NODE_ENV === 'production';
-  console.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
+  const isProduction = environment.production;
+  Logger.log(`Running in ${isProduction ? 'production' : 'development'} mode`);
 
-  const host = process.env.HOST || 'localhost';
-  const port = process.env.PORT || 3000;
+  const host = environment.host;
+  const port = environment.port;
 
-  // Use environment variables if provided, otherwise fallback to default paths
-  const keyPath = process.env.KEY_PATH || (isProduction
-    ? '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem'
-    : './ssl/server.key');
-
-  const certPath = process.env.CERT_PATH || (isProduction
-    ? '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem'
-    : './ssl/server.crt');
+  const keyPath = environment.keyPath;
+  const certPath = environment.certPath;
 
   if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
     throw new Error(`SSL certificate files not found. Key path: ${keyPath}, Cert path: ${certPath}`);
@@ -42,24 +33,33 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Swagger setup for development
-  if (!isProduction) {
-    const swaggerConfig = new DocumentBuilder()
-      .setTitle('API Documentation')
-      .setDescription('API description')
-      .setVersion('1.0')
-      .addBearerAuth() // Optionally add authorization if needed
-      .build();
+  // Swagger setup for both development and production
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('API Documentation')
+    .setDescription('API description')
+    .setVersion('1.0')
+    .addBearerAuth() // Optionally add authorization if needed
+    .build();
 
-    const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('api-docs', app, document);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api-docs', app, document);
 
-    console.log('Swagger API documentation is available at /api-docs');
+  Logger.log('Swagger API documentation is available at /api-docs');
+
+  // Protect other resources in production
+  if (isProduction) {
+    // Example: Use a guard or middleware to protect routes
+    app.use((req, res, next) => {
+      if (req.path !== '/api-docs' && !req.headers.authorization) {
+        return res.status(403).send('Forbidden');
+      }
+      next();
+    });
   }
 
   // Start the application
-  await app.listen(port, () => {
-    console.log(`Server is running on ${host}:${port}`);
+  await app.listen(port, host, () => {
+    Logger.log(`Server is running on https://${host}:${port}`);
   });
 }
 
