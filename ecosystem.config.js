@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'Backend API',
-      script: 'apps/backend/dist/apps/backend/main.js',
+      script: 'dist/apps/backend/main.js',
       instances: 1,
       autorestart: true,
       max_memory_restart: '1G',
@@ -12,7 +12,6 @@ module.exports = {
         CORS_ORIGIN: 'https://localhost:4200',
         KEY_PATH: './certs/development/server.key',
         CERT_PATH: './certs/development/server.crt',
-        // Other development variables
       },
       env_production: {
         NODE_ENV: 'production',
@@ -20,11 +19,9 @@ module.exports = {
         CORS_ORIGIN: 'https://jeffreysanford.us',
         KEY_PATH: '/etc/letsencrypt/live/jeffreysanford.us/privkey.pem',
         CERT_PATH: '/etc/letsencrypt/live/jeffreysanford.us/fullchain.pem',
-        // Other production variables
       },
     },
   ],
-
   deploy: {
     production: {
       user: 'root',
