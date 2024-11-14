@@ -87,9 +87,39 @@
         "args": [
           "--node-env=production"
         ],
-        "command": "webpack-cli build"
+        "command": "webpack-cli build",
+        "assets": [
+          {
+            "input": "cert",
+            "glob": "**/*",
+            "output": "dist/apps/backend/cert"
+          }
+        ]
       },
-      "configurations": {},
+      "configurations": {
+        "development": {
+          "cwd": "apps/backend",
+          "command": "webpack-cli build --mode development",
+          "assets": [
+            {
+              "input": "cert",
+              "glob": "**/*",
+              "output": "dist/apps/backend/cert"
+            }
+          ]
+        },
+        "production": {
+          "cwd": "apps/backend",
+          "command": "webpack-cli build --mode production",
+          "assets": [
+            {
+              "input": "cert",
+              "glob": "**/*",
+              "output": "dist/apps/backend/cert"
+            }
+          ]
+        }
+      },
       "parallelism": true
     },
     "serve": {

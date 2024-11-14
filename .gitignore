@@ -47,7 +47,7 @@ Thumbs.db
 
 # Certificates
 *.key
-*.csr
+*.cst
 
 certs/*.key
 certs/*.crt
