@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'Backend API',
-      script: 'apps/backend/dist/apps/backend/main.js',
+      script: 'dist/apps/backend/main.js', // Ensure this path is correct
       instances: 1,
       autorestart: true,
       max_memory_restart: '1G',
@@ -10,8 +10,6 @@ module.exports = {
         NODE_ENV: 'development',
         PORT: 3000,
         CORS_ORIGIN: 'https://localhost:4200',
-        KEY_PATH: './certs/development/server.key',
-        CERT_PATH: './certs/development/server.crt',
       },
       env_production: {
         NODE_ENV: 'production',
