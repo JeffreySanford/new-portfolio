@@ -89,7 +89,7 @@
       "configurations": {
         "production": {
           "cwd": "apps/backend",
-          "command": "webpack-cli build --mode production",
+          "command": "webpack-cli build --mode production --output-path=dist/apps/backend",
           "outputPath": "dist/apps/backend"
         }
       },
