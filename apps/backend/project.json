@@ -46,40 +46,51 @@
       "parallelism": true
     },
     "build": {
-      "executor": "@nrwl/node:build",
-      "outputs": [
-        "{options.outputPath}"
+      "cache": true,
+      "dependsOn": [
+        "^build"
       ],
-      "options": {
-        "outputPath": "dist/apps/backend",
-        "main": "apps/backend/src/main.ts",
-        "tsConfig": "apps/backend/tsconfig.app.json",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/backend/src/assets",
-            "output": "assets"
-          },
-          {
-            "glob": "certs/**/*",
-            "input": ".",
-            "output": "."
-          }
-        ]
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/backend/src/environments/environment.ts",
-              "with": "apps/backend/src/environments/environment.prod.ts"
-            }
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "webpack-cli"
           ]
         }
-      }
+      ],
+      "outputs": [
+        "{workspaceRoot}/apps/backend/dist/apps/backend"
+      ],
+      "metadata": {
+        "technologies": [
+          "webpack",
+          "webpack",
+          "webpack"
+        ],
+        "description": "Runs Webpack build",
+        "help": {
+          "command": "npx webpack-cli build --help",
+          "example": {
+            "options": {
+              "json": "stats.json"
+            },
+            "args": [
+              "--profile"
+            ]
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "args": [
+          "--node-env=production"
+        ],
+        "command": "webpack-cli build"
+      },
+      "configurations": {},
+      "parallelism": true
     },
     "serve": {
       "executor": "@nx/js:node",
