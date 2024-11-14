@@ -60,7 +60,7 @@
         }
       ],
       "outputs": [
-        "{workspaceRoot}/apps/backend/dist/apps/backend"
+        "{workspaceRoot}/apps/backend/dist"
       ],
       "metadata": {
         "technologies": [
