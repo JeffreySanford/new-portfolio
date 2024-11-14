@@ -46,7 +46,7 @@
       "parallelism": true
     },
     "build": {
-      "executor": "@nx/node:build",
+      "executor": "@nrwl/node:build",
       "outputs": [
         "{options.outputPath}"
       ],
