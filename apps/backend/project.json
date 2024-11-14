@@ -24,7 +24,6 @@
       ],
       "metadata": {
         "technologies": [
-          "eslint",
           "eslint"
         ],
         "description": "Runs ESLint on project",
@@ -64,8 +63,6 @@
       ],
       "metadata": {
         "technologies": [
-          "webpack",
-          "webpack",
           "webpack"
         ],
         "description": "Runs Webpack build",
@@ -84,12 +81,18 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/backend",
+        "command": "webpack-cli build",
         "args": [
           "--node-env=production"
-        ],
-        "command": "webpack-cli build"
+        ]
       },
-      "configurations": {},
+      "configurations": {
+        "production": {
+          "cwd": "apps/backend",
+          "command": "webpack-cli build --mode production",
+          "outputPath": "dist/apps/backend"
+        }
+      },
       "parallelism": true
     },
     "serve": {
@@ -115,8 +118,6 @@
     "preview": {
       "metadata": {
         "technologies": [
-          "webpack",
-          "webpack",
           "webpack"
         ],
         "description": "Starts Webpack dev server in production mode",
@@ -135,10 +136,10 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/backend",
+        "command": "webpack-cli serve",
         "args": [
           "--node-env=production"
-        ],
-        "command": "webpack-cli serve"
+        ]
       },
       "configurations": {},
       "parallelism": true
