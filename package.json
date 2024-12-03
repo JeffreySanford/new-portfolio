@@ -28,7 +28,7 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "jszip": "^3.10.1",
-    "mongoose": "^8.5.2",
+    "mongoose": "^8.8.3",
     "ngx-toastr": "^19.0.0",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
